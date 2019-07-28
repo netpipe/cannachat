@@ -27,17 +27,37 @@ INCLUDEPATH += .
 INCLUDEPATH += ./IrcCore
 INCLUDEPATH += ./IrcModel
 INCLUDEPATH += ./IrcUtil
+INCLUDEPATH += ./include
+INCLUDEPATH += ./i18n
+INCLUDEPATH += ./uchardet
+INCLUDEPATH += ./debug
+INCLUDEPATH += ./release
+
 
 unix:MOC_DIR = ./mocs
-win32:MOC_DIR = c:/myproject/tmp
+win32:MOC_DIR = ./mocs
 
 win32:INCLUDEPATH+=C:\Users\TEST\Downloads\irrlicht-1.8.4\irrlicht-1.8.4\include
 else:unix:INCLUDEPATH+= /home/Dev/libs/game/irrlicht/Irrlicht-SVN/include/ /home/Dev/libs/game/irrlicht/Irrlicht-SVN/lib/Linux/
 
-win32:LIBS += -LC:\Users\TEST\Downloads\irrlicht-1.8.4\irrlicht-1.8.4\lib\Win32-visualstudio -lIrrlicht
+win32:LIBS += -LC:\Users\TEST\Downloads\irrlicht-1.8.4\irrlicht-1.8.4\lib\Win32-visualstudio
 else:unix:LIBS += -L/home/Dev/libs/game/irrlicht/Irrlicht-SVN/lib/Linux/  -lQt5OpenGL -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lX11 -lXxf86vm
 
 SOURCES += \
+    IrcCore/irc.cpp \
+    IrcCore/irccommand.cpp \
+    IrcCore/ircconnection.cpp \
+    IrcCore/irccore.cpp \
+    IrcCore/ircfilter.cpp \
+    IrcCore/ircmessage.cpp \
+    IrcCore/ircmessage_p.cpp \
+    IrcCore/ircmessagecomposer.cpp \
+    IrcCore/ircmessagedecoder.cpp \
+    IrcCore/ircmessagedecoder_icu.cpp \
+    IrcCore/ircmessagedecoder_none.cpp \
+    IrcCore/ircmessagedecoder_uchardet.cpp \
+    IrcCore/ircnetwork.cpp \
+    IrcCore/ircprotocol.cpp \
         main.cpp \
         mainwindow.cpp \
     IrcCore/irc.cpp \
@@ -67,22 +87,39 @@ SOURCES += \
     IrcUtil/irctoken.cpp \
     IrcUtil/ircutil.cpp \
     ircclient.cpp \
-    ircmessageformatter.cpp \
-    movemodelanimator.cpp
+    ircmessageformatter.cpp
 
 HEADERS += \
-        mainwindow.h \
     IrcCore/Irc \
+    IrcCore/IrcCommandFilter \
+    IrcCore/IrcCore \
+    IrcCore/irc.h \
+    IrcCore/irccommand.h \
+    IrcCore/irccommand_p.h \
+    IrcCore/irccommandfilter.h \
+    IrcCore/ircconnection.h \
+    IrcCore/ircconnection_p.h \
+    IrcCore/irccore.h \
+    IrcCore/ircdebug_p.h \
+    IrcCore/ircfilter.h \
+    IrcCore/ircglobal.h \
+    IrcCore/ircmessage.h \
+    IrcCore/ircmessage_p.h \
+    IrcCore/ircmessagecomposer_p.h \
+    IrcCore/ircmessagedecoder_p.h \
+    IrcCore/ircmessagefilter.h \
+    IrcCore/ircnetwork.h \
+    IrcCore/ircnetwork_p.h \
+    IrcCore/ircprotocol.h \
+        mainwindow.h \
     IrcCore/irc.h \
     IrcCore/IrcCommand \
     IrcCore/irccommand.h \
     IrcCore/irccommand_p.h \
-    IrcCore/IrcCommandFilter \
     IrcCore/irccommandfilter.h \
     IrcCore/IrcConnection \
     IrcCore/ircconnection.h \
     IrcCore/ircconnection_p.h \
-    IrcCore/IrcCore \
     IrcCore/irccore.h \
     IrcCore/ircdebug_p.h \
     IrcCore/IrcFilter \
@@ -137,10 +174,7 @@ HEADERS += \
     IrcUtil/IrcUtil \
     IrcUtil/ircutil.h \
     ircclient.h \
-    ircmessageformatter.h \
-    irrlichtwidget.h \
-    irrutil.h \
-    movemodelanimator.h
+    ircmessageformatter.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
