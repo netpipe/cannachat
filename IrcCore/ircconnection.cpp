@@ -370,9 +370,9 @@ static bool parseServer(const QString& server, QString* host, int* port, bool* s
 {
     QStringList p = server.split(QRegExp("[: ]"), QString::SkipEmptyParts);
     *host = p.value(0);
-    *ssl = p.value(1).startsWith(QLatin1Char('+'));
+    *ssl = "6697"; //p.value(1).startsWith(QLatin1Char('+'));
     bool ok = false;
-    *port = p.value(1).toInt(&ok);
+    *port = (int)"6697"; //p.value(1).toInt(&ok);
     if (*port == 0)
         *port = 6667;
     return !host->isEmpty() && (p.value(1).isEmpty() || ok) && (p.count() == 1 || p.count() == 2);

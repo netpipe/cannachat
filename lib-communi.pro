@@ -4,8 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network opengl
-
+QT       += core gui network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = lib-communi
@@ -17,7 +16,6 @@ TEMPLATE = app
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
 DEFINES += IRC_STATIC
-
 # You can also make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
@@ -37,27 +35,13 @@ INCLUDEPATH += ./release
 unix:MOC_DIR = ./mocs
 win32:MOC_DIR = ./mocs
 
-win32:INCLUDEPATH+=C:\Users\TEST\Downloads\irrlicht-1.8.4\irrlicht-1.8.4\include
-else:unix:INCLUDEPATH+= /home/Dev/libs/game/irrlicht/Irrlicht-SVN/include/ /home/Dev/libs/game/irrlicht/Irrlicht-SVN/lib/Linux/
+#win32:INCLUDEPATH+=C:\Users\TEST\Downloads\irrlicht-1.8.4\irrlicht-1.8.4\include
+#else:unix:INCLUDEPATH+= /home/Dev/libs/game/irrlicht/Irrlicht-SVN/include/ /home/Dev/libs/game/irrlicht/Irrlicht-SVN/lib/Linux/
 
-win32:LIBS += -LC:\Users\TEST\Downloads\irrlicht-1.8.4\irrlicht-1.8.4\lib\Win32-visualstudio
-else:unix:LIBS += -L/home/Dev/libs/game/irrlicht/Irrlicht-SVN/lib/Linux/  -lQt5OpenGL -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lX11 -lXxf86vm
+#win32:LIBS += -LC:\Users\TEST\Downloads\irrlicht-1.8.4\irrlicht-1.8.4\lib\Win32-visualstudio
+#else:unix:LIBS += -L/home/Dev/libs/game/irrlicht/Irrlicht-SVN/lib/Linux/  -lQt5Widgets -lQt5Gui -lQt5Core -lX11 -lXxf86vm
 
 SOURCES += \
-    IrcCore/irc.cpp \
-    IrcCore/irccommand.cpp \
-    IrcCore/ircconnection.cpp \
-    IrcCore/irccore.cpp \
-    IrcCore/ircfilter.cpp \
-    IrcCore/ircmessage.cpp \
-    IrcCore/ircmessage_p.cpp \
-    IrcCore/ircmessagecomposer.cpp \
-    IrcCore/ircmessagedecoder.cpp \
-    IrcCore/ircmessagedecoder_icu.cpp \
-    IrcCore/ircmessagedecoder_none.cpp \
-    IrcCore/ircmessagedecoder_uchardet.cpp \
-    IrcCore/ircnetwork.cpp \
-    IrcCore/ircprotocol.cpp \
         main.cpp \
         mainwindow.cpp \
     IrcCore/irc.cpp \
@@ -69,7 +53,6 @@ SOURCES += \
     IrcCore/ircmessage_p.cpp \
     IrcCore/ircmessagecomposer.cpp \
     IrcCore/ircmessagedecoder.cpp \
-    IrcCore/ircmessagedecoder_none.cpp \
     IrcCore/ircnetwork.cpp \
     IrcCore/ircprotocol.cpp \
     IrcModel/ircbuffer.cpp \
