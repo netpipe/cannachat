@@ -41,6 +41,39 @@
 		<Unit filename="config.h" />
 		<Unit filename="gui.cpp" />
 		<Unit filename="gui.h" />
+		<Unit filename="libircclient/include/libirc_errors.h" />
+		<Unit filename="libircclient/include/libirc_events.h" />
+		<Unit filename="libircclient/include/libirc_options.h" />
+		<Unit filename="libircclient/include/libirc_rfcnumeric.h" />
+		<Unit filename="libircclient/include/libircclient.h" />
+		<Unit filename="libircclient/src/colors.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libircclient/src/config.h" />
+		<Unit filename="libircclient/src/dcc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libircclient/src/dcc.h" />
+		<Unit filename="libircclient/src/errors.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libircclient/src/libircclient.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libircclient/src/params.h" />
+		<Unit filename="libircclient/src/portable.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libircclient/src/session.h" />
+		<Unit filename="libircclient/src/sockets.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libircclient/src/ssl.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libircclient/src/utils.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="main.cpp" />
 		<Unit filename="server.cpp" />
 		<Unit filename="server.h" />

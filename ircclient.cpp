@@ -33,6 +33,10 @@
 
 static const char* CHANNEL = "#cannachat";
 static const char* SERVER = "irc.freenode.net";
+//static const char* SERVER = "irc.freenode.net : +6697";
+int PORT = 6697;
+bool SECURE = 1;
+//static const char* SERVER = "irc.freenode.org:+6697";
 //static const char* SERVER = "irc.freenode.org:+6697";
 
 IrcClient::IrcClient(QWidget* parent) : QSplitter(parent)
@@ -316,6 +320,8 @@ void IrcClient::createConnection()
     qsrand(QTime::currentTime().msec());
 
     connection->setHost(SERVER);
+    connection->setPort(PORT);
+   connection->setSecure(SECURE);
     connection->setUserName("communi");
     connection->setNickName(tr("Client%1").arg(qrand() % 9999));
     connection->setRealName(tr("Communi %1 example client").arg(IRC_VERSION_STR));
