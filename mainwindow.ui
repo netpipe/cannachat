@@ -28,10 +28,10 @@
      <string>&amp;Main</string>
     </property>
     <addaction name="separator"/>
-    <addaction name="actionExit"/>
     <addaction name="actionNew"/>
     <addaction name="actionClose"/>
     <addaction name="actionRestore"/>
+    <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuAbout">
     <property name="title">
@@ -44,22 +44,22 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionExit">
    <property name="text">
-    <string>Exit</string>
+    <string>&amp;Exit</string>
    </property>
   </action>
   <action name="actionNew">
    <property name="text">
-    <string>New</string>
+    <string>&amp;New</string>
    </property>
   </action>
   <action name="actionClose">
    <property name="text">
-    <string>Close</string>
+    <string>&amp;Close</string>
    </property>
   </action>
   <action name="actionRestore">
    <property name="text">
-    <string>Restore</string>
+    <string>&amp;Restore</string>
    </property>
   </action>
  </widget>
