@@ -1,3 +1,4 @@
+#ifdef IRRLICHT
 #include "irrlichtwidget.h"
 #include "irrlicht.h"
 #include "irrutil.h"
@@ -204,3 +205,4 @@ void IrrlichtWidget::stopMoveAnimation(){
         mModelNode->setMD2Animation(EMAT_STAND);
     }
 }
+#endif

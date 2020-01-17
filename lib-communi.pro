@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network
+QT       += core gui network opengl
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = lib-communi
@@ -72,7 +72,11 @@ SOURCES += \
     IrcUtil/irctoken.cpp \
     IrcUtil/ircutil.cpp \
     ircclient.cpp \
-    ircmessageformatter.cpp
+    ircmessageformatter.cpp \
+    irrlichtwidget.cpp \
+    irrutil.cpp \
+    servers.cpp \
+    settings.cpp
 
 HEADERS += \
     IrcCore/Irc \
@@ -159,7 +163,11 @@ HEADERS += \
     IrcUtil/IrcUtil \
     IrcUtil/ircutil.h \
     ircclient.h \
-    ircmessageformatter.h
+    ircmessageformatter.h \
+    irrlichtwidget.h \
+    irrutil.h \
+    servers.h \
+    settings.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -168,5 +176,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 FORMS += \
     mainwindow.ui \
+    servers.ui \
+    settings.ui \
     servers.ui \
     settings.ui

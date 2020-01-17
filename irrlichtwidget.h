@@ -1,3 +1,4 @@
+#ifdef IRRLICHT
 #ifndef IRRLICHTWIDGET_H
 #define IRRLICHTWIDGET_H
 
@@ -78,3 +79,4 @@ private:
 };
 
 #endif // IRRLICHTWIDGET_H
+#endif

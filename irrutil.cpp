@@ -1,3 +1,4 @@
+#ifdef IRRLICHT
 #include "irrutil.h"
 #include "irrlicht.h"
 
@@ -73,3 +74,4 @@ SIrrlichtKey convertToIrrlichtKey(int key){
     }
     return irrKey;
 }
+#endif
