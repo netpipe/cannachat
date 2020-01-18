@@ -14,12 +14,15 @@
 #include <QDebug>
 #include <QEvent>
 
+ServerDlg *serversw;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
 {
        ui->setupUi(this);
     setCentralWidget(new IrcClient());
+
+//    ui->setupUi(servers);
 }
 
 MainWindow::~MainWindow()
@@ -29,12 +32,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionExit_triggered()
 {
-
+QApplication::quit();
 }
 
 void MainWindow::on_actionNew_triggered()
 {
-
+    serversw = new ServerDlg();
+    serversw->show();
 }
 
 void MainWindow::on_actionClose_triggered()

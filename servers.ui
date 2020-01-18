@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>servers</class>
- <widget class="QDialog" name="servers">
+ <class>ServerDlg</class>
+ <widget class="QDialog" name="ServerDlg">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>371</width>
-    <height>396</height>
+    <width>640</width>
+    <height>334</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,7 +15,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="1" column="0">
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="cancel">
      <property name="text">
       <string>cancel</string>
      </property>
@@ -39,31 +39,39 @@
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="0">
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>Server</string>
-         </property>
-        </widget>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>Server</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit"/>
+         </item>
+        </layout>
        </item>
-       <item row="0" column="1" colspan="2">
-        <widget class="QLineEdit" name="lineEdit"/>
+       <item row="1" column="0">
+        <widget class="QListWidget" name="listWidget_2"/>
        </item>
-       <item row="1" column="0" rowspan="2" colspan="2">
-        <widget class="QListView" name="listView"/>
-       </item>
-       <item row="1" column="2">
-        <widget class="QPushButton" name="pushButton_3">
-         <property name="text">
-          <string>Add</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="2">
-        <widget class="QPushButton" name="pushButton_4">
-         <property name="text">
-          <string>Remove</string>
-         </property>
-        </widget>
+       <item row="1" column="1">
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QPushButton" name="pushButton_3">
+           <property name="text">
+            <string>Add</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_4">
+           <property name="text">
+            <string>Remove</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>
@@ -71,6 +79,21 @@
       <attribute name="title">
        <string>Settings</string>
       </attribute>
+     </widget>
+     <widget class="QWidget" name="tab_3">
+      <attribute name="title">
+       <string>Channels</string>
+      </attribute>
+      <widget class="QListWidget" name="listWidget">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>40</y>
+         <width>256</width>
+         <height>192</height>
+        </rect>
+       </property>
+      </widget>
      </widget>
     </widget>
    </item>
