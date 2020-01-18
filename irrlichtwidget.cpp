@@ -34,6 +34,11 @@ IrrlichtWidget::IrrlichtWidget(QWidget* parent)
     , mDriver(NULL)
 {
 parent2=parent;
+    setAttribute(Qt::WA_PaintOnScreen, true);
+    setAttribute(Qt::WA_OpaquePaintEvent, true);
+    setMouseTracking(true);
+    setFocusPolicy(Qt::ClickFocus);
+    setFocus(Qt::OtherFocusReason);
 }
 
 IrrlichtWidget::~IrrlichtWidget(){

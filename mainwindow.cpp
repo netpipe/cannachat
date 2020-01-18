@@ -14,16 +14,20 @@
 #include <QDebug>
 #include <QEvent>
 
-#include <QGLWidget>
+
 
 #include "qstylesheetmanager.h"
 //#define IRRLICHT
+#ifdef IRRLICHT
+#include <QGLWidget>
 #include "irrutil.h"
 #include "irrlichtwidget.h"
-
-ServerDlg *serversw;
 IrrlichtWidget* widget ;
 //IrrlichtWidget* widget2 ;
+#endif
+
+ServerDlg *serversw;
+
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -45,13 +49,17 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 
-
+#ifdef IRRLICHT
      // widget = new IrrlichtWidget( ui->tabWidget->findChild<QWidget *>("openGLWidget") );
             widget = new IrrlichtWidget( ui->tabWidget->findChild<QWidget *>("irrRenderWidget0") );
+     widget->init();
+#endif
 
      IrcClient *ircwidget = new IrcClient( ui->tabWidget->findChild<QWidget *>("chatwidget"));
 
-        widget->init();
+
+
+
 //widget->resizeGL(400,400);
  //     setCentralWidget(widget); //widget
   //    showMaximized();
@@ -113,8 +121,10 @@ void MainWindow::on_actionRestore_triggered()
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
+#ifdef IRRLICHT
    widget->resizeIrrWidget(0, 0, this->size().width(), this->size().height()/2);
   // this->irr1->resizeIrrWidget(this->size().width()/2, 0, this->size().width()/2, this->size().height());
+#endif
 }
 
 void MainWindow::loadThemeFile(QString path, QString name)

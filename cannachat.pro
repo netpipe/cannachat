@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network opengl
+QT       += core gui network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = lib-communi
@@ -16,7 +16,7 @@ TEMPLATE = app
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
 DEFINES += IRC_STATIC
-DEFINES += IRRLICHT
+#DEFINES += IRRLICHT
 #DEFINES += QT_NO_SSL
 
 # You can also make your code fail to compile if you use deprecated APIs.
