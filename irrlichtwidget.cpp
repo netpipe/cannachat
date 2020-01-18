@@ -13,24 +13,36 @@ using namespace irr::core;
 using namespace irr::scene;
 using namespace irr::video;
 
+//IrrlichtWidget::IrrlichtWidget(QWidget* parent)
+//    : QGLWidget(parent)
+//    , mModelNode(NULL)
+//    , mMoveModelAnimator(NULL)
+//    , mDevice(NULL)
+//    , mDriver(NULL) {
+//  parent2=parent;
+//  //  setAttribute(Qt::WA_PaintOnScreen, true);
+//  //  setAttribute(Qt::WA_OpaquePaintEvent, true);
+//    //setMouseTracking(true);
+//    //setFocusPolicy(Qt::ClickFocus);
+//   // setFocus(Qt::OtherFocusReason);
+//}
+
 IrrlichtWidget::IrrlichtWidget(QWidget* parent)
-    : QGLWidget(parent)
-    , mModelNode(NULL)
+    : mModelNode(NULL)
     , mMoveModelAnimator(NULL)
     , mDevice(NULL)
-    , mDriver(NULL) {
-
-    setAttribute(Qt::WA_PaintOnScreen, true);
-    setAttribute(Qt::WA_OpaquePaintEvent, true);
-    setMouseTracking(true);
-    setFocusPolicy(Qt::ClickFocus);
-    setFocus(Qt::OtherFocusReason);
+    , mDriver(NULL)
+{
+parent2=parent;
 }
 
 IrrlichtWidget::~IrrlichtWidget(){
+
+
     if(mMoveModelAnimator){
         mMoveModelAnimator->drop();
     }
+
     if(mDevice){
         mDevice->drop();
         mDevice = 0;
@@ -61,14 +73,62 @@ void IrrlichtWidget::paintGL()
 }
 
 void IrrlichtWidget::createIrrlichtDevice(){
-    if(mDevice){
-        return;
-    }
+//    if(mDevice){
+//        return;
+//    }
+
+
+//    this->irrRenderTarget = irrRenderTarget;
+
+//    if(softwareRenderer)
+//    {
+//       this->rendererType = video::EDT_BURNINGSVIDEO;
+//    } else
+//    {
+//        this->rendererType = video::EDT_OPENGL;
+//    }
+
+
+
     SIrrlichtCreationParameters params;
     params.DriverType = EDT_OPENGL;
-    params.WindowId = (void*)winId();
-    params.WindowSize =irr::core::dimension2d<irr::u32>(size().width()-100, size().height()-100);
+   // params.DriverType =     video::EDT_BURNINGSVIDEO;
+
+   // QWidget *irrRenderTarget
+
+ //  irrRenderTarget = irrRenderTarget;
+
+
+
+    params.AntiAlias = 0;
+    params.Bits = 32;
+    params.DeviceType = EIDT_X11;
+    params.Doublebuffer = true;
+  //  params.DriverType = EDT_OPENGL;
+    params.EventReceiver = 0;
+    params.Fullscreen = false;
+    params.HighPrecisionFPU = false;
+    params.IgnoreInput = false;
+    params.LoggingLevel = ELL_INFORMATION;
     params.Stencilbuffer = true;
+    params.Stereobuffer = false;
+    params.Vsync = false;
+  params.WindowId = reinterpret_cast<void*>(parent2->winId());
+    params.WindowSize.Width = parent2->size().width();
+    params.WindowSize.Height = parent2->size().height();
+    params.WithAlphaChannel = false;
+    params.ZBufferBits = 16;
+
+ //   device = createDeviceEx(params);
+
+//parent2->Width = parent2->size().width();
+//parent2->Height = parent2->size().height();
+
+//parent2->setGeometry(x, y, parent2->size().width(), parent2->size().height());
+
+  //  params.WindowId = (void*)winId();
+  //  params.WindowSize =irr::core::dimension2d<irr::u32>(size().width()-10, size().height()-10);
+ //   params.Stencilbuffer = true;
 
     mDevice = createDeviceEx(params);
     if(mDevice == 0){
@@ -78,26 +138,47 @@ void IrrlichtWidget::createIrrlichtDevice(){
     mScene = mDevice->getSceneManager();
 
     buildIrrlichtScene();
+   //  startTimer(0);
 }
 
 void IrrlichtWidget::buildIrrlichtScene(){
     scene::ISceneManager* manager = mDevice->getSceneManager();
-    mDevice->setWindowCaption(L"Hello World!");
-    scene::ISceneNode* n = manager->addAnimatedMeshSceneNode(manager->getMesh("./media/sydney.md2"));
-    if(n == nullptr){
-        qDebug() << "Unable to load requested mesh\n";
-        return;
-    }
-    n->setMaterialTexture(0, mDriver->getTexture("./media/sydney.bmp"));
-    n->setMaterialFlag( video::EMF_LIGHTING, false );
-    manager->addCameraSceneNode(0, vector3df(0,30,-40), vector3df(0,5,0));
 
-    mDevice->getFileSystem()->addFileArchive("./media/map-20kdm2.pk3");
-    manager->addOctreeSceneNode(manager->getMesh("maps/20kdm2.bsp"));
+//    mDevice->getFileSystem()->addFileArchive("./media/map-20kdm2.pk3");
+//    manager->addOctreeSceneNode(manager->getMesh("maps/20kdm2.bsp"));
+    if (mDevice != 0)
+    {
+         mDevice->setWindowCaption(L"Hello World!");
+        scene::ISceneNode* n = manager->addAnimatedMeshSceneNode(manager->getMesh("./media/sydney.md2"));
+
+        n->setMaterialTexture(0, mDevice->getVideoDriver()->getTexture("./media/sydney.bmp"));
+        n->setMaterialFlag( video::EMF_LIGHTING, false );
+
+
+//        mDevice->getFileSystem()->addFileArchive("media/map-20kdm2.pk3");
+
+//        scene::IAnimatedMesh* mesh = smgr->getMesh("20kdm2.bsp");
+//        scene::ISceneNode* node = 0;
+
+//        if (mesh)
+//        {
+//            node = smgr->addOctreeSceneNode(mesh->getMesh(0), 0, -1, 1024);
+//        }
+
+//        if (node)
+//        {
+//            node->setPosition(core::vector3df(-1300, -144, -1299));
+//        }
+         manager->addCameraSceneNode(0, core::vector3df(0,30,-40), vector3df(0,5,0));
+     //   manager->addCameraSceneNode();
+
+        startTimer(0);
+    }
 }
 
 void IrrlichtWidget::drawIrrlichtScene(){
     mDriver->beginScene(true, true, video::SColor(255, 100, 0, 255));
+
     mDevice->getSceneManager()->drawAll();
     mDriver->endScene();
 }
@@ -182,9 +263,9 @@ void IrrlichtWidget::animatedMoveModelToPosition(irr::core::vector3df transition
     f32 distanceToNewPoint = transition.getDistanceFrom(mModelNode->getPosition());
     u32 timeForAnimation = u32(distanceToNewPoint);
     stopMoveAnimation();
-    mMoveModelAnimator = new MoveModelAnimator(mModelNode->getPosition(), transition, timeForAnimation, mModelNode->getRotation());
-    mModelNode->addAnimator(mMoveModelAnimator);
-    mModelNode->setMD2Animation(EMAT_RUN);
+//    mMoveModelAnimator = new MoveModelAnimator(mModelNode->getPosition(), transition, timeForAnimation, mModelNode->getRotation());
+//    mModelNode->addAnimator(mMoveModelAnimator);
+//    mModelNode->setMD2Animation(EMAT_RUN);
 }
 
 void IrrlichtWidget::onCollisionDetected(){
@@ -205,4 +286,50 @@ void IrrlichtWidget::stopMoveAnimation(){
         mModelNode->setMD2Animation(EMAT_STAND);
     }
 }
+
+void IrrlichtWidget::timerEvent(QTimerEvent* event)
+{
+    if(mDevice != 0)
+    {
+
+        mDevice->getTimer()->tick();
+
+        mDriver->beginScene(true, true, video::SColor(255, 100, 0, 255));
+        mDevice->getSceneManager()->drawAll();
+        mDriver->endScene();
+
+
+  //      video::SColor color (255, 100, 100, 140);
+
+//        device->getVideoDriver()->beginScene(true, true, color);
+//        device->getSceneManager()->drawAll();
+//        device->getVideoDriver()->endScene();
+    }
+}
+
+
+void IrrlichtWidget::resizeIrrWidget(int x, int y, int newWidth, int newHeight)
+{
+    //Resize the render target widget which shows the Irrlicht output.
+    parent2->setGeometry(x, y, newWidth, newHeight);
+
+    //Resize Irrlicht render output itself
+    if(mDevice != 0)
+    {
+        core::dimension2d<u32> widgetSize;
+        widgetSize.Width = newWidth;
+        widgetSize.Height = newHeight;
+
+        mDevice->getVideoDriver()->OnResize(widgetSize);
+
+        scene::ICameraSceneNode *cam = mDevice->getSceneManager()->getActiveCamera();
+        if (cam != 0)
+        {
+            cam->setAspectRatio((f32)widgetSize.Width / (f32)widgetSize.Height);
+        }
+    }
+}
+
 #endif
+
+

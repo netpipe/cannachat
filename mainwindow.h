@@ -14,7 +14,12 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
+
 public:
+    void importThemeInfoFromFile();
+    void loadThemeFile(QString path, QString name);
+
+          virtual void resizeEvent(QResizeEvent *event);
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
 private slots:
@@ -25,6 +30,7 @@ private slots:
     void on_actionClose_triggered();
     
     void on_actionRestore_triggered();
+
     
 private:
     Ui::MainWindow *ui;

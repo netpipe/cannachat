@@ -7,13 +7,14 @@
 #include <QTimer>
 #include <vector3d.h>
 #include <SKeyMap.h>
+#include "irrlicht.h"
 
 //#include <QOpenGLWidget>
 
-#include <QOpenGLBuffer>
-#include <QOpenGLShaderProgram>
-#include <QObject>
-#include <QtOpenGL>
+//#include <QOpenGLBuffer>
+//#include <QOpenGLShaderProgram>
+//#include <QObject>
+//#include <QtOpenGL>
 
 namespace irr {
     class IrrlichtDevice;
@@ -30,9 +31,16 @@ namespace irr {
     }
 }
 
-class IrrlichtWidget : public QGLWidget {
+//class IrrlichtWidget : public QGLWidget {
+
+
+    class IrrlichtWidget : public QWidget
+    {
     Q_OBJECT
 public:
+    void resizeIrrWidget(int x, int y, int newWidth, int newHeight);
+
+    QWidget* parent2;
     explicit IrrlichtWidget(QWidget* parent = 0);
     ~IrrlichtWidget();
 
@@ -69,6 +77,7 @@ private:
     irr::SKeyMap* getCameraKeyMap();
 
 private:
+
     irr::core::vector3df mMoveToVector;
     irr::IrrlichtDevice* mDevice;
     irr::scene::ISceneManager* mScene;
@@ -76,6 +85,9 @@ private:
     irr::scene::IAnimatedMeshSceneNode* mModelNode;
     irr::scene::ISceneNodeAnimator* mMoveModelAnimator;
     irr::scene::IBillboardSceneNode* mCursor;
+        virtual void timerEvent(QTimerEvent* event);
+
+  //  QWidget *irrRenderTarget;
 };
 
 #endif // IRRLICHTWIDGET_H

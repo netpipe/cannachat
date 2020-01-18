@@ -42,7 +42,13 @@ bool SECURE = 1;
 IrcClient::IrcClient(QWidget* parent) : QSplitter(parent)
 {
     createParser();
+
     createConnection();
+    static const char* SERVER = "irc.choopa.net";
+    int PORT = 9999;
+    bool SECURE = 1;
+    createConnection();
+
     createCompleter();
     createUserList();
     createLayout();
