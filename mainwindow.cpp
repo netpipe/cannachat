@@ -14,6 +14,8 @@
 #include <QDebug>
 #include <QEvent>
 
+#include "qstylesheetmanager.h"
+
 ServerDlg *serversw;
 
 MainWindow::MainWindow(QWidget *parent)

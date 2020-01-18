@@ -76,7 +76,8 @@ SOURCES += \
     irrlichtwidget.cpp \
     irrutil.cpp \
     servers.cpp \
-    settings.cpp
+    settings.cpp \
+    qstylesheetmanager.cpp
 
 HEADERS += \
     IrcCore/Irc \
@@ -167,7 +168,8 @@ HEADERS += \
     irrlichtwidget.h \
     irrutil.h \
     servers.h \
-    settings.h
+    settings.h \
+    qstylesheetmanager.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
