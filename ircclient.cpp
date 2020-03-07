@@ -43,10 +43,10 @@ IrcClient::IrcClient(QWidget* parent) : QSplitter(parent)
 {
     createParser();
 
-    createConnection();
-    static const char* SERVER = "irc.choopa.net";
-    int PORT = 9999;
-    bool SECURE = 1;
+   // createConnection();
+    SERVER = "irc.choopa.net";
+    PORT = 9999;
+    SECURE = 1;
     createConnection();
 
     createCompleter();
@@ -57,6 +57,11 @@ IrcClient::IrcClient(QWidget* parent) : QSplitter(parent)
     // queue a command to automatically join the channel when connected
     connection->sendCommand(IrcCommand::createJoin(CHANNEL));
     connection->open();
+
+
+
+//connection->sendCommand(IrcCommand::createJoin("#electronics"));
+ //       connection->open();
 
     textEdit->append(IrcMessageFormatter::formatMessage(tr("! Welcome to the Communi %1 example client.").arg(IRC_VERSION_STR)));
     textEdit->append(IrcMessageFormatter::formatMessage(tr("! This example connects %1 and joins %2.").arg(SERVER, CHANNEL)));

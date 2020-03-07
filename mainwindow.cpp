@@ -122,7 +122,7 @@ void MainWindow::on_actionRestore_triggered()
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
 #ifdef IRRLICHT
-   widget->resizeIrrWidget(0, 0, this->size().width(), this->size().height()/2);
+  // widget->resizeIrrWidget(0, 0, this->size().width(), this->size().height()/2);
   // this->irr1->resizeIrrWidget(this->size().width()/2, 0, this->size().width()/2, this->size().height());
 #endif
 }
