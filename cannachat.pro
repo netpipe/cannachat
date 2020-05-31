@@ -7,7 +7,8 @@
 QT       += core gui network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = lib-communi
+
+TARGET = cannachat
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use

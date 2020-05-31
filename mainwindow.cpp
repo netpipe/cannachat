@@ -1,6 +1,7 @@
 #include "mainwindow.h"
-#include "ircclient.h"
+
 #include "ui_mainwindow.h"
+
 #include "settings.h"
 #include "servers.h"
 #include "ui_servers.h"
@@ -55,14 +56,16 @@ MainWindow::MainWindow(QWidget *parent)
      widget->init();
 #endif
 
-     IrcClient *ircwidget = new IrcClient( ui->tabWidget->findChild<QWidget *>("chatwidget"));
+    ircwidget = new IrcClient( ui->tabWidget->findChild<QWidget *>("chatwidget"));
 
 
 
 
 //widget->resizeGL(400,400);
  //     setCentralWidget(widget); //widget
-  //    showMaximized();
+
+   //   ircwidget->showMaximized();
+   //   ircwidget->resize(ui->chatwidget->width(),ui->chatwidget->height());
       //widget->autoRepaint();
 
 
@@ -98,6 +101,18 @@ MainWindow::~MainWindow()
 
 }
 
+void MainWindow::resizeEvent(QResizeEvent* event)
+{
+   QMainWindow::resizeEvent(event);
+   ircwidget->resize(ui->chatwidget->width(),ui->chatwidget->height());
+#ifdef IRRLICHT
+  // widget->resizeIrrWidget(0, 0, this->size().width(), this->size().height()/2);
+  // this->irr1->resizeIrrWidget(this->size().width()/2, 0, this->size().width()/2, this->size().height());
+#endif
+   // Your code here.
+}
+
+
 void MainWindow::on_actionExit_triggered()
 {
 QApplication::quit();
@@ -117,14 +132,6 @@ void MainWindow::on_actionClose_triggered()
 void MainWindow::on_actionRestore_triggered()
 {
 
-}
-
-void MainWindow::resizeEvent(QResizeEvent *event)
-{
-#ifdef IRRLICHT
-  // widget->resizeIrrWidget(0, 0, this->size().width(), this->size().height()/2);
-  // this->irr1->resizeIrrWidget(this->size().width()/2, 0, this->size().width()/2, this->size().height());
-#endif
 }
 
 void MainWindow::loadThemeFile(QString path, QString name)

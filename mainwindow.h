@@ -5,7 +5,7 @@
 #include <QProcess>
 #include <QPlainTextEdit>
 #include <QThread>
-
+#include "ircclient.h"
 namespace Ui {
 class MainWindow;
 }
@@ -19,8 +19,12 @@ public:
     void importThemeInfoFromFile();
     void loadThemeFile(QString path, QString name);
 
-          virtual void resizeEvent(QResizeEvent *event);
+    //      virtual void resizeEvent(QResizeEvent *event);
     MainWindow(QWidget *parent = 0);
+
+    void resizeEvent(QResizeEvent* event);
+
+
     ~MainWindow();
 private slots:
     void on_actionExit_triggered();
@@ -33,6 +37,7 @@ private slots:
 
     
 private:
+    IrcClient *ircwidget;
     Ui::MainWindow *ui;
 };
 
