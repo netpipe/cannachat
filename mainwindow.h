@@ -6,6 +6,8 @@
 #include <QPlainTextEdit>
 #include <QThread>
 #include "ircclient.h"
+#include <QVector>
+
 namespace Ui {
 class MainWindow;
 }
@@ -21,11 +23,17 @@ public:
 
     //      virtual void resizeEvent(QResizeEvent *event);
     MainWindow(QWidget *parent = 0);
-
+bool loaded=false;
+    QString fileName;
     void resizeEvent(QResizeEvent* event);
-
+void themeInit();
+void writesettings();
+void readsettings();
 
     ~MainWindow();
+
+    QVector<IrcClient> serverarray;
+
 private slots:
     void on_actionExit_triggered();
     
@@ -35,9 +43,17 @@ private slots:
     
     void on_actionRestore_triggered();
 
-    
+    void on_themeApply_clicked();
+
+    void on_scantheme_clicked();
+
+    void on_cmbTheme_currentIndexChanged(const QString &arg1);
+
+    void on_pushButton_clicked();
+
 private:
-    IrcClient *ircwidget;
+
+IrcClient *ircwidget;
     Ui::MainWindow *ui;
 };
 

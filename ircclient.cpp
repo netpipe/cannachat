@@ -32,7 +32,7 @@
 #include <IrcCommandParser>
 
 static const char* CHANNEL = "#cannachat";
-static const char* SERVER = "irc.freenode.net";
+static const char* SERVER = "irc.freenode.net2";
 //static const char* SERVER = "irc.freenode.net : +6697";
 int PORT = 6697;
 bool SECURE = 1;
@@ -44,9 +44,9 @@ IrcClient::IrcClient(QWidget* parent) : QSplitter(parent)
     createParser();
 
    // createConnection();
-    SERVER = "irc.choopa.net";
-    PORT = 9999;
-    SECURE = 1;
+  //  SERVER = "irc.choopa.net";
+  //  PORT = 9999;
+  //  SECURE = 1;
     createConnection();
 
     createCompleter();
@@ -66,6 +66,49 @@ IrcClient::IrcClient(QWidget* parent) : QSplitter(parent)
     textEdit->append(IrcMessageFormatter::formatMessage(tr("! Welcome to the Communi %1 example client.").arg(IRC_VERSION_STR)));
     textEdit->append(IrcMessageFormatter::formatMessage(tr("! This example connects %1 and joins %2.").arg(SERVER, CHANNEL)));
     textEdit->append(IrcMessageFormatter::formatMessage(tr("! PS. Available commands: JOIN, ME, NICK, PART")));
+
+}
+
+void IrcClient::Connections(){
+
+   // createParser();
+
+   // createConnection();
+    SERVER = "irc.choopa.net";
+    PORT = 9999;
+    SECURE = 1;
+    createConnection();
+
+
+//    bufferModel = new IrcBufferModel(connection);
+//    connect(bufferModel, SIGNAL(added(IrcBuffer*)), this, SLOT(onBufferAdded(IrcBuffer*)));
+//    connect(bufferModel, SIGNAL(removed(IrcBuffer*)), this, SLOT(onBufferRemoved(IrcBuffer*)));
+
+//  //  bufferList = new QListView(this);
+//   // bufferList->setFocusPolicy(Qt::NoFocus);
+//  //  bufferList->setModel(bufferModel);
+
+//    // keep the command parser aware of the context
+//    connect(bufferModel, SIGNAL(channelsChanged(QStringList)), parser, SLOT(setChannels(QStringList)));
+
+//    // keep track of the current buffer, see also onBufferActivated()
+//    connect(bufferList->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onBufferActivated(QModelIndex)));
+
+//    // create a server buffer for non-targeted messages...
+//    IrcBuffer* serverBuffer = bufferModel->add(connection->host());
+
+//    // ...and connect it to IrcBufferModel::messageIgnored()
+//    connect(bufferModel, SIGNAL(messageIgnored(IrcMessage*)), serverBuffer, SLOT(receiveMessage(IrcMessage*)));
+
+//   // insertWidget(0, bufferList);
+//    connection->sendCommand(IrcCommand::createJoin(CHANNEL));
+//    connection->open();
+//   // setStretchFactor(0, 1);
+//   // setStretchFactor(1, 3);
+//    textEdit->append(IrcMessageFormatter::formatMessage(tr("! Welcome to the Communi %1 example client.").arg(IRC_VERSION_STR)));
+//    textEdit->append(IrcMessageFormatter::formatMessage(tr("! This example connects %1 and joins %2.").arg(SERVER, CHANNEL)));
+//    textEdit->append(IrcMessageFormatter::formatMessage(tr("! PS. Available commands: JOIN, ME, NICK, PART")));
+
 }
 
 IrcClient::~IrcClient()

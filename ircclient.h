@@ -35,6 +35,8 @@ public:
     IrcClient(QWidget* parent = 0);
     ~IrcClient();
 
+    void Connections();
+
 private slots:
     void onConnected();
     void onConnecting();

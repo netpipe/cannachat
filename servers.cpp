@@ -41,3 +41,8 @@ void ServerDlg::on_cancel_clicked()
 {
    close();
 }
+
+void ServerDlg::on_connect_clicked()
+{
+
+}

@@ -24,6 +24,10 @@ private slots:
 
     void on_cancel_clicked();
 
+    void on_connect_clicked();
+signals:
+    void findtext();
+
 private:
     Ui::ServerDlg *ui;
 };

@@ -172,7 +172,8 @@ HEADERS += \
     servers.h \
     settings.h \
     qstylesheetmanager.h \
-    movemodelanimator.h
+    movemodelanimator.h \
+    loadtheme.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

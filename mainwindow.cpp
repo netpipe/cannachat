@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-
 #include "ui_mainwindow.h"
 
 #include "settings.h"
@@ -18,6 +17,7 @@
 
 
 #include "qstylesheetmanager.h"
+#include "loadtheme.h"
 //#define IRRLICHT
 #ifdef IRRLICHT
 #include <QGLWidget>
@@ -47,6 +47,10 @@ MainWindow::MainWindow(QWidget *parent)
   //    this->show();
   //    delete newDlg;
 
+       ServerDlg *settings = new ServerDlg();
+      // settings->show();
+
+       connect(settings, SIGNAL(findtext()), this , SLOT(on_search_clicked()));
 
 
 
@@ -56,18 +60,26 @@ MainWindow::MainWindow(QWidget *parent)
      widget->init();
 #endif
 
-    ircwidget = new IrcClient( ui->tabWidget->findChild<QWidget *>("chatwidget"));
+
+      //IrcClient *test
+              ircwidget = new IrcClient( ui->tabWidget->findChild<QWidget *>("chatwidget"));
+
+//ircwidget->Connections();
+
+//ircwidget[0] = test;
+//    ircwidget2 = new IrcClient( ui->tabWidget->findChild<QWidget *>("chatwidget_2"));
 
 
-
+    this->resize(1000,700);
+    ui->chatwidget->resize(1000,700);
 
 //widget->resizeGL(400,400);
  //     setCentralWidget(widget); //widget
 
-   //   ircwidget->showMaximized();
+    //  ircwidget->showMaximized();
    //   ircwidget->resize(ui->chatwidget->width(),ui->chatwidget->height());
-      //widget->autoRepaint();
-
+      //ircwidget->autoRepaint();
+//ircwidget->resize();
 
 
      // m_button = new QPushButton("My Button", this);
@@ -84,7 +96,8 @@ MainWindow::MainWindow(QWidget *parent)
      // dlg->setModal(false);
      // dlg->show();
 
-
+themeInit();
+readsettings();
 }
 
 MainWindow::~MainWindow()
@@ -104,7 +117,7 @@ MainWindow::~MainWindow()
 void MainWindow::resizeEvent(QResizeEvent* event)
 {
    QMainWindow::resizeEvent(event);
-   ircwidget->resize(ui->chatwidget->width(),ui->chatwidget->height());
+ //  ircwidget[0].resize(ui->chatwidget->width(),ui->chatwidget->height());
 #ifdef IRRLICHT
   // widget->resizeIrrWidget(0, 0, this->size().width(), this->size().height()/2);
   // this->irr1->resizeIrrWidget(this->size().width()/2, 0, this->size().width()/2, this->size().height());
@@ -112,6 +125,48 @@ void MainWindow::resizeEvent(QResizeEvent* event)
    // Your code here.
 }
 
+
+void MainWindow::readsettings(){
+
+    QString searchString(":");
+    QFile MyFile("settings.txt");
+    MyFile.open(QIODevice::ReadWrite);
+    QTextStream in (&MyFile);
+    QString line;
+  //  int ii=0;
+    QStringList list;
+     //   QList<QString> nums;
+    QStringList nums;
+
+
+    do {
+        line = in.readLine();
+        searchString=":";
+        if (line.contains(searchString)) { //, Qt::CaseSensitive
+            // do something
+            QRegExp rx("[:]");// match a comma or a space
+            list = line.split(rx);
+            nums.append(list.at(1).toLatin1());
+        }
+    } while (!line.isNull());
+
+    //ircwidget->resize(ui->chatwidget->width(),ui->chatwidget->height());
+
+}
+
+void MainWindow::writesettings(){
+
+    QFile file("settings.txt");
+      //    if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+          if(file.open(QIODevice::ReadWrite | QIODevice::Text))
+          {
+              QTextStream stream(&file);
+              //stream << "CoinName:" << ui->coinname->text() <<'\n';
+
+              file.close();
+          }
+
+}
 
 void MainWindow::on_actionExit_triggered()
 {
@@ -170,4 +225,10 @@ void MainWindow::importThemeInfoFromFile()
 //            ui->cmbTheme->addItem(strName);
 //        }
 //    }
+}
+
+
+void MainWindow::on_pushButton_clicked()
+{
+ircwidget->Connections();
 }
