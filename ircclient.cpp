@@ -65,7 +65,12 @@ IrcClient::IrcClient(QWidget* parent,QString nickname, QString channel, QString 
         connection->open();
     }
 
-    textEdit->append(IrcMessageFormatter::formatMessage(tr("! Welcome to the Communi %1 example client.").arg(IRC_VERSION_STR)));
+ //   connection->sendCommand(IrcCommand::createJoin(channel.toLatin1()));
+
+
+
+
+    textEdit->append(IrcMessageFormatter::formatMessage(tr("! Welcome to the Cannachat %1 example client.").arg(IRC_VERSION_STR)));
     textEdit->append(IrcMessageFormatter::formatMessage(tr("! This example connects %1 and joins %2.").arg(SERVER.toLocal8Bit().data(), CHANNEL.toLocal8Bit().data())));
     textEdit->append(IrcMessageFormatter::formatMessage(tr("! PS. Available commands: JOIN, ME, NICK, PART")));
 
@@ -141,6 +146,35 @@ void IrcClient::onTextEdited()
 {
     // clear the possible error indication
     lineEdit->setStyleSheet(QString());
+}
+
+
+void IrcClient::appendText(QString input)
+{
+    //QString input = lineEdit->text();
+    IrcCommand* command = parser->parse(input);
+    if (command) {
+        connection->sendCommand(command);
+
+        // echo own messages (servers do not send our own messages back)
+        if (command->type() == IrcCommand::Message || command->type() == IrcCommand::CtcpAction) {
+            IrcMessage* msg = command->toMessage(connection->nickName(), connection);
+            receiveMessage(msg);
+            delete msg;
+        }
+
+        lineEdit->clear();
+    } else if (input.length() > 1) {
+        QString error;
+      //  QString command = lineEdit->text().mid(1).split(" ", QString::SkipEmptyParts).value(0).toUpper();
+      //  if (parser->commands().contains(command))
+       //     error = tr("[ERROR] Syntax: %1").arg(parser->syntax(command).replace("<", "&lt;").replace(">", "&gt;"));
+      //  else
+       //     error = tr("[ERROR] Unknown command: %1").arg(command);
+        textEdit->append(IrcMessageFormatter::formatMessage(error));
+    //    lineEdit->setStyleSheet("background: salmon");
+    }
+
 }
 
 void IrcClient::onTextEntered()
@@ -268,7 +302,7 @@ void IrcClient::receiveMessage(IrcMessage* message)
 
 void IrcClient::createLayout()
 {
-    setWindowTitle(tr("Communi %1 example client").arg(IRC_VERSION_STR));
+    setWindowTitle(tr("Cannachat %1 example client").arg(IRC_VERSION_STR));
 
     // a read-only text editor for showing the messages
     textEdit = new QTextEdit(this);
@@ -326,6 +360,8 @@ void IrcClient::createParser()
     parser->addCommand(IrcCommand::Mode, "MODE (<channel/user>) (<mode>) (<arg>)");
     parser->addCommand(IrcCommand::Nick, "NICK <nick>");
     parser->addCommand(IrcCommand::Part, "PART (<#channel>) (<message...>)");
+
+
 }
 
 void IrcClient::createUserList()
@@ -369,6 +405,7 @@ void IrcClient::createBufferList()
 void IrcClient::createConnection()
 {
     connection = new IrcConnection(this);
+    connection->setClient(this);
     connect(connection, SIGNAL(connected()), this, SLOT(onConnected()));
     connect(connection, SIGNAL(connecting()), this, SLOT(onConnecting()));
     connect(connection, SIGNAL(disconnected()), this, SLOT(onDisconnected()));
@@ -376,8 +413,8 @@ void IrcClient::createConnection()
     qsrand(QTime::currentTime().msec());
     connection->setHost(SERVER.toLocal8Bit().data());
     connection->setPort(PORT);
-   connection->setSecure(SECURE);
-    connection->setUserName("cannachat");
+    connection->setSecure(SECURE);
+    connection->setUserName(NICKNAME.toLocal8Bit().data() + QString(qrand() % 9999 ));
     connection->setNickName( NICKNAME.toLocal8Bit().data() );//tr("Client%1").arg(qrand() % 9999)
-    connection->setRealName(tr("Communi %1 example client").arg(IRC_VERSION_STR));
+    connection->setRealName(tr("Communi-lib %1 example client").arg(IRC_VERSION_STR));
 }

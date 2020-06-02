@@ -273,8 +273,8 @@ QStringList splitlist = ui->serverlist->currentItem()->text().split(":");
                  serverarray.push_back(new IrcClient( ui->tabWidget->findChild<QWidget *>("chatwidget"), ui->nickname->text().toUtf8(), channel.toUtf8(), servername.toUtf8(),port,ssl));
 qDebug() << serverarray.size();
                 ui->tabWidget->addTab(serverarray[serverarray.size()-1], servername.toLatin1());
-
-
+//serverarray[serverarray.size()-1]->registerSelf(&serverarray[serverarray.size()-1]);
+//serverarray[serverarray.size()-1]->appendText("testing 12345");
 }
 
 void MainWindow::on_serverlist_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous)

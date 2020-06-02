@@ -52,6 +52,7 @@
 #include <QDataStream>
 #include <QVariantMap>
 
+
 IRC_BEGIN_NAMESPACE
 
 /*!
@@ -264,6 +265,7 @@ IrcConnectionPrivate::IrcConnectionPrivate() :
     pendingOpen(false),
     closed(false)
 {
+
 }
 
 void IrcConnectionPrivate::init(IrcConnection* connection)
@@ -486,6 +488,7 @@ bool IrcConnectionPrivate::receiveMessage(IrcMessage* msg)
             emit q->capabilityMessageReceived(static_cast<IrcCapabilityMessage*>(msg));
             break;
         case IrcMessage::Error:
+            qDebug() << "error" << msg;
             emit q->errorMessageReceived(static_cast<IrcErrorMessage*>(msg));
             break;
         case IrcMessage::HostChange:
@@ -534,6 +537,7 @@ bool IrcConnectionPrivate::receiveMessage(IrcMessage* msg)
             emit q->quitMessageReceived(static_cast<IrcQuitMessage*>(msg));
             break;
         case IrcMessage::Topic:
+                        qDebug() << "topic" << msg;
             emit q->topicMessageReceived(static_cast<IrcTopicMessage*>(msg));
             break;
         case IrcMessage::Whois:
@@ -546,6 +550,7 @@ bool IrcConnectionPrivate::receiveMessage(IrcMessage* msg)
             emit q->whoReplyMessageReceived(static_cast<IrcWhoReplyMessage*>(msg));
             break;
         case IrcMessage::Unknown:
+            qDebug() << "unknown" << msg ;
         default:
             break;
         }
@@ -680,6 +685,11 @@ QString IrcConnection::host() const
 {
     Q_D(const IrcConnection);
     return d->host;
+}
+
+void IrcConnection::setClient(IrcClient *client)
+{
+    hircclient2=client;
 }
 
 void IrcConnection::setHost(const QString& host)
@@ -1449,6 +1459,7 @@ bool IrcConnection::sendCommand(IrcCommand* command)
 
     \sa sendCommand()
  */
+
 bool IrcConnection::sendData(const QByteArray& data)
 {
     Q_D(IrcConnection);
@@ -1459,6 +1470,7 @@ bool IrcConnection::sendData(const QByteArray& data)
                 ircDebug(this, IrcDebug::Write) << data.left(5) + QByteArray(data.mid(5).length(), 'x');
             else
                 ircDebug(this, IrcDebug::Write) << data;
+            qDebug() << "sending data" << data;
             if (!d->closed && data.length() >= 4) {
                 if (cmd.startsWith("QUIT") && (data.length() == 4 || QChar(data.at(4)).isSpace()))
                     d->closed = true;
@@ -1665,11 +1677,11 @@ IrcCommand* IrcConnection::createCtcpReply(IrcPrivateMessage* request) const
     else if (type == "TIME")
         reply = QLatin1String("TIME ") + QLocale().toString(QDateTime::currentDateTime(), QLocale::ShortFormat);
     else if (type == "VERSION")
-        reply = QLatin1String("VERSION Communi ") + Irc::version() + QLatin1String(" - https://communi.github.io");
-    else if (type == "SOURCE")
-        reply = QLatin1String("SOURCE https://communi.github.io");
-    else if (type == "CLIENTINFO")
-        reply = QLatin1String("CLIENTINFO PING SOURCE TIME VERSION");
+        reply = QLatin1String("VERSION Cannachat ") + Irc::version() + QLatin1String(" - Cannachat");
+//    else if (type == "SOURCE")
+//        reply = QLatin1String("SOURCE https://communi.github.io");
+//    else if (type == "CLIENTINFO")
+//        reply = QLatin1String("CLIENTINFO PING SOURCE TIME VERSION");
     if (!reply.isEmpty())
         return IrcCommand::createCtcpReply(request->nick(), reply);
     return 0;

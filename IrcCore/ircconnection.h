@@ -38,6 +38,7 @@
 #include <QtCore/qstringlist.h>
 #include <QtCore/qscopedpointer.h>
 #include <QtNetwork/qabstractsocket.h>
+#include "ircclient.h"
 
 IRC_BEGIN_NAMESPACE
 
@@ -93,6 +94,7 @@ public:
 
     Q_INVOKABLE static bool isValidServer(const QString& server);
 
+    void setClient(IrcClient * client);
     QString userName() const;
     void setUserName(const QString& name);
 
@@ -126,6 +128,9 @@ public:
         Closed,
         Error
     };
+
+    IrcClient* hircclient2;
+
     Status status() const;
     bool isActive() const;
     bool isConnected() const;
@@ -229,6 +234,7 @@ Q_SIGNALS:
     void secureChanged(bool secure);
     void saslMechanismChanged(const QString& mechanism);
     void ctcpRepliesChanged(const QVariantMap& replies);
+
 
     void destroyed(IrcConnection* connection);
 

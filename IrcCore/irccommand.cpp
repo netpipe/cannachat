@@ -407,6 +407,8 @@ QString IrcCommand::toString() const
     const QString p1 = d->parameters.value(1);
     const QString p2 = d->parameters.value(2);
 
+qDebug() << p0 << p1 << p2;
+
     switch (d->type) {
         case Admin:         return QString("ADMIN %1").arg(p0); // server
         case Away:          return QString("AWAY :%1").arg(d->params(0)); // reason
@@ -615,6 +617,10 @@ IrcCommand* IrcCommand::createList(const QStringList& channels, const QString& s
 {
     return IrcCommandPrivate::createCommand(List, QStringList() << channels.join(",") << server);
 }
+
+
+
+//hircclient2
 
 /*!
     Creates a new PRIVMSG command with type IrcCommand::Message and parameters \a target and \a message.

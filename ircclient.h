@@ -47,6 +47,8 @@ public:
     int PORT = 9999;
     bool SECURE = 1;
 
+public slots:
+        void appendText(QString input);
 private slots:
     void onConnected();
     void onConnecting();
@@ -65,6 +67,7 @@ private slots:
     void onUserActivated(const QModelIndex& index);
 
     void receiveMessage(IrcMessage* message);
+
 
 private:
     void createLayout();
