@@ -56,10 +56,6 @@ private slots:
 
     void on_connect_clicked();
 
-    void on_serverlist_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
-
-    void on_serverlist_itemActivated(QListWidgetItem *item);
-
     void on_actionSave_triggered();
 
     void on_addserver_clicked();
@@ -75,6 +71,12 @@ private slots:
     void on_editchannel_clicked();
 
     void on_joinchannel_clicked();
+
+    void on_channelList_clicked(const QModelIndex &index);
+
+    void on_serverlist_clicked(const QModelIndex &index);
+
+    void on_serverlist_currentRowChanged(int currentRow);
 
 private:
 

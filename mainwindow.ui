@@ -20,6 +20,12 @@
       <property name="currentIndex">
        <number>0</number>
       </property>
+      <property name="tabsClosable">
+       <bool>true</bool>
+      </property>
+      <property name="movable">
+       <bool>true</bool>
+      </property>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
         <string>Settings</string>
@@ -168,16 +174,16 @@
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="joinchannel">
+                <widget class="QPushButton" name="removechannel">
                  <property name="text">
-                  <string>Join</string>
+                  <string>Remove</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="removechannel">
+                <widget class="QPushButton" name="joinchannel">
                  <property name="text">
-                  <string>Remove</string>
+                  <string>Join</string>
                  </property>
                 </widget>
                </item>

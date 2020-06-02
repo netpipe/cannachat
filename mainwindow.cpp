@@ -121,7 +121,7 @@ void MainWindow::resizeEvent(QResizeEvent* event)
 
 void MainWindow::readsettings(){
     bool settingsexists=false;
-//QFile Fout("settings.txt");    if(Fout.exists())    {       settingsexists=true;    }    Fout.close();
+QFile Fout("settings.txt");    if(Fout.exists())    {       settingsexists=true;    }    Fout.close();
 if (settingsexists){
     QString searchString(":");
     QFile MyFile("settings.txt");
@@ -143,39 +143,73 @@ if (settingsexists){
             QRegExp rx("[:]");// match a comma or a space
             list = line.split(rx);
             nums.append(list.at(1).toLatin1());
+
         }
     } while (!line.isNull());
 
+    ui->nickname->setText(nums.at(0).toLatin1());
+    ui->password->setText(nums.at(1).toLatin1());
+    ui->identname->setText(nums.at(2).toLatin1());
+    ui->client->setText(nums.at(3).toLatin1());
+    ui->quitmsg->setText(nums.at(4).toLatin1());
+    ui->idlemessage->setText(nums.at(5).toLatin1());
+    ui->awaymessage->setText(nums.at(6).toLatin1());
+
+    ui->colors->setChecked(nums.at(7).toInt());
+    ui->themes->setChecked(nums.at(8).toInt());
+    ui->smtp->setChecked(nums.at(9).toInt());
+    ui->logging->setChecked(nums.at(10).toInt());
+    ui->identify->setChecked(nums.at(11).toInt());
+    nums.clear();
+
+    bool serversexists=false;
+QFile Fout("servers.txt");    if(Fout.exists())    {       serversexists=true;    }    Fout.close();
+if (serversexists){
+qDebug() << "test";
     QFile MyFile2("servers.txt");
     MyFile2.open(QIODevice::ReadWrite);
     QTextStream in2 (&MyFile2);
-list.clear();
-
 
     do {
         line = in2.readLine();
         searchString=":";
         if (line.contains(searchString)) { //, Qt::CaseSensitive
             // do something
-            QRegExp rx("[:]");// match a comma or a space
-            list = line.split(rx);
-          //  nums.append(list.at(1).toLatin1());
+           // QRegExp rx("[:]");// match a comma or a space
+          //  list = line.split(rx);
+           nums.append(line);
         }
     } while (!line.isNull());
+    MyFile2.close();
+
+//    ui->serverlist->blockSignals(true);
+//    ui->serverlist->clear();
+//    ui->serverlist->blockSignals(false);
+    for (int i=0; i < ui->serverlist->count(); i++){
+        ui->serverlist->takeItem(0);
+    }
 
 
+                  //      int sized = ui->channelList->count();
+    ui->serverlist->item(ui->serverlist->currentRow())->setText(nums.at(0).toLatin1());
+    for (int i=1; i < nums.count() ; i++){
+        ui->serverlist->addItem(nums.at(i).toLatin1());
+    }
+}
 
- ui->nickname->setText(Nick.toLatin1());
+
 }
     //ircwidget->resize(ui->chatwidget->width(),ui->chatwidget->height());
-
+       writesettings();
 }
 
 void MainWindow::writesettings(){
 
     QFile file("settings.txt");
-          if(file.open(QIODevice::ReadWrite | QIODevice::Text))
+
+          if(file.open(QIODevice::WriteOnly | QIODevice::Text))
           {
+                  file.seek(0);
               QTextStream stream(&file);
                 stream << "name:" << ui->nickname->text().toLatin1() << endl;
                 stream << "password:" << ui->password->text().toLatin1()<< endl;
@@ -201,8 +235,10 @@ void MainWindow::writesettings(){
           QFile file2(servername.toLatin1()+".txt");
             //   QFile file2("servers.txt");
             //    if(file.open(QIODevice::WriteOnly | QIODevice::Text))
-                if(file2.open(QIODevice::ReadWrite | QIODevice::Text))
+
+                if(file2.open(QIODevice::WriteOnly | QIODevice::Text))
                 {
+                    file2.seek(0);
                     QTextStream stream(&file2);
                     int sized = ui->channelList->count();
                     for (int i=0; i < sized; i++){
@@ -212,15 +248,22 @@ void MainWindow::writesettings(){
                     file2.close();
                 }
 
+qDebug() << "writing settings";
+
+
+
+
           QFile file3("servers.txt");
-            //   QFile file2("servers.txt");
-            //    if(file.open(QIODevice::WriteOnly | QIODevice::Text))
-                if(file3.open(QIODevice::ReadWrite | QIODevice::Text))
+                if(file3.open(QIODevice::WriteOnly | QIODevice::Text))
                 {
+
                     QTextStream stream(&file3);
+                                        file3.seek(0);
                     int sized = ui->serverlist->count();
+                    qDebug() << sized;
                     for (int i=0; i < sized; i++){
                         ui->serverlist->setCurrentRow(i);
+
                          stream << ui->serverlist->currentItem()->text().toLatin1() << endl;
                     }
                     file3.close();
@@ -278,10 +321,103 @@ void MainWindow::on_connect_clicked()
 
 }
 
-void MainWindow::on_serverlist_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous)
+void MainWindow::on_actionSave_triggered()
+{
+    writesettings();
+}
+
+void MainWindow::on_addserver_clicked()
+{
+    ui->serverlist->addItem(ui->server->text().toLatin1());
+    writesettings();
+}
+
+void MainWindow::on_removeserver_clicked()
+{
+    //check for duplicate server before removing file
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Are you sure ?", "remove ?",
+                                  QMessageBox::Yes|QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+      qDebug() << "Yes was clicked";
+      if (reply){
+          //    ui->serverlist->addItem(ui->server->text().toLatin1())
+            qDeleteAll(ui->serverlist->selectedItems());
+            writesettings();
+            //delete file
+            //ui->serverlist->currentItem()->text()
+      }
+    }
+
+
+}
+
+
+void MainWindow::on_addchannel_clicked()
+{
+    ui->channelList->addItem(ui->channeledit->text().toLatin1());
+    writesettings();
+}
+
+void MainWindow::on_removechannel_clicked()
+{
+            //    QListWidgetItem items = ui->listWidget->selectedItems();
+            //ui->listWidget->removeItemWidget(item);
+//    QList<QListWidgetItem*> items = ui->channelList->selectedItems();
+//    foreach(QListWidgetItem * item, items)
+//    {
+//        delete ui->channelList->takeItem(ui->channelList->row(item));
+//    }
+
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Are you sure ?", "remove ?",
+                                  QMessageBox::Yes|QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+      qDebug() << "Yes was clicked";
+      if (reply){
+        qDeleteAll(ui->channelList->selectedItems());
+
+        writesettings();
+        }
+    }
+}
+
+void MainWindow::on_serveredit_clicked()
+{
+        ui->serverlist->item(ui->serverlist->currentRow())->setText(ui->server->text().toLatin1());
+    //ui->channelList->addItem(ui->editchannel->text().toLatin1());
+    writesettings();
+}
+
+void MainWindow::on_editchannel_clicked()
+{
+    ui->channelList->item(ui->channelList->currentRow())->setText(ui->channeledit->text().toLatin1());
+    //ui->channelList->addItem(ui->editchannel->text().toLatin1());
+    writesettings();
+}
+
+void MainWindow::on_joinchannel_clicked()
+{
+    //get selected tab
+serverarray[0]->JoinChannel(ui->channelList->currentItem()->text().toLatin1());
+
+}
+
+void MainWindow::on_channelList_clicked(const QModelIndex &index)
+{
+    ui->channeledit->setText(ui->channelList->currentItem()->text().toLatin1());
+}
+
+void MainWindow::on_serverlist_clicked(const QModelIndex &index)
+{
+
+
+  ui->server->setText(ui->serverlist->currentItem()->text().toLatin1());
+}
+
+void MainWindow::on_serverlist_currentRowChanged(int currentRow)
 {
     //load channels for server maybe use sqlite db
-
     QStringList splitlist = ui->serverlist->currentItem()->text().split(":");
     QString servername = splitlist[0].toUtf8();
     QFile Fout(servername.toLatin1()+".txt");    if(Fout.exists())    {     ui->channelList->clear();   }    Fout.close();
@@ -308,70 +444,4 @@ void MainWindow::on_serverlist_currentItemChanged(QListWidgetItem *current, QLis
     foreach (QString list2,nums){
         ui->channelList->addItem(list2.toLatin1());
     }
-}
-
-void MainWindow::on_serverlist_itemActivated(QListWidgetItem *item)
-{
-
-}
-
-void MainWindow::on_actionSave_triggered()
-{
-    writesettings();
-}
-
-void MainWindow::on_addserver_clicked()
-{
-    ui->serverlist->addItem(ui->server->text().toLatin1());
-    writesettings();
-}
-
-void MainWindow::on_removeserver_clicked()
-{
-//    ui->serverlist->addItem(ui->server->text().toLatin1())
-  qDeleteAll(ui->serverlist->selectedItems());
-  writesettings();
-  //delete file
-  //ui->serverlist->currentItem()->text()
-}
-
-
-void MainWindow::on_addchannel_clicked()
-{
-    ui->channelList->addItem(ui->channeledit->text().toLatin1());
-    writesettings();
-}
-
-void MainWindow::on_removechannel_clicked()
-{
-            //    QListWidgetItem items = ui->listWidget->selectedItems();
-            //ui->listWidget->removeItemWidget(item);
-//    QList<QListWidgetItem*> items = ui->channelList->selectedItems();
-//    foreach(QListWidgetItem * item, items)
-//    {
-//        delete ui->channelList->takeItem(ui->channelList->row(item));
-//    }
-
-    qDeleteAll(ui->channelList->selectedItems());
-
-  //  writesettings();
-}
-
-void MainWindow::on_serveredit_clicked()
-{
-    //ui->channelList->addItem(ui->editchannel->text().toLatin1());
-    writesettings();
-}
-
-void MainWindow::on_editchannel_clicked()
-{
-   // ui->channelList->addItem(ui->editchannel->text().toLatin1());
-    writesettings();
-}
-
-void MainWindow::on_joinchannel_clicked()
-{
-    //get selected tab
-serverarray[0]->JoinChannel(ui->channelList->currentItem()->text().toLatin1());
-
 }
