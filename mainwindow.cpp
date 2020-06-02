@@ -259,8 +259,8 @@ QApplication::quit();
 
 void MainWindow::on_actionNew_triggered()
 {
-    serversw = new ServerDlg();
-    serversw->show();
+//    serversw = new ServerDlg();
+//    serversw->show();
 }
 
 void MainWindow::on_actionClose_triggered()
