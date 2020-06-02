@@ -203,7 +203,6 @@ bool IrcProtocolPrivate::handleBatchMessage(IrcBatchMessage* msg)
 void IrcProtocolPrivate::handleNumericMessage(IrcNumericMessage* msg)
 {
     Q_Q(IrcProtocol);
-    qDebug() << "handle numeric message" << msg;
     switch (msg->code()) {
     case Irc::RPL_WELCOME:
         motd = false;
@@ -224,12 +223,12 @@ void IrcProtocolPrivate::handleNumericMessage(IrcNumericMessage* msg)
         motd = true;
         q->setInfo(info);
         break;
-    case Irc::ERR_NICKNAMEINUSE: /*{
+    case Irc::ERR_NICKNAMEINUSE: {
 
          qDebug() << "nickname in use";
    connection->hircclient2->appendText( "nickname in use");
 
-    }*/
+    }
     case Irc::ERR_NICKCOLLISION: {
         QString reserved = msg->parameters().value(1);
         while (currentNick + 1 < connection->nickNames().count()) {
@@ -250,12 +249,12 @@ void IrcProtocolPrivate::handleNumericMessage(IrcNumericMessage* msg)
         }
         break;
     }
-//    case Irc::ERR_NEEDREGGEDNICK: {
-//        QString channel = msg->parameters().value(0);
-//         qDebug() << "not registered" << msg->parameters().value(1);
-//      //   connection->printMessage("not registered ircprotocol.cpp" + msg->parameters().value(1).toLatin1());
-//         connection->hircclient2->appendText("not registered nickname");
-//    }
+    case Irc::ERR_NEEDREGGEDNICK: {
+        QString channel = msg->parameters().value(0);
+         qDebug() << "not registered" << msg->parameters().value(1);
+      //   connection->printMessage("not registered ircprotocol.cpp" + msg->parameters().value(1).toLatin1());
+         connection->hircclient2->appendText("not registered nickname");
+    }
 
     case Irc::ERR_BADCHANNELKEY: {
         QString key;

@@ -38,13 +38,9 @@ IrcClient::IrcClient(QWidget* parent,QString nickname, QString channel, QString 
 {
     createParser();
 
-    //QByteArray ba = server.toLocal8Bit();
-
-
-
-     NICKNAME = nickname.toLatin1();
-     CHANNEL  = channel.toLatin1();
-     SERVER   = server.toLatin1();
+     NICKNAME = nickname.toUtf8();
+     CHANNEL  = channel.toUtf8();
+     SERVER   = server.toUtf8();
      PORT     = port;
      SECURE   = secure;
 
@@ -55,21 +51,11 @@ IrcClient::IrcClient(QWidget* parent,QString nickname, QString channel, QString 
     createLayout();
     createBufferList();
 
-    // queue a command to automatically join the channel when connected
-//    connection->sendCommand(IrcCommand::createJoin(CHANNEL));
-//    connection->open();
-
-
     if (channel.toLatin1()==""){//popupbox
     }else{
-        connection->sendCommand(IrcCommand::createJoin(SERVER.toStdString().c_str()));
+        connection->sendCommand(IrcCommand::createJoin(SERVER.toLatin1()));
         connection->open();
     }
-
- //   connection->sendCommand(IrcCommand::createJoin(channel.toLatin1()));
-
-
-
 
     textEdit->append(IrcMessageFormatter::formatMessage(tr("! Welcome to the Cannachat %1 example client.").arg(IRC_VERSION_STR)));
     textEdit->append(IrcMessageFormatter::formatMessage(tr("! This example connects %1 and joins %2.").arg(SERVER.toLocal8Bit().data(), CHANNEL.toLocal8Bit().data())));
@@ -415,7 +401,7 @@ void IrcClient::createBufferList()
 void IrcClient::createConnection()
 {
     connection = new IrcConnection(this);
- //   connection->setClient(this);
+    connection->setClient(this);
     connect(connection, SIGNAL(connected()), this, SLOT(onConnected()));
     connect(connection, SIGNAL(connecting()), this, SLOT(onConnecting()));
     connect(connection, SIGNAL(disconnected()), this, SLOT(onDisconnected()));
@@ -426,5 +412,6 @@ void IrcClient::createConnection()
     connection->setSecure(SECURE);
     connection->setUserName(NICKNAME.toStdString().c_str());// + QString(qrand() % 9999 )
     connection->setNickName( NICKNAME.toStdString().c_str() );//tr("Client%1").arg(qrand() % 9999)
-    connection->setRealName(tr("Communi %1 example client").arg(IRC_VERSION_STR));
+    connection->setRealName("Cannachat");
+      //  connection->setRealName(tr("Cannachat %1 example client").arg(IRC_VERSION_STR));
 }

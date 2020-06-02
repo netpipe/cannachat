@@ -41,11 +41,11 @@ public:
     void Connections();
 
 
-    QString  NICKNAME = "netpipe";
-    QString  CHANNEL = "#cannachat";
-    QString  SERVER = "irc.choopa.net";
-    int PORT = 9999;
-    bool SECURE = 1;
+    QString  NICKNAME = "";
+    QString  CHANNEL = "";
+    QString  SERVER = "";
+    int PORT = 0;
+    bool SECURE = 0;
 
 void JoinChannel(QString channel);
 public slots:

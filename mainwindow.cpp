@@ -26,10 +26,6 @@ IrrlichtWidget* widget ;
 //IrrlichtWidget* widget2 ;
 #endif
 
-ServerDlg *serversw;
-
-
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -43,12 +39,10 @@ MainWindow::MainWindow(QWidget *parent)
   //    this->show();
   //    delete newDlg;
 
-       ServerDlg *settings = new ServerDlg();
+  //     ServerDlg *settings = new ServerDlg();
       // settings->show();
 
-       connect(settings, SIGNAL(findtext()), this , SLOT(on_search_clicked()));
-
-
+     //  connect(settings, SIGNAL(findtext()), this , SLOT(on_search_clicked()));
 
 #ifdef IRRLICHT
      // widget = new IrrlichtWidget( ui->tabWidget->findChild<QWidget *>("openGLWidget") );
@@ -70,17 +64,13 @@ MainWindow::MainWindow(QWidget *parent)
      int port = 9999;
 
         //      serverarray.push_back(new IrcClient( ui->tabWidget->findChild<QWidget *>("chatwidget"), ui->nickname->text().toLatin1(), channel.toLatin1(), servername.toLatin1(),port,ssl));
-int autostart=0;
+    int autostart=0;
      if(autostart){
             for (int i=0; i < serverarray.size() ; i++){
              ui->tabWidget->addTab(serverarray[i], servername.toLatin1());
              //     ui->chatwidget->resize(1000,700);
             }
      }
-// read settings find autojoin channels for servers
-
-//ircwidget[0] = test;
-//    ircwidget2 = new IrcClient( ui->tabWidget->findChild<QWidget *>("chatwidget_2"));
 
      if (ui->nickname->text().toLatin1() == "") {
          qDebug() << "setnickname";
@@ -96,14 +86,9 @@ readsettings();
 MainWindow::~MainWindow()
 {
 //   ui->centralWidget->findChild<QWidget *>("irrRenderWidget0"), false);
-
 //    this->irr0->init();
-
 //    this->irr1 = new IrrCoreRenderer(ui->centralWidget->findChild<QWidget *>("irrRenderWidget1"), 1);
-
 //    this->irr1->init();
-
-
 
 }
 
@@ -249,10 +234,6 @@ void MainWindow::writesettings(){
                 }
 
 qDebug() << "writing settings";
-
-
-
-
           QFile file3("servers.txt");
                 if(file3.open(QIODevice::WriteOnly | QIODevice::Text))
                 {
@@ -292,15 +273,12 @@ void MainWindow::on_actionRestore_triggered()
 
 }
 
-
 void MainWindow::on_pushButton_clicked()
 {
-//ircwidget->Connections();
 }
 
 void MainWindow::on_connect_clicked()
 {
-
     QStringList splitlist = ui->serverlist->currentItem()->text().split(":");
     QString servername = splitlist[0].toUtf8();
     qDebug() << splitlist[0].toUtf8();
@@ -308,22 +286,9 @@ void MainWindow::on_connect_clicked()
     int port = splitlist[1].toInt();
     bool ssl = splitlist[2].toInt();
 
-//        QString servername = "irc.choopa.net";
-//        QString channel =  "#cannachat";
-//        bool ssl = 1;
-//        int port = 9999;
-
-//            QString servername = "irc.choopa.net";
-//            QString channel =  "#cannachat";
-//            bool ssl = 1;
-//            int port = 9999;
-
     serverarray.push_back(new IrcClient( ui->tabWidget->findChild<QWidget *>("chatwidget"), ui->nickname->text().toUtf8(), channel.toUtf8(), servername.toUtf8(),port,ssl));
     qDebug() << serverarray.size();
     ui->tabWidget->addTab(serverarray[serverarray.size()-1], (serverarray.size()-1)+":"+servername.toLatin1());
-    //serverarray[serverarray.size()-1]->registerSelf(&serverarray[serverarray.size()-1]);
-    //serverarray[serverarray.size()-1]->appendText("testing 12345");
-
 }
 
 void MainWindow::on_actionSave_triggered()
