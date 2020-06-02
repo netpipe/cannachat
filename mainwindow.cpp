@@ -82,9 +82,11 @@ int autostart=0;
 //ircwidget[0] = test;
 //    ircwidget2 = new IrcClient( ui->tabWidget->findChild<QWidget *>("chatwidget_2"));
 
-     if (ui->nickname->text().toLatin1()==""){
-         ui->nickname->setText("guest" + QString::number( qrand() % 9999));
- }
+     if (ui->nickname->text().toLatin1() == "") {
+         qDebug() << "setnickname";
+         ui->nickname->setText("guest" + QString::number( qrand() % 9999) );
+        }
+
 themeInit();
 readsettings();
 }
@@ -117,7 +119,7 @@ void MainWindow::resizeEvent(QResizeEvent* event)
 
 void MainWindow::readsettings(){
     bool settingsexists=false;
-QFile Fout("settings.txt");    if(Fout.exists())    {       settingsexists=true;    }    Fout.close();
+//QFile Fout("settings.txt");    if(Fout.exists())    {       settingsexists=true;    }    Fout.close();
 if (settingsexists){
     QString searchString(":");
     QFile MyFile("settings.txt");
@@ -170,14 +172,21 @@ list.clear();
 void MainWindow::writesettings(){
 
     QFile file("settings.txt");
-      //    if(file.open(QIODevice::WriteOnly | QIODevice::Text))
           if(file.open(QIODevice::ReadWrite | QIODevice::Text))
           {
               QTextStream stream(&file);
-              //stream << "CoinName:" << ui->coinname->text() <<'\n';
 
               file.close();
           }
+
+          QFile file2("channels.txt");
+            //    if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+                if(file2.open(QIODevice::ReadWrite | QIODevice::Text))
+                {
+                    QTextStream stream(&file);
+
+                    file2.close();
+                }
 
 }
 
@@ -251,24 +260,26 @@ void MainWindow::on_connect_clicked()
 
 QStringList splitlist = ui->serverlist->currentItem()->text().split(":");
     QString servername = splitlist[0].toUtf8();
-    qDebug() << splitlist[0].toLatin1();
+    qDebug() << splitlist[0].toUtf8();
     QString channel =  "#cannachat";
     int port = splitlist[1].toInt();
         bool ssl = splitlist[2].toInt();
 
-                 serverarray.push_back(new IrcClient( ui->tabWidget->findChild<QWidget *>("chatwidget"), ui->nickname->text().toLatin1(), channel.toLatin1(), servername.toLatin1(),port,ssl));
+//        QString servername = "irc.choopa.net";
+//        QString channel =  "#cannachat";
+//        bool ssl = 1;
+//        int port = 9999;
 
-                 ui->tabWidget->addTab(serverarray[0], servername.toLatin1());
+                 serverarray.push_back(new IrcClient( ui->tabWidget->findChild<QWidget *>("chatwidget"), ui->nickname->text().toUtf8(), channel.toUtf8(), servername.toUtf8(),port,ssl));
+qDebug() << serverarray.size();
+                ui->tabWidget->addTab(serverarray[serverarray.size()-1], servername.toLatin1());
+
 
 }
 
 void MainWindow::on_serverlist_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous)
 {
-
-}
-
-void MainWindow::on_serverlist_itemActivated(QListWidgetItem *item)
-{
+    //load channels for server maybe use sqlite db
     qDebug() << "channels";
 //    QString searchString(":");
 //    QFile MyFile("channels.txt");
@@ -292,5 +303,10 @@ void MainWindow::on_serverlist_itemActivated(QListWidgetItem *item)
 //            nums.append(list.at(1).toLatin1());
 //        }
 //    } while (!line.isNull());
+
+}
+
+void MainWindow::on_serverlist_itemActivated(QListWidgetItem *item)
+{
 
 }

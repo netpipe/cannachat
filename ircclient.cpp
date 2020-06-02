@@ -32,31 +32,20 @@
 #include <IrcBufferModel>
 #include <IrcCommandParser>
 
-const char* NICKNAME = "guest1234";
-const char* CHANNEL = "#cannachat";
-const char* SERVER = "irc.freenode.net2";
-//static const char* SERVER = "irc.freenode.net : +6697";
-int PORT = 6697;
-bool SECURE = 1;
-//static const char* SERVER = "irc.freenode.org:+6697";
-//static const char* SERVER = "irc.freenode.org:+6697";
 
-IrcClient::IrcClient(QWidget* parent,QString nickname, QString channel, QString server,int port, bool secure) : QSplitter(parent)
+
+IrcClient::IrcClient(QWidget* parent,QString nickname, QString channel, QString server,int port, int secure) : QSplitter(parent)
 {
     createParser();
 
     //QByteArray ba = server.toLocal8Bit();
 
-   // createConnection();
-  //  SERVER = ba.data();//server.toLatin1();
-    SERVER = server.toStdString().c_str();//server.toLatin1();
-    PORT = port;
-    SECURE = secure;
-    NICKNAME =nickname.toStdString().c_str();
+     NICKNAME = nickname.toLatin1();
+     CHANNEL  = channel.toLatin1();
+     SERVER   = server.toLatin1();
+     PORT     = port;
+     SECURE   = secure;
 
-//    SERVER = "irc.choopa.net";
-//    PORT = 9999;
-//    SECURE = 1;
 
     createConnection();
 
@@ -77,7 +66,7 @@ IrcClient::IrcClient(QWidget* parent,QString nickname, QString channel, QString 
     }
 
     textEdit->append(IrcMessageFormatter::formatMessage(tr("! Welcome to the Communi %1 example client.").arg(IRC_VERSION_STR)));
-    textEdit->append(IrcMessageFormatter::formatMessage(tr("! This example connects %1 and joins %2.").arg(SERVER, CHANNEL)));
+    textEdit->append(IrcMessageFormatter::formatMessage(tr("! This example connects %1 and joins %2.").arg(SERVER.toLocal8Bit().data(), CHANNEL.toLocal8Bit().data())));
     textEdit->append(IrcMessageFormatter::formatMessage(tr("! PS. Available commands: JOIN, ME, NICK, PART")));
 
 }
@@ -134,18 +123,18 @@ IrcClient::~IrcClient()
 
 void IrcClient::onConnected()
 {
-    textEdit->append(IrcMessageFormatter::formatMessage("! Connected to %1.").arg(SERVER));
-    textEdit->append(IrcMessageFormatter::formatMessage("! Joining %1...").arg(CHANNEL));
+    textEdit->append(IrcMessageFormatter::formatMessage("! Connected to %1.").arg(SERVER.toLocal8Bit().data()));
+    textEdit->append(IrcMessageFormatter::formatMessage("! Joining %1...").arg(CHANNEL.toLocal8Bit().data()));
 }
 
 void IrcClient::onConnecting()
 {
-    textEdit->append(IrcMessageFormatter::formatMessage("! Connecting %1...").arg(SERVER));
+    textEdit->append(IrcMessageFormatter::formatMessage("! Connecting %1...").arg(SERVER.toLocal8Bit().data()));
 }
 
 void IrcClient::onDisconnected()
 {
-    textEdit->append(IrcMessageFormatter::formatMessage("! Disconnected from %1.").arg(SERVER));
+    textEdit->append(IrcMessageFormatter::formatMessage("! Disconnected from %1.").arg(SERVER.toLocal8Bit().data()));
 }
 
 void IrcClient::onTextEdited()
@@ -385,10 +374,10 @@ void IrcClient::createConnection()
     connect(connection, SIGNAL(disconnected()), this, SLOT(onDisconnected()));
 
     qsrand(QTime::currentTime().msec());
-    connection->setHost(SERVER);
+    connection->setHost(SERVER.toLocal8Bit().data());
     connection->setPort(PORT);
    connection->setSecure(SECURE);
     connection->setUserName("cannachat");
-    connection->setNickName( NICKNAME );//tr("Client%1").arg(qrand() % 9999)
+    connection->setNickName( NICKNAME.toLocal8Bit().data() );//tr("Client%1").arg(qrand() % 9999)
     connection->setRealName(tr("Communi %1 example client").arg(IRC_VERSION_STR));
 }
