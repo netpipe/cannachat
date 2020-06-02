@@ -46,7 +46,7 @@ public:
     QString  SERVER = "irc.choopa.net";
     int PORT = 9999;
     bool SECURE = 1;
-
+void JoinChannel(QString channel);
 public slots:
         void appendText(QString input);
 private slots:

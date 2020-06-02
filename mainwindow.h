@@ -60,6 +60,22 @@ private slots:
 
     void on_serverlist_itemActivated(QListWidgetItem *item);
 
+    void on_actionSave_triggered();
+
+    void on_addserver_clicked();
+
+    void on_removeserver_clicked();
+
+    void on_addchannel_clicked();
+
+    void on_removechannel_clicked();
+
+    void on_serveredit_clicked();
+
+    void on_editchannel_clicked();
+
+    void on_joinchannel_clicked();
+
 private:
 
 //IrcClient *ircwidget;

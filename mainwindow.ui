@@ -57,7 +57,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit"/>
+                <widget class="QLineEdit" name="server"/>
                </item>
               </layout>
              </item>
@@ -90,6 +90,13 @@
                 </widget>
                </item>
                <item>
+                <widget class="QPushButton" name="serveredit">
+                 <property name="text">
+                  <string>Edit</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QPushButton" name="connect">
                  <property name="text">
                   <string>Connect</string>
@@ -117,11 +124,11 @@
              </rect>
             </property>
             <property name="title">
-             <string>GroupBox</string>
+             <string>Channels</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_6">
              <item row="0" column="0" colspan="2">
-              <widget class="QListWidget" name="listWidget">
+              <widget class="QListWidget" name="channelList">
                <item>
                 <property name="text">
                  <string>#electronics:1</string>
@@ -147,14 +154,28 @@
              <item row="0" column="2">
               <layout class="QVBoxLayout" name="verticalLayout_2">
                <item>
-                <widget class="QPushButton" name="addserver_2">
+                <widget class="QPushButton" name="addchannel">
                  <property name="text">
                   <string>Add</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="removeserver_2">
+                <widget class="QPushButton" name="editchannel">
+                 <property name="text">
+                  <string>Edit</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="joinchannel">
+                 <property name="text">
+                  <string>Join</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="removechannel">
                  <property name="text">
                   <string>Remove</string>
                  </property>
@@ -170,7 +191,7 @@
               </widget>
              </item>
              <item row="1" column="1">
-              <widget class="QLineEdit" name="lineEdit_2"/>
+              <widget class="QLineEdit" name="channeledit"/>
              </item>
             </layout>
            </widget>
@@ -179,7 +200,7 @@
            <attribute name="title">
             <string>Settings</string>
            </attribute>
-           <widget class="QCheckBox" name="checkBox">
+           <widget class="QCheckBox" name="colors">
             <property name="geometry">
              <rect>
               <x>300</x>
@@ -192,7 +213,7 @@
              <string>colors</string>
             </property>
            </widget>
-           <widget class="QCheckBox" name="checkBox_2">
+           <widget class="QCheckBox" name="themes">
             <property name="geometry">
              <rect>
               <x>300</x>
@@ -205,7 +226,7 @@
              <string>themes</string>
             </property>
            </widget>
-           <widget class="QCheckBox" name="checkBox_3">
+           <widget class="QCheckBox" name="smtp">
             <property name="geometry">
              <rect>
               <x>300</x>
@@ -218,7 +239,7 @@
              <string>smtp</string>
             </property>
            </widget>
-           <widget class="QCheckBox" name="checkBox_4">
+           <widget class="QCheckBox" name="logging">
             <property name="geometry">
              <rect>
               <x>300</x>
@@ -231,7 +252,7 @@
              <string>logging</string>
             </property>
            </widget>
-           <widget class="QCheckBox" name="checkBox_5">
+           <widget class="QCheckBox" name="identify">
             <property name="geometry">
              <rect>
               <x>300</x>
@@ -258,7 +279,7 @@
             </property>
             <layout class="QGridLayout" name="gridLayout_5">
              <item row="4" column="1">
-              <widget class="QLineEdit" name="lineEdit_3">
+              <widget class="QLineEdit" name="client">
                <property name="text">
                 <string>clientstring</string>
                </property>
@@ -272,14 +293,14 @@
               </widget>
              </item>
              <item row="4" column="0">
-              <widget class="QLabel" name="label_3">
+              <widget class="QLabel" name="clientidentifier">
                <property name="text">
-                <string>ClientString</string>
+                <string>ClientIdentifier</string>
                </property>
               </widget>
              </item>
              <item row="5" column="1">
-              <widget class="QLineEdit" name="lineEdit_4">
+              <widget class="QLineEdit" name="quitmsg">
                <property name="text">
                 <string>Quit</string>
                </property>
@@ -321,7 +342,7 @@
               </widget>
              </item>
              <item row="5" column="0">
-              <widget class="QLabel" name="label_4">
+              <widget class="QLabel" name="quitmessage">
                <property name="text">
                 <string>QuitMessage</string>
                </property>
@@ -532,6 +553,7 @@
     <addaction name="actionClose"/>
     <addaction name="actionRestore"/>
     <addaction name="actionExit"/>
+    <addaction name="actionSave"/>
    </widget>
    <widget class="QMenu" name="menuAbout">
     <property name="title">
@@ -560,6 +582,11 @@
   <action name="actionRestore">
    <property name="text">
     <string>&amp;Restore</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Save</string>
    </property>
   </action>
  </widget>
