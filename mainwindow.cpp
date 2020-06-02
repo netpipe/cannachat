@@ -15,7 +15,6 @@
 #include <QEvent>
 
 
-
 #include "qstylesheetmanager.h"
 #include "loadtheme.h"
 //#define IRRLICHT
@@ -36,10 +35,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
        ui->setupUi(this);
 
-//    ui->setupUi(servers);
-
-    //  MainWindow w;
-    //  this->setWindowTitle("Main Window");
+      this->setWindowTitle("Cannachat");
 
   //    Dialog1 *newDlg = new Dialog1();
   //    this->hide();
@@ -62,40 +58,33 @@ MainWindow::MainWindow(QWidget *parent)
 
 
       //IrcClient *test
-              ircwidget = new IrcClient( ui->tabWidget->findChild<QWidget *>("chatwidget"));
+         //     ircwidget = new IrcClient( ui->tabWidget->findChild<QWidget *>("chatwidget"));
 
-//ircwidget->Connections();
+     this->resize(1000,500);
+
+            //  vector<IrcClient*> test2;
+     //read settings find autojoin servers
+     QString servername = "irc.choopa.net";
+     QString channel =  "#cannachat";
+     bool ssl = 1;
+     int port = 9999;
+
+        //      serverarray.push_back(new IrcClient( ui->tabWidget->findChild<QWidget *>("chatwidget"), ui->nickname->text().toLatin1(), channel.toLatin1(), servername.toLatin1(),port,ssl));
+int autostart=0;
+     if(autostart){
+            for (int i=0; i < serverarray.size() ; i++){
+             ui->tabWidget->addTab(serverarray[i], servername.toLatin1());
+             //     ui->chatwidget->resize(1000,700);
+            }
+     }
+// read settings find autojoin channels for servers
 
 //ircwidget[0] = test;
 //    ircwidget2 = new IrcClient( ui->tabWidget->findChild<QWidget *>("chatwidget_2"));
 
-
-    this->resize(1000,700);
-    ui->chatwidget->resize(1000,700);
-
-//widget->resizeGL(400,400);
- //     setCentralWidget(widget); //widget
-
-    //  ircwidget->showMaximized();
-   //   ircwidget->resize(ui->chatwidget->width(),ui->chatwidget->height());
-      //ircwidget->autoRepaint();
-//ircwidget->resize();
-
-
-     // m_button = new QPushButton("My Button", this);
-      // set size and location of the button
-     // m_button->setGeometry(QRect(QPoint(100, 100),
-     // QSize(200, 50)));
-     // m_button->setAttribute(Qt::WA_TranslucentBackground);
-
-      // Connect button signal to appropriate slot
-    //  connect(m_button, SIGNAL (released()), this, SLOT (handleButton()));
-
-
-     // QWindow* dlg = new QWindow();
-     // dlg->setModal(false);
-     // dlg->show();
-
+     if (ui->nickname->text().toLatin1()==""){
+         ui->nickname->setText("guest" + QString::number( qrand() % 9999));
+ }
 themeInit();
 readsettings();
 }
@@ -127,7 +116,9 @@ void MainWindow::resizeEvent(QResizeEvent* event)
 
 
 void MainWindow::readsettings(){
-
+    bool settingsexists=false;
+QFile Fout("settings.txt");    if(Fout.exists())    {       settingsexists=true;    }    Fout.close();
+if (settingsexists){
     QString searchString(":");
     QFile MyFile("settings.txt");
     MyFile.open(QIODevice::ReadWrite);
@@ -137,6 +128,7 @@ void MainWindow::readsettings(){
     QStringList list;
      //   QList<QString> nums;
     QStringList nums;
+    QString Nick;
 
 
     do {
@@ -150,6 +142,27 @@ void MainWindow::readsettings(){
         }
     } while (!line.isNull());
 
+    QFile MyFile2("servers.txt");
+    MyFile2.open(QIODevice::ReadWrite);
+    QTextStream in2 (&MyFile2);
+list.clear();
+
+
+    do {
+        line = in2.readLine();
+        searchString=":";
+        if (line.contains(searchString)) { //, Qt::CaseSensitive
+            // do something
+            QRegExp rx("[:]");// match a comma or a space
+            list = line.split(rx);
+          //  nums.append(list.at(1).toLatin1());
+        }
+    } while (!line.isNull());
+
+
+
+ ui->nickname->setText(Nick.toLatin1());
+}
     //ircwidget->resize(ui->chatwidget->width(),ui->chatwidget->height());
 
 }
@@ -230,5 +243,54 @@ void MainWindow::importThemeInfoFromFile()
 
 void MainWindow::on_pushButton_clicked()
 {
-ircwidget->Connections();
+//ircwidget->Connections();
+}
+
+void MainWindow::on_connect_clicked()
+{
+
+QStringList splitlist = ui->serverlist->currentItem()->text().split(":");
+    QString servername = splitlist[0].toUtf8();
+    qDebug() << splitlist[0].toLatin1();
+    QString channel =  "#cannachat";
+    int port = splitlist[1].toInt();
+        bool ssl = splitlist[2].toInt();
+
+                 serverarray.push_back(new IrcClient( ui->tabWidget->findChild<QWidget *>("chatwidget"), ui->nickname->text().toLatin1(), channel.toLatin1(), servername.toLatin1(),port,ssl));
+
+                 ui->tabWidget->addTab(serverarray[0], servername.toLatin1());
+
+}
+
+void MainWindow::on_serverlist_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous)
+{
+
+}
+
+void MainWindow::on_serverlist_itemActivated(QListWidgetItem *item)
+{
+    qDebug() << "channels";
+//    QString searchString(":");
+//    QFile MyFile("channels.txt");
+//    MyFile.open(QIODevice::ReadWrite);
+//    QTextStream in (&MyFile);
+//    QString line;
+//  //  int ii=0;
+//    QStringList list;
+//     //   QList<QString> nums;
+//    QStringList nums;
+//    QString Nick;
+
+
+//    do {
+//        line = in.readLine();
+//        searchString=":";
+//        if (line.contains(searchString)) { //, Qt::CaseSensitive
+//            // do something
+//            QRegExp rx("[:]");// match a comma or a space
+//            list = line.split(rx);
+//            nums.append(list.at(1).toLatin1());
+//        }
+//    } while (!line.isNull());
+
 }

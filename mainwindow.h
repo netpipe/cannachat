@@ -7,6 +7,9 @@
 #include <QThread>
 #include "ircclient.h"
 #include <QVector>
+#include <vector>
+#include <QListWidgetItem>
+using namespace std;
 
 namespace Ui {
 class MainWindow;
@@ -32,7 +35,7 @@ void readsettings();
 
     ~MainWindow();
 
-    QVector<IrcClient> serverarray;
+    vector<IrcClient*> serverarray;
 
 private slots:
     void on_actionExit_triggered();
@@ -51,9 +54,15 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_connect_clicked();
+
+    void on_serverlist_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
+
+    void on_serverlist_itemActivated(QListWidgetItem *item);
+
 private:
 
-IrcClient *ircwidget;
+//IrcClient *ircwidget;
     Ui::MainWindow *ui;
 };
 

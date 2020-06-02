@@ -10,6 +10,7 @@
 #include "ircclient.h"
 #include "ircmessageformatter.h"
 
+
 #include <QTextDocument>
 #include <QTextCursor>
 #include <QVBoxLayout>
@@ -31,22 +32,32 @@
 #include <IrcBufferModel>
 #include <IrcCommandParser>
 
-static const char* CHANNEL = "#cannachat";
-static const char* SERVER = "irc.freenode.net2";
+const char* NICKNAME = "guest1234";
+const char* CHANNEL = "#cannachat";
+const char* SERVER = "irc.freenode.net2";
 //static const char* SERVER = "irc.freenode.net : +6697";
 int PORT = 6697;
 bool SECURE = 1;
 //static const char* SERVER = "irc.freenode.org:+6697";
 //static const char* SERVER = "irc.freenode.org:+6697";
 
-IrcClient::IrcClient(QWidget* parent) : QSplitter(parent)
+IrcClient::IrcClient(QWidget* parent,QString nickname, QString channel, QString server,int port, bool secure) : QSplitter(parent)
 {
     createParser();
 
+    //QByteArray ba = server.toLocal8Bit();
+
    // createConnection();
-  //  SERVER = "irc.choopa.net";
-  //  PORT = 9999;
-  //  SECURE = 1;
+  //  SERVER = ba.data();//server.toLatin1();
+    SERVER = server.toStdString().c_str();//server.toLatin1();
+    PORT = port;
+    SECURE = secure;
+    NICKNAME =nickname.toStdString().c_str();
+
+//    SERVER = "irc.choopa.net";
+//    PORT = 9999;
+//    SECURE = 1;
+
     createConnection();
 
     createCompleter();
@@ -55,13 +66,15 @@ IrcClient::IrcClient(QWidget* parent) : QSplitter(parent)
     createBufferList();
 
     // queue a command to automatically join the channel when connected
-    connection->sendCommand(IrcCommand::createJoin(CHANNEL));
-    connection->open();
+//    connection->sendCommand(IrcCommand::createJoin(CHANNEL));
+//    connection->open();
 
 
-
-//connection->sendCommand(IrcCommand::createJoin("#electronics"));
- //       connection->open();
+    if (channel.toLatin1()==""){//popupbox
+    }else{
+        connection->sendCommand(IrcCommand::createJoin(channel.toLatin1()));
+        connection->open();
+    }
 
     textEdit->append(IrcMessageFormatter::formatMessage(tr("! Welcome to the Communi %1 example client.").arg(IRC_VERSION_STR)));
     textEdit->append(IrcMessageFormatter::formatMessage(tr("! This example connects %1 and joins %2.").arg(SERVER, CHANNEL)));
@@ -372,11 +385,10 @@ void IrcClient::createConnection()
     connect(connection, SIGNAL(disconnected()), this, SLOT(onDisconnected()));
 
     qsrand(QTime::currentTime().msec());
-
     connection->setHost(SERVER);
     connection->setPort(PORT);
    connection->setSecure(SECURE);
-    connection->setUserName("communi");
-    connection->setNickName(tr("Client%1").arg(qrand() % 9999));
+    connection->setUserName("cannachat");
+    connection->setNickName( NICKNAME );//tr("Client%1").arg(qrand() % 9999)
     connection->setRealName(tr("Communi %1 example client").arg(IRC_VERSION_STR));
 }
