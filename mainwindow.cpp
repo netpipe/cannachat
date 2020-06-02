@@ -313,9 +313,14 @@ void MainWindow::on_connect_clicked()
 //        bool ssl = 1;
 //        int port = 9999;
 
+//            QString servername = "irc.choopa.net";
+//            QString channel =  "#cannachat";
+//            bool ssl = 1;
+//            int port = 9999;
+
     serverarray.push_back(new IrcClient( ui->tabWidget->findChild<QWidget *>("chatwidget"), ui->nickname->text().toUtf8(), channel.toUtf8(), servername.toUtf8(),port,ssl));
     qDebug() << serverarray.size();
-    ui->tabWidget->addTab(serverarray[serverarray.size()-1], servername.toLatin1());
+    ui->tabWidget->addTab(serverarray[serverarray.size()-1], (serverarray.size()-1)+":"+servername.toLatin1());
     //serverarray[serverarray.size()-1]->registerSelf(&serverarray[serverarray.size()-1]);
     //serverarray[serverarray.size()-1]->appendText("testing 12345");
 

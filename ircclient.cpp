@@ -40,12 +40,13 @@ IrcClient::IrcClient(QWidget* parent,QString nickname, QString channel, QString 
 
     //QByteArray ba = server.toLocal8Bit();
 
+
+
      NICKNAME = nickname.toLatin1();
      CHANNEL  = channel.toLatin1();
      SERVER   = server.toLatin1();
      PORT     = port;
      SECURE   = secure;
-
 
     createConnection();
 
@@ -61,7 +62,7 @@ IrcClient::IrcClient(QWidget* parent,QString nickname, QString channel, QString 
 
     if (channel.toLatin1()==""){//popupbox
     }else{
-        connection->sendCommand(IrcCommand::createJoin(channel.toLatin1()));
+        connection->sendCommand(IrcCommand::createJoin(SERVER.toStdString().c_str()));
         connection->open();
     }
 
@@ -414,16 +415,16 @@ void IrcClient::createBufferList()
 void IrcClient::createConnection()
 {
     connection = new IrcConnection(this);
-    connection->setClient(this);
+ //   connection->setClient(this);
     connect(connection, SIGNAL(connected()), this, SLOT(onConnected()));
     connect(connection, SIGNAL(connecting()), this, SLOT(onConnecting()));
     connect(connection, SIGNAL(disconnected()), this, SLOT(onDisconnected()));
 
     qsrand(QTime::currentTime().msec());
-    connection->setHost(SERVER.toLocal8Bit().data());
+    connection->setHost(SERVER.toStdString().c_str());
     connection->setPort(PORT);
     connection->setSecure(SECURE);
-    connection->setUserName(NICKNAME.toLocal8Bit().data() + QString(qrand() % 9999 ));
-    connection->setNickName( NICKNAME.toLocal8Bit().data() );//tr("Client%1").arg(qrand() % 9999)
-    connection->setRealName(tr("Communi-lib %1 example client").arg(IRC_VERSION_STR));
+    connection->setUserName(NICKNAME.toStdString().c_str());// + QString(qrand() % 9999 )
+    connection->setNickName( NICKNAME.toStdString().c_str() );//tr("Client%1").arg(qrand() % 9999)
+    connection->setRealName(tr("Communi %1 example client").arg(IRC_VERSION_STR));
 }
