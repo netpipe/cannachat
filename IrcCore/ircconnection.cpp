@@ -488,7 +488,6 @@ bool IrcConnectionPrivate::receiveMessage(IrcMessage* msg)
             emit q->capabilityMessageReceived(static_cast<IrcCapabilityMessage*>(msg));
             break;
         case IrcMessage::Error:
-            qDebug() << "error" << msg;
             emit q->errorMessageReceived(static_cast<IrcErrorMessage*>(msg));
             break;
         case IrcMessage::HostChange:
@@ -537,7 +536,6 @@ bool IrcConnectionPrivate::receiveMessage(IrcMessage* msg)
             emit q->quitMessageReceived(static_cast<IrcQuitMessage*>(msg));
             break;
         case IrcMessage::Topic:
-                        qDebug() << "topic" << msg;
             emit q->topicMessageReceived(static_cast<IrcTopicMessage*>(msg));
             break;
         case IrcMessage::Whois:
@@ -1678,10 +1676,10 @@ IrcCommand* IrcConnection::createCtcpReply(IrcPrivateMessage* request) const
         reply = QLatin1String("TIME ") + QLocale().toString(QDateTime::currentDateTime(), QLocale::ShortFormat);
     else if (type == "VERSION")
         reply = QLatin1String("VERSION Cannachat ") + Irc::version() + QLatin1String(" - Cannachat");
-//    else if (type == "SOURCE")
-//        reply = QLatin1String("SOURCE https://communi.github.io");
-//    else if (type == "CLIENTINFO")
-//        reply = QLatin1String("CLIENTINFO PING SOURCE TIME VERSION");
+    else if (type == "SOURCE")
+        reply = QLatin1String("SOURCE www.cannachat");
+    else if (type == "CLIENTINFO")
+        reply = QLatin1String("CLIENTINFO PING SOURCE TIME VERSION");
     if (!reply.isEmpty())
         return IrcCommand::createCtcpReply(request->nick(), reply);
     return 0;

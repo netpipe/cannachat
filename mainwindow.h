@@ -52,8 +52,6 @@ private slots:
 
     void on_cmbTheme_currentIndexChanged(const QString &arg1);
 
-    void on_pushButton_clicked();
-
     void on_connect_clicked();
 
     void on_actionSave_triggered();

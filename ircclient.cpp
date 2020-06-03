@@ -34,13 +34,14 @@
 
 
 
-IrcClient::IrcClient(QWidget* parent,QString nickname, QString channel, QString server,int port, int secure) : QSplitter(parent)
+IrcClient::IrcClient(QWidget* parent,QString nickname, QString channel, QString server,int port, int secure,QString password) : QSplitter(parent)
 {
     createParser();
 
      NICKNAME = nickname.toUtf8();
      CHANNEL  = channel.toUtf8();
      SERVER   = server.toUtf8();
+          PASSWORD   = password.toUtf8();
      PORT     = port;
      SECURE   = secure;
 
@@ -168,7 +169,7 @@ void IrcClient::appendText(QString input)
       //  else
        //     error = tr("[ERROR] Unknown command: %1").arg(command);
         textEdit->append(IrcMessageFormatter::formatMessage(error));
-    //    lineEdit->setStyleSheet("background: salmon");
+        lineEdit->setStyleSheet("background: salmon");
     }
 
 }
@@ -410,6 +411,7 @@ void IrcClient::createConnection()
     connection->setHost(SERVER.toStdString().c_str());
     connection->setPort(PORT);
     connection->setSecure(SECURE);
+    connection->setPassword(PASSWORD.toStdString().c_str());
     connection->setUserName(NICKNAME.toStdString().c_str());// + QString(qrand() % 9999 )
     connection->setNickName( NICKNAME.toStdString().c_str() );//tr("Client%1").arg(qrand() % 9999)
     connection->setRealName("Cannachat");

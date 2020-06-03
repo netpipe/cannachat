@@ -33,6 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
 
       this->setWindowTitle("Cannachat");
 
+       //salmon color
   //    Dialog1 *newDlg = new Dialog1();
   //    this->hide();
   //    int result = newDlg->exec();
@@ -42,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent)
   //     ServerDlg *settings = new ServerDlg();
       // settings->show();
 
-     //  connect(settings, SIGNAL(findtext()), this , SLOT(on_search_clicked()));
+ //      connect(settings, SIGNAL(findtext()), this , SLOT(on_search_clicked()));
 
 #ifdef IRRLICHT
      // widget = new IrrlichtWidget( ui->tabWidget->findChild<QWidget *>("openGLWidget") );
@@ -273,10 +274,6 @@ void MainWindow::on_actionRestore_triggered()
 
 }
 
-void MainWindow::on_pushButton_clicked()
-{
-}
-
 void MainWindow::on_connect_clicked()
 {
     QStringList splitlist = ui->serverlist->currentItem()->text().split(":");
@@ -285,10 +282,16 @@ void MainWindow::on_connect_clicked()
     QString channel =  "#cannachat";
     int port = splitlist[1].toInt();
     bool ssl = splitlist[2].toInt();
+    QString password = "";
+    if (ui->chkpassword->isChecked()){
+        password = splitlist[3].toUtf8();
+    }else{
+        password = "";
+    }
 
-    serverarray.push_back(new IrcClient( ui->tabWidget->findChild<QWidget *>("chatwidget"), ui->nickname->text().toUtf8(), channel.toUtf8(), servername.toUtf8(),port,ssl));
+    serverarray.push_back(new IrcClient( ui->tabWidget->findChild<QWidget *>("chatwidget"), ui->nickname->text().toUtf8(), channel.toUtf8(), servername.toUtf8(),port,ssl,password.toUtf8()));
     qDebug() << serverarray.size();
-    ui->tabWidget->addTab(serverarray[serverarray.size()-1], (serverarray.size()-1)+":"+servername.toLatin1());
+    ui->tabWidget->addTab(serverarray[serverarray.size()-1], QString::number(serverarray.size()-1)+":"+servername.toLatin1());
 }
 
 void MainWindow::on_actionSave_triggered()
@@ -391,6 +394,15 @@ void MainWindow::on_serverlist_currentRowChanged(int currentRow)
     QStringList splitlist = ui->serverlist->currentItem()->text().split(":");
     QString servername = splitlist[0].toUtf8();
     QFile Fout(servername.toLatin1()+".txt");    if(Fout.exists())    {     ui->channelList->clear();   }    Fout.close();
+    QString password;
+   if( splitlist.count() > 3 ){
+     password = splitlist[3].toUtf8();
+     if (password == ""){
+             ui->chkpassword->setChecked(0);
+     }else{
+    ui->chkpassword->setChecked(1);
+            }
+   }
 
    // qDebug() << "channels";
     QString searchString(":");

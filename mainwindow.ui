@@ -34,7 +34,7 @@
         <item row="0" column="0">
          <widget class="QTabWidget" name="tabWidget_2">
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="tab_2">
            <attribute name="title">
@@ -76,7 +76,7 @@
                </item>
                <item>
                 <property name="text">
-                 <string>test:993:1</string>
+                 <string>test:993:1:1</string>
                 </property>
                </item>
                <item>
@@ -117,6 +117,13 @@
                 </widget>
                </item>
               </layout>
+             </item>
+             <item row="0" column="1">
+              <widget class="QCheckBox" name="chkpassword">
+               <property name="text">
+                <string>password</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </widget>
@@ -376,7 +383,14 @@
               </widget>
              </item>
              <item row="1" column="1">
-              <widget class="QLineEdit" name="password"/>
+              <widget class="QLineEdit" name="password">
+               <property name="contextMenuPolicy">
+                <enum>Qt::PreventContextMenu</enum>
+               </property>
+               <property name="echoMode">
+                <enum>QLineEdit::Password</enum>
+               </property>
+              </widget>
              </item>
             </layout>
            </widget>
@@ -385,7 +399,7 @@
              <rect>
               <x>450</x>
               <y>20</y>
-              <width>381</width>
+              <width>531</width>
               <height>106</height>
              </rect>
             </property>

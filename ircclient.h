@@ -35,7 +35,7 @@ class IrcClient : public QSplitter
     Q_OBJECT
 
 public:
-    IrcClient(QWidget* parent = 0,QString nickname="guest1234", QString channel="#cannachat", QString server="irc.choopa.net",int port=6697, int secure=1);
+    IrcClient(QWidget* parent = 0,QString nickname="guest1234", QString channel="#cannachat", QString server="irc.choopa.net",int port=6697, int secure=1,QString password="");
     ~IrcClient();
 
     void Connections();
@@ -44,6 +44,7 @@ public:
     QString  NICKNAME = "";
     QString  CHANNEL = "";
     QString  SERVER = "";
+        QString  PASSWORD = "";
     int PORT = 0;
     bool SECURE = 0;
 
