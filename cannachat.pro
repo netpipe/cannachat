@@ -160,7 +160,12 @@ SOURCES += \
     src/zlib/uncompr.c \
     src/zlib/zutil.c \
     src/oglwidget.cpp \
-    src/downloadmanager.cpp
+    src/downloadmanager.cpp \
+    src/mpqt/track.cpp \
+    src/mpqt/trackdelegate.cpp \
+    src/mpqt/trackmodel.cpp \
+    src/mpqt/trackwidget.cpp \
+    src/mpqt/audiothread.cpp
 
 HEADERS += \
     IrcCore/Irc \
@@ -325,7 +330,14 @@ HEADERS += \
     src/zlib/zlib.h \
     src/zlib/zutil.h \
     src/oglwidget.h \
-    src/downloadmanager.h
+    src/downloadmanager.h \
+    src/mpqt/scanner.h \
+    src/mpqt/track.h \
+    src/mpqt/trackdelegate.h \
+    src/mpqt/trackmodel.h \
+    src/mpqt/trackwidget.h \
+    src/player.h \
+    src/mpqt/audiothread.h
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
@@ -339,3 +351,4 @@ FORMS += \
     settings.ui\
     src/ftp-server/debuglogdialog.ui \
     src/ftp-server/ftpgui.ui
+

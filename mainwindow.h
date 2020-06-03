@@ -25,6 +25,17 @@
 #include <QTabWidget>
 #include "src/downloadmanager.h"
 
+#include <QMouseEvent>
+#include <QStringListModel>
+#include <QDropEvent>
+#include <QMimeData>
+
+//#include "audiothread.h"
+#include "src/mpqt/scanner.h"
+#include "src/mpqt/track.h"
+#include "src/mpqt/trackmodel.h"
+#include "src/mpqt/trackdelegate.h"
+
 
 using namespace std;
 
@@ -107,6 +118,51 @@ int adminftp=0;
     void GenerateQRCode(QString data,QGraphicsView *view);
     void EAN13(QString productname,QString country,QString ean,QGraphicsView *graphicsView);
     QString decodeqr(QString image);
+
+
+
+
+    TrackModel *trackModel;
+  //  AudioThread *audio;
+    Scanner *scanner;
+
+    QList<Track *> tracklist;
+    QPoint dragPos;
+    bool moving,shuffle;
+    short repeatMode;
+    long position;
+    QAction *clearAction,*scanAction;
+
+protected:
+    void addItem(QString s);
+    void dropEvent(QDropEvent *e);
+    void dragEnterEvent(QDragEnterEvent *e);
+    void setRepeatModeIcon();
+    void nextTrack(bool next);
+    bool hasNextTrack();
+
+public slots:
+    void onStartOfPlayback(double total);
+    void onEndOfPlayback();
+    void onPauseOfPlayback();
+    void onCurPos(double position, double total);
+    void onFileAdded(QString file);
+    void onClearList();
+    void onFindMusic();
+private slots:
+    void on_closeButton_clicked();
+    void on_horizontalSlider_sliderPressed();
+    void on_horizontalSlider_sliderReleased();
+    void on_pushButton_play_clicked();
+    void on_pushButton_repeat_clicked();
+    void on_pushButton_shuffle_clicked();
+    void on_pushButton_prev_clicked();
+    void on_pushButton_next_clicked();
+
+    void on_listView_clicked(const QModelIndex &index);
+    void showContextMenuForWidget(const QPoint &pos);
+    void stopScanner();
+
 private slots:
     void on_actionExit_triggered();
     
