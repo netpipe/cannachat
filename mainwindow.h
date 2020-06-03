@@ -25,6 +25,9 @@
 #include <QTabWidget>
 #include "src/downloadmanager.h"
 
+#define MEDIAPLAYER
+
+#ifdef MEDIAPLAYER
 #include <QMouseEvent>
 #include <QStringListModel>
 #include <QDropEvent>
@@ -35,6 +38,8 @@
 #include "src/mpqt/track.h"
 #include "src/mpqt/trackmodel.h"
 #include "src/mpqt/trackdelegate.h"
+#endif
+
 
 
 using namespace std;
@@ -77,7 +82,6 @@ void playsound(QString test);
     void Compress(QString filename , QString ofilename);
 int adminftp=0;
 
-
     QString decodetxQR();
     int smtpsend(QString toemail,QString Message);
     #if DOWNLOAD
@@ -115,13 +119,13 @@ int adminftp=0;
 #endif
 
 
-    void GenerateQRCode(QString data,QGraphicsView *view);
+    void GenerateQRCode(QString data);
     void EAN13(QString productname,QString country,QString ean,QGraphicsView *graphicsView);
     QString decodeqr(QString image);
+void QRCode(QString text2);
 
 
-
-
+#ifdef MEDIAPLAYER
     TrackModel *trackModel;
   //  AudioThread *audio;
     Scanner *scanner;
@@ -162,7 +166,7 @@ private slots:
     void on_listView_clicked(const QModelIndex &index);
     void showContextMenuForWidget(const QPoint &pos);
     void stopScanner();
-
+#endif
 private slots:
     void on_actionExit_triggered();
     
@@ -204,6 +208,12 @@ private slots:
 
     void on_ftpserver_clicked();
     void on_smtpsave_clicked();
+    void on_scan_clicked();
+
+    void on_generate_clicked();
+
+    void on_savetofile_clicked();
+
 private:
     QSqlDatabase db;
 //IrcClient *ircwidget;

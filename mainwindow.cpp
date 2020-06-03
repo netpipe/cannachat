@@ -44,6 +44,10 @@
     #include "src/Barcode/functii.h"
 #endif
 
+#include <QGraphicsSvgItem>
+#include <QFileDialog>
+
+
 #include <fstream>
 
 #include "src/quazip/quazip.h"
@@ -59,7 +63,6 @@
 IrrlichtWidget* widget ;
 //IrrlichtWidget* widget2 ;
 #endif
-#define MEDIAPLAYER
 
 #ifdef MEDIAPLAYER
 #include <src/player.h>
@@ -173,51 +176,48 @@ MainWindow::~MainWindow()
 
 }
 
-void MainWindow::GenerateQRCode(QString data,QGraphicsView *view) {
-#ifdef BARCODE
-    std::wstring text ( data.toStdWString() );
-
-    //char *text2 = text.c_str();
-    const wchar_t* wstr = text.c_str() ;
-        char mbstr[4000];
-        std::wcstombs(mbstr, wstr, 4000);
+void MainWindow::QRCode(QString text2) {
 
 
-    //	const char *text = //"Hello, world!";              // User-supplied text
-    //"tes1234567ajsl;dkfjasdlk;fj;lsadjf;lsdakjf;lsdkajf;alsdkjfs;dlakjfsdal;kjfsadlkjfsdaljfl;sdkaja;lskd \
-    //fjlskdjflskdajflksa;djflksjdaf;lkjsda;lfkjsdalkfjsd;lkfjsda;ljf;lsdakjfl;skadjf;lksdjfl;ksajdfl;ksdjlk\
-    //fj";
+    QString maxqrstr;
+    for (int i=0 ;i < 2000 ; i++){ //4296 / 8 per ascii  537
+        maxqrstr.append("i");
+    }
 
-        const QrCode::Ecc errCorLvl = QrCode::Ecc::LOW;  // Error correction level
+ //   qDebug () << maxqrstr.toUtf8().size();
+ //       qDebug () << maxqrstr.toLatin1().size();
+         //   qDebug () << maxqrstr.toWCharArray().size();
 
-        // Make and print the QR Code symbol
-        //const QrCode qr = QrCode::encodeText( text.c_str() , errCorLvl);
-            const QrCode qr = QrCode::encodeText( mbstr , errCorLvl);
-        //printQr(qr);
-       // std::cout << qr.toSvgString(4) << std::endl;
+std::wstring text ( text2.toStdWString() );
 
-        //system ( "" );
-        ofstream write;
+//char *text2 = text.c_str();
+const wchar_t* wstr = text.c_str() ;
+    char mbstr[4000];
+    std::wcstombs(mbstr, wstr, 4000);
 
-        std::string   filename = "tmp.svg";
-        write.open(filename.c_str(), ios::out | ios::binary);
-        write << qr.toSvgString(4);
+    const QrCode::Ecc errCorLvl = QrCode::Ecc::LOW;  // Error correction level
 
+    const QrCode qr = QrCode::encodeText( mbstr , errCorLvl);
 
-        QImage *img_object = new QImage();
-        img_object->load("./tmp.svg");
-        QPixmap image = QPixmap::fromImage(*img_object);
-        QPixmap scaled_img = image.scaled(view->width(), view->height(), Qt::KeepAspectRatio);
-        QGraphicsScene *scene= new QGraphicsScene();
-       // scene->addItem(new QGraphicsSvgItem("./tmp.svg"));
-        scene->addPixmap(scaled_img);
-        scene->setSceneRect(scaled_img.rect());
-        view->setScene(scene);
-        view->show();
-#endif
+    ofstream write;
+
+    std::string   filename = "tmp.svg";
+    write.open(filename.c_str(), ios::out | ios::binary);
+    write << qr.toSvgString(4);
+
+    QImage *img_object = new QImage();
+    img_object->load("./tmp.svg");
+    QPixmap image = QPixmap::fromImage(*img_object);
+ //   QPixmap scaled_img = image.scaled(this->width(), this->height(), Qt::KeepAspectRatio);
+    QPixmap scaled_img = image.scaled(ui->graphicsView->width(), ui->graphicsView->height(), Qt::KeepAspectRatio);
+    QGraphicsScene *scene= new QGraphicsScene();
+   // scene->addItem(new QGraphicsSvgItem("./tmp.svg"));
+    scene->addPixmap(scaled_img);
+    scene->setSceneRect(scaled_img.rect());
+    ui->graphicsView->setScene(scene);
+    ui->graphicsView->show();
 
 }
-
 
 void MainWindow::EAN13(QString productname,QString country,QString ean,QGraphicsView *graphicsView){ //barcode not used
 #ifdef BARCODE
@@ -245,81 +245,6 @@ void MainWindow::EAN13(QString productname,QString country,QString ean,QGraphics
     graphicsView->show();
 #endif
 }
-
-
-//void MainWindow::clientusbtxrx(){
-//    //import db's and overwrite if valid md5sums after copying yearly dbs and md5sums from server
-//    //applying rx file to compare?
-
-//    QStringList list;
-//    //export db's and overwrite if valid
-//    QDirIterator it("./db/", QStringList() << "*.sqlite", QDir::Files, QDirIterator::Subdirectories);
-//    while (it.hasNext()){
-//      //  QFileInfo fileInfo(f.fileName());
-//     list << it.next().toLatin1();
-//    }
-
-
-//    if(JlCompress::compressFiles("saveFile.zip", list)){
-////        QMessageBox Msgbox;
-////            Msgbox.setText("zipped");
-////            Msgbox.exec();
-//    } else {
-//                   QMessageBox Msgbox;
-//                       Msgbox.setText("zip file not found ");
-//                       Msgbox.exec();
-//    }
-
-
-//    unCompress("saveFile.zip" , "./db/");
-
-//}
-
-//void MainWindow::serverusbtxrx(){
-//    //automatic function to do rxtx from usb for cold storage
-
-//    //verify tx file apply
-//    QStringList list;
-//    //export db's and overwrite if valid
-//    QDirIterator it("./db/", QStringList() << "*.sqlite", QDir::Files, QDirIterator::Subdirectories);
-//    while (it.hasNext()){
-//      //  QFileInfo fileInfo(f.fileName());
-//     list << it.next().toLatin1();
-//    }
-
-
-//    if(JlCompress::compressFiles("saveFile.zip", list)){
-////        QMessageBox Msgbox;
-////            Msgbox.setText("zipped");
-////            Msgbox.exec();
-//    } else {
-//                   QMessageBox Msgbox;
-//                       Msgbox.setText("zip file not found ");
-//                       Msgbox.exec();
-//    }
-
-
-//}
-
-//void MainWindow::on_receivesaveqr_clicked()
-//{
-//    QString fileName= QFileDialog::getSaveFileName(this, "Save image", QCoreApplication::applicationDirPath(), "BMP Files (*.bmp);;JPEG (*.JPEG);;PNG (*.png)" );
-//        if (!fileName.isNull())
-//        {
-//            QPixmap pixMap = this->ui->ReceiveQR->grab();
-//            pixMap.save(fileName);
-//        }
-//}
-
-//void MainWindow::on_sendSaveqr_clicked()
-//{
-//    QString fileName= QFileDialog::getSaveFileName(this, "Save image", QCoreApplication::applicationDirPath(), "BMP Files (*.bmp);;JPEG (*.JPEG);;PNG (*.png)" );
-//        if (!fileName.isNull())
-//        {
-//            QPixmap pixMap = this->ui->sendSaveqr->grab();
-//            pixMap.save(fileName);
-//        }
-//}
 
 void MainWindow::resizeEvent(QResizeEvent* event)
 {
@@ -686,3 +611,102 @@ void MainWindow::on_ftpserver_clicked()
 #endif
 }
 
+
+
+//void MainWindow::clientusbtxrx(){
+//    //import db's and overwrite if valid md5sums after copying yearly dbs and md5sums from server
+//    //applying rx file to compare?
+
+//    QStringList list;
+//    //export db's and overwrite if valid
+//    QDirIterator it("./db/", QStringList() << "*.sqlite", QDir::Files, QDirIterator::Subdirectories);
+//    while (it.hasNext()){
+//      //  QFileInfo fileInfo(f.fileName());
+//     list << it.next().toLatin1();
+//    }
+
+
+//    if(JlCompress::compressFiles("saveFile.zip", list)){
+////        QMessageBox Msgbox;
+////            Msgbox.setText("zipped");
+////            Msgbox.exec();
+//    } else {
+//                   QMessageBox Msgbox;
+//                       Msgbox.setText("zip file not found ");
+//                       Msgbox.exec();
+//    }
+
+
+//    unCompress("saveFile.zip" , "./db/");
+
+//}
+
+//void MainWindow::serverusbtxrx(){
+//    //automatic function to do rxtx from usb for cold storage
+
+//    //verify tx file apply
+//    QStringList list;
+//    //export db's and overwrite if valid
+//    QDirIterator it("./db/", QStringList() << "*.sqlite", QDir::Files, QDirIterator::Subdirectories);
+//    while (it.hasNext()){
+//      //  QFileInfo fileInfo(f.fileName());
+//     list << it.next().toLatin1();
+//    }
+
+
+//    if(JlCompress::compressFiles("saveFile.zip", list)){
+////        QMessageBox Msgbox;
+////            Msgbox.setText("zipped");
+////            Msgbox.exec();
+//    } else {
+//                   QMessageBox Msgbox;
+//                       Msgbox.setText("zip file not found ");
+//                       Msgbox.exec();
+//    }
+
+
+//}
+
+//void MainWindow::on_receivesaveqr_clicked()
+//{
+//    QString fileName= QFileDialog::getSaveFileName(this, "Save image", QCoreApplication::applicationDirPath(), "BMP Files (*.bmp);;JPEG (*.JPEG);;PNG (*.png)" );
+//        if (!fileName.isNull())
+//        {
+//            QPixmap pixMap = this->ui->ReceiveQR->grab();
+//            pixMap.save(fileName);
+//        }
+//}
+
+//void MainWindow::on_sendSaveqr_clicked()
+//{
+//    QString fileName= QFileDialog::getSaveFileName(this, "Save image", QCoreApplication::applicationDirPath(), "BMP Files (*.bmp);;JPEG (*.JPEG);;PNG (*.png)" );
+//        if (!fileName.isNull())
+//        {
+//            QPixmap pixMap = this->ui->sendSaveqr->grab();
+//            pixMap.save(fileName);
+//        }
+//}
+
+void MainWindow::on_scan_clicked()
+{
+        QString fileName = QFileDialog::getOpenFileName(this, tr("Open rx/tx"), "./", tr("rx/tx files (*.png *.jpg)"));
+        ui->decode->setText(decodeqr(fileName));
+}
+
+void MainWindow::on_generate_clicked()
+{
+    QRCode(ui->inputbox->text());
+
+
+}
+
+void MainWindow::on_savetofile_clicked()
+{
+    QString fileName= QFileDialog::getSaveFileName(this, "Save image", QCoreApplication::applicationDirPath(), "BMP Files (*.bmp);;JPEG (*.JPEG);;PNG (*.png)" );
+        if (!fileName.isNull())
+        {
+            QPixmap pixMap = this->ui->graphicsView->grab();
+
+            pixMap.save(fileName);
+        }
+}
