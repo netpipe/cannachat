@@ -727,23 +727,38 @@ return figlet(parts.size(), parts.data());
 
 void MainWindow::on_asciigen_clicked()
 {
-    //test();
-    //        char *argv1[]={"appname","testing 12345","-f","./fonts/standard.flf","test"};
-    //             int argc1 = sizeof(argv1) / sizeof(char*) - 1;
+    QString fileslist;
+
+     fileslist.append("blank,");
+
+     fileslist.append("-f,");
+  //   fileslist.append("./fonts/standard.flf,");
+fileslist.append(ui->fonts->currentText().toLatin1() +",");
+     fileslist.append(ui->asciito->text().toLatin1());
+
+     QByteArray array = fileslist.toLocal8Bit();
+     char* buffer = array.data();
+
+     if(figlet_wrapper(buffer)) {
+         qDebug() << "successful";
+     }else{
+                        qDebug() << "returned false";
+     }
 
 
-              QString fileslist;
 
-               fileslist.append("blank,");
+     //    QString line;
+     QFile file("tmpascii.txt");
+     if (file.open(QIODevice::ReadOnly | QIODevice::Text)){ ui->asciifrom->setPlainText(file.readAll()); }
 
-               fileslist.append("-f,");
-               fileslist.append("./Resource/fig-fonts/standard.flf,");
 
-               fileslist.append("test");
+}
 
-               QByteArray array = fileslist.toLocal8Bit();
-               char* buffer = array.data();
-
-               figlet_wrapper(buffer);
-
+void MainWindow::on_asciito_editingFinished()
+{
+    QDirIterator it("./Resource/fig-fonts/", QStringList() << "*.flf", QDir::Files, QDirIterator::Subdirectories);
+    while (it.hasNext()){
+      //  QFileInfo fileInfo(f.fileName());
+        ui->fonts->addItem(it.next().toLatin1());
+    }
 }

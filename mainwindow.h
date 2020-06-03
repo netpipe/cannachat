@@ -216,6 +216,8 @@ private slots:
 
     void on_asciigen_clicked();
 
+    void on_asciito_editingFinished();
+
 private:
     QSqlDatabase db;
 //IrcClient *ircwidget;

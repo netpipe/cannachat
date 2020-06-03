@@ -10,6 +10,8 @@
     (as listed in the file "LICENSE" which is included in this package)
 ****************************************************************************/
 
+#include <QTextStream>
+#include <QFile>
 
 #define DATE "31 May 2012"
 #define VERSION "2.2.5"
@@ -1575,11 +1577,20 @@ void printline()
 {
   int i;
 
+  QFile file("tmpascii.txt"); // maybe do this in memory later or send with smtp
+     if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+     {
+         QTextStream stream(&file);
+
   for (i=0;i<charheight;i++) {
     putstring(outputline[i]);
+    stream << outputline[i] << endl;
     }
+     }
+      file.close();
   clearline();
 }
+
 
 
 /****************************************************************************
