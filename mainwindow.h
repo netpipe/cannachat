@@ -214,6 +214,8 @@ private slots:
 
     void on_savetofile_clicked();
 
+    void on_asciigen_clicked();
+
 private:
     QSqlDatabase db;
 //IrcClient *ircwidget;

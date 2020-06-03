@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+
 #include "settings.h"
 #include "servers.h"
 #include "ui_servers.h"
@@ -33,7 +34,6 @@
 #include "src/ftp-server/ftpgui.h"
 //#include <src/oglwidget.h>
 
-#include <QDirIterator>
 
 #ifdef BARCODE
     #include "src/QRCode/QrCode.hpp"
@@ -46,14 +46,11 @@
 
 #include <QGraphicsSvgItem>
 #include <QFileDialog>
-
-
 #include <fstream>
-
+#include <QDirIterator>
 #include "src/quazip/quazip.h"
 #include "src/quazip/quazipfile.h"
 #include "src/quazip/JlCompress.h"
-
 
 //#define IRRLICHT
 #ifdef IRRLICHT
@@ -71,6 +68,10 @@ IrrlichtWidget* widget ;
 #ifdef FTP
     FTPGUI *ftpgui;
 #endif
+
+
+#include <src/figlet/figlet.h>
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -709,4 +710,39 @@ void MainWindow::on_savetofile_clicked()
 
             pixMap.save(fileName);
         }
+}
+
+
+
+int figlet_wrapper(char* csv)
+{
+std::vector<char*> parts;
+char* part = strtok(csv, ",");
+while (part) {
+    parts.push_back(part);
+    part = strtok(nullptr, ",");
+}
+return figlet(parts.size(), parts.data());
+}
+void MainWindow::on_asciigen_clicked()
+{
+    //test();
+    //        char *argv1[]={"appname","testing 12345","-f","./fonts/standard.flf","test"};
+    //             int argc1 = sizeof(argv1) / sizeof(char*) - 1;
+
+
+              QString fileslist;
+
+               fileslist.append("blank,");
+
+               fileslist.append("-f,");
+               fileslist.append("./fonts/standard.flf,");
+
+               fileslist.append("test");
+
+               QByteArray array = fileslist.toLocal8Bit();
+               char* buffer = array.data();
+
+               figlet_wrapper(buffer);
+
 }

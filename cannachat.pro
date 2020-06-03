@@ -19,6 +19,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 DEFINES += IRC_STATIC
 #DEFINES += IRRLICHT
 #DEFINES += QT_NO_SSL
+CONFIG += C++11
+CONFIG += console
 
 # You can also make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -59,8 +61,7 @@ DEFINES += BARCODE
 }
 
 win32 {
-DEFINES += SOUND DBUS DOWNLOAD SMTP STORAGE FTP zlib QUAZIP
-QT += multimedia svg dbus network
+DEFINES += SOUND DBUS DOWNLOAD SMTP STORAGE FTP zlib QUAZIP MEDIAPLAYER
 CONFIG += barcodescan
 }
 
@@ -68,6 +69,7 @@ CONFIG += barcodescan
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
+    src/figlet/crc.cpp \
     IrcCore/irc.cpp \
     IrcCore/irccommand.cpp \
     IrcCore/ircconnection.cpp \
@@ -165,7 +167,10 @@ SOURCES += \
     src/mpqt/trackdelegate.cpp \
     src/mpqt/trackmodel.cpp \
     src/mpqt/trackwidget.cpp \
-    src/mpqt/audiothread.cpp
+    src/mpqt/audiothread.cpp \
+    src/figlet/zipio.c \
+    src/figlet/inflate2.cpp
+
 
 HEADERS += \
     IrcCore/Irc \
@@ -338,7 +343,9 @@ HEADERS += \
     src/mpqt/trackwidget.h \
     src/player.h \
     src/mpqt/audiothread.h \
-    src/Barcode/scanner.h
+    src/Barcode/scanner.h \
+    src/figlet/figlet.h
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
