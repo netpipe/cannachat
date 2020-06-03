@@ -69,6 +69,11 @@ IrrlichtWidget* widget ;
     FTPGUI *ftpgui;
 #endif
 
+#ifdef PYTHON
+#include <src/python/python.h>
+#endif
+
+
 
 #include <src/figlet/figlet.h>
 

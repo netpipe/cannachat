@@ -1,3 +1,4 @@
+#ifdef FIGLET
 /****************************************************************************
   FIGlet Copyright 1991, 1993, 1994 Glenn Chappell and Ian Chai
   FIGlet Copyright 1996, 1997, 1998, 1999, 2000, 2001 John Cowan
@@ -2111,3 +2112,4 @@ int figlet(int argc,char *argv[])
     }
   return 0;
 }
+#endif

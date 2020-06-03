@@ -1,3 +1,4 @@
+#ifdef FIGLET
 /*
  * crc.c - CRC calculation routine
  *
@@ -127,3 +128,4 @@ unsigned long CrcUpdate(          /* returns updated crc         */
 
   return crc;
 }
+#endif

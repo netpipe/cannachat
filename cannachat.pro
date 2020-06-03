@@ -48,8 +48,9 @@ win32:MOC_DIR = ./mocs
 #else:unix:LIBS += -L/home/Dev/libs/game/irrlicht/Irrlicht-SVN/lib/Linux/  -lQt5Widgets -lQt5Gui -lQt5Core -lX11 -lXxf86vm
 
 linux {
-DEFINES += zlib QUAZIP DOWNLOAD SMTP SOUND DBUS STORAGE FTP MEDIAPLAYER
+DEFINES += zlib QUAZIP DOWNLOAD SMTP SOUND DBUS STORAGE FTP MEDIAPLAYER PYTHON FIGLET
 QT += multimedia svg dbus network opengl
+LIBS += -lpython2.7
 CONFIG += barcodescan
 #unix:!macx:CONFIG += barcodescan
 barcodescan{
@@ -344,7 +345,8 @@ HEADERS += \
     src/player.h \
     src/mpqt/audiothread.h \
     src/Barcode/scanner.h \
-    src/figlet/figlet.h
+    src/figlet/figlet.h \
+    src/python/python.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -1,3 +1,4 @@
+#ifdef FIGLET
 /*
  * zipio.c - stdio emulation library for reading zip files
  *
@@ -816,3 +817,4 @@ int Zclose(ZFILE *stream)
   /* return the final error status */
   return ret;
 }
+#endif

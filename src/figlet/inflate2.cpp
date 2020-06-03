@@ -1,3 +1,4 @@
+#ifdef FIGLET
 /*
  * inflate.c -  inflate decompression routine
  *
@@ -1319,3 +1320,4 @@ int InflateTerminate(                         /* returns 0 on success       */
 
   return err;
 }
+#endif
