@@ -2,6 +2,7 @@
 qt based irc client using libircclient
 
 ![alt tag](screenshot.png)
+![alt tag](screenshot2.png)
 
 irrlicht only version here
 https://github.com/tecan/IrrlichtDemos/tree/master/Apps/Irrlicht-IRC
