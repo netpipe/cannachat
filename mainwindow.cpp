@@ -724,6 +724,7 @@ while (part) {
 }
 return figlet(parts.size(), parts.data());
 }
+
 void MainWindow::on_asciigen_clicked()
 {
     //test();
@@ -736,7 +737,7 @@ void MainWindow::on_asciigen_clicked()
                fileslist.append("blank,");
 
                fileslist.append("-f,");
-               fileslist.append("./fonts/standard.flf,");
+               fileslist.append("./Resource/fig-fonts/standard.flf,");
 
                fileslist.append("test");
 
