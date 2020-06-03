@@ -1,6 +1,6 @@
 # cannachat
 qt based irc client using libircclient
-
+GPL licence
 ![alt tag](screenshot.png)
 ![alt tag](screenshot2.png)
 
