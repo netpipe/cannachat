@@ -539,7 +539,7 @@
           </widget>
           <widget class="QWidget" name="tab_5">
            <attribute name="title">
-            <string>Player</string>
+            <string>MediaPlayer</string>
            </attribute>
            <widget class="QWidget" name="verticalLayoutWidget">
             <property name="geometry">
@@ -877,8 +877,8 @@ border-radius: 4px;
            <widget class="QListView" name="listView">
             <property name="geometry">
              <rect>
-              <x>440</x>
-              <y>10</y>
+              <x>500</x>
+              <y>30</y>
               <width>401</width>
               <height>451</height>
              </rect>
@@ -922,73 +922,71 @@ QScrollBar::handle {
              <enum>Qt::IgnoreAction</enum>
             </property>
            </widget>
+           <widget class="QWidget" name="verticalLayoutWidget_2">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>190</y>
+              <width>466</width>
+              <height>134</height>
+             </rect>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_4">
+             <item>
+              <widget class="QListWidget" name="listWidget"/>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_2">
+               <item>
+                <widget class="QPushButton" name="SkipPrevious">
+                 <property name="text">
+                  <string>&lt;</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="Play">
+                 <property name="text">
+                  <string>Play/Pause</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="SavePlaylist">
+                 <property name="text">
+                  <string>Save Playlist</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="LoadPlaylist">
+                 <property name="text">
+                  <string>Load Playlist</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="SkipNext">
+                 <property name="text">
+                  <string>&gt;</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
            <zorder>label_bgr</zorder>
            <zorder>verticalLayoutWidget</zorder>
            <zorder>label_3</zorder>
            <zorder>horizontalLayoutWidget_2</zorder>
            <zorder>listView</zorder>
+           <zorder>verticalLayoutWidget_2</zorder>
           </widget>
           <widget class="QWidget" name="tab_6">
            <attribute name="title">
             <string>FtpServer</string>
            </attribute>
-           <widget class="QListWidget" name="listWidget">
-            <property name="geometry">
-             <rect>
-              <x>240</x>
-              <y>110</y>
-              <width>561</width>
-              <height>192</height>
-             </rect>
-            </property>
-           </widget>
-           <widget class="QWidget" name="horizontalLayoutWidget">
-            <property name="geometry">
-             <rect>
-              <x>240</x>
-              <y>330</y>
-              <width>555</width>
-              <height>41</height>
-             </rect>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_2">
-             <item>
-              <widget class="QPushButton" name="SkipPrevious">
-               <property name="text">
-                <string>&lt;</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="Play">
-               <property name="text">
-                <string>Play/Pause</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="SavePlaylist">
-               <property name="text">
-                <string>Save Playlist</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="LoadPlaylist">
-               <property name="text">
-                <string>Load Playlist</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="SkipNext">
-               <property name="text">
-                <string>&gt;</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
            <widget class="QPushButton" name="ftpserver">
             <property name="geometry">
              <rect>
