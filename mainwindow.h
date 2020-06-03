@@ -9,6 +9,23 @@
 #include <QVector>
 #include <vector>
 #include <QListWidgetItem>
+
+#include <QtSql/QSqlDatabase>
+#include <QtSql/QSqlQuery>
+#include <QtSql/QSqlError>
+#ifdef SOUND
+#include <QMediaPlayer>
+#endif
+//#include "src/encryption/rsa/Rsa.h"
+#include <QEvent>
+#include <QThread>
+#include <QDebug>
+#include <QCryptographicHash>
+#include <QGraphicsView>
+#include <QTabWidget>
+#include "src/downloadmanager.h"
+
+
 using namespace std;
 
 namespace Ui {
@@ -32,11 +49,64 @@ bool loaded=false;
 void themeInit();
 void writesettings();
 void readsettings();
-
+void on_smtptestmessage_clicked();
+QString GetRandomString(int length,QString chars);
+QString GetReallyRandomString(int length,QString chars);
+void createEmailTable();
+void EmailInsertWallet();
+void getEmailSettings();
     ~MainWindow();
-
+#ifdef SOUND
+    QMediaPlayer*player;
+#endif
     vector<IrcClient*> serverarray;
+void playsound(QString test);
 
+    void unCompress(QString filename , QString ofilename);
+    void Compress(QString filename , QString ofilename);
+int adminftp=0;
+
+
+    QString decodetxQR();
+    int smtpsend(QString toemail,QString Message);
+    #if DOWNLOAD
+        void Download(QString URL);
+        DownloadManager manager;
+    #endif
+        //encryption
+        QString encryptxor(QString test,QString key);
+        QString decryptxor(QString string,QString key);
+
+        QByteArray md5Checksum(QString stuff);
+        QByteArray fileChecksum(const QString &fileName,QCryptographicHash::Algorithm hashAlgorithm);
+        QString rot13( const QString & input );
+
+        QString simplecrypt(QString string,QString key,QCryptographicHash::Algorithm hash);
+        QString simpledecrypt(QString string,QString key,QCryptographicHash::Algorithm hash);
+#ifdef ENCRYPTION
+    Rsa *rsaTester;
+    BigInt m_e, m_n;
+    QString aesKey;
+
+#endif
+    QString encdec(QString ,int );
+    QString encdec2(QString ,int );
+    #ifdef ENCRYPTION
+    QString rsaenc(QString input, Rsa *rsa = NULL);
+    QString rsadec(QString input, Rsa *rsa);
+    #endif
+    QByteArray aesenc(QString input,QString,QString);
+    QString aesdec(QByteArray input,QString,QString);
+
+    QByteArray EncryptMsg(QString plainMsg,QString aeskey1,QString aeskey2);
+    #ifdef ENCRYPTION
+    QString DecryptMsg(QByteArray encryptedMsg, Rsa *rsa,QString aeskey1,QString aeskey2);
+#endif
+
+
+    void GenerateQRCode(QString data,QGraphicsView *view);
+    void EAN13(QString productname,QString country,QString ean,QGraphicsView *graphicsView);
+    QString decodeqr(QString image);
 private slots:
     void on_actionExit_triggered();
     
@@ -76,8 +146,10 @@ private slots:
 
     void on_serverlist_currentRowChanged(int currentRow);
 
+    void on_ftpserver_clicked();
+    void on_smtpsave_clicked();
 private:
-
+    QSqlDatabase db;
 //IrcClient *ircwidget;
     Ui::MainWindow *ui;
 };

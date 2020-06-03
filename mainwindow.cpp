@@ -17,6 +17,23 @@
 
 #include "qstylesheetmanager.h"
 #include "loadtheme.h"
+
+#include <QFileDialog>
+#include <QDebug>
+#include <QMessageBox>
+#include <QClipboard>
+#include <QStandardItemModel>
+//#include <QtCore>
+#include <src/coingenerator.h>
+
+#include "src/encryption/encryption.h"
+#include "src/encryption/rsa/Rsa.h"
+#include "src/downloadmanager.h"
+#include "src/email.h"
+#include "src/ftp-server/ftpgui.h"
+//#include <src/oglwidget.h>
+
+
 //#define IRRLICHT
 #ifdef IRRLICHT
 #include <QGLWidget>
@@ -25,7 +42,9 @@
 IrrlichtWidget* widget ;
 //IrrlichtWidget* widget2 ;
 #endif
-
+#ifdef FTP
+    FTPGUI *ftpgui;
+#endif
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -104,6 +123,25 @@ void MainWindow::resizeEvent(QResizeEvent* event)
    // Your code here.
 }
 
+void MainWindow::playsound(QString test){
+#ifdef SOUND
+    // player->setMedia(QUrl("qrc:/sounds/ec1_mono.ogg"));
+    // player->setMedia(QUrl::fromLocalFile("./paddle_hit.wav"));
+     //or play from memory
+      QFile file(test.toLatin1());
+      file.open(QIODevice::ReadOnly);
+      QByteArray* arr = new QByteArray(file.readAll());
+      file.close();
+      QBuffer* buffer = new QBuffer(arr);
+      buffer->open(QIODevice::ReadOnly);
+      buffer->seek(0);
+//qDebug() << "Media supported state -> " << QMediaPlayer::hasSupport("video/mp4"); // this gives a "1"
+      player->setVolume(10);
+ //    media->setMedia("sound.mp3");
+     player->setMedia(QMediaContent(), buffer);
+     player->play();
+#endif
+}
 
 void MainWindow::readsettings(){
     bool settingsexists=false;
@@ -426,4 +464,15 @@ void MainWindow::on_serverlist_currentRowChanged(int currentRow)
     foreach (QString list2,nums){
         ui->channelList->addItem(list2.toLatin1());
     }
+}
+
+void MainWindow::on_ftpserver_clicked()
+{
+#ifdef FTP
+    if (adminftp==0){
+    ftpgui = new FTPGUI;
+    adminftp=1;
+    }
+    if (adminftp) { ftpgui->show();}
+#endif
 }
