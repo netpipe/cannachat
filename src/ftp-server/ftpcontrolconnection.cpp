@@ -16,7 +16,7 @@
 #include <QTimer>
 #include <QSslSocket>
 
-FtpControlConnection::FtpControlConnection(QObject *parent, QSslSocket *socket, const QString &rootPath, const QString &userName, const QString &password, bool readOnly) :
+FtpControlConnection::FtpControlConnection(QObject *parent, QSslSocket *socket, const QString &rootPath, const QString &userName, const QString &password, bool readOnly,bool userslist) :
     QObject(parent)
 {
     this->socket = socket;
@@ -24,6 +24,8 @@ FtpControlConnection::FtpControlConnection(QObject *parent, QSslSocket *socket, 
     this->password = password;
     this->rootPath = rootPath;
     this->readOnly = readOnly;
+    this->userslist = userslist;
+        qDebug() << this->userslist;
     isLoggedIn = false;
     encryptDataConnection = false;
     socket->setParent(this);
@@ -427,7 +429,53 @@ void FtpControlConnection::pass(const QString &password)
     QString command;
     QString commandParameters;
     parseCommand(lastProcessedCommand, &command, &commandParameters);
-    if (this->password.isEmpty() || ("USER" == command && this->userName == commandParameters && this->password == password)) {
+    qDebug() << "test";
+    // load username and password lists of valid users
+    //make directory for user and cd to it
+    QString USERNAME = this->userName;
+    QString PASSWORD = this->password;
+
+if (userslist){ //and file exists
+        qDebug() << "test";
+    QFile MyFile("users.txt");
+    MyFile.open(QIODevice::ReadWrite);
+    QTextStream in (&MyFile);
+    QString line;
+    QStringList list;
+    QStringList names;
+    QStringList passwords;
+    QRegExp rx("[:]");
+
+    USERNAME = commandParameters;
+    do {
+        line = in.readLine();
+        if (line.contains(USERNAME.toLatin1())) {
+            list = line.split(rx);
+            names.append(list.at(0).toLatin1());
+            passwords.append(list.at(1).toLatin1());
+                qDebug() << list.at(1).toLatin1();
+        }
+    } while (!line.isNull());
+    MyFile.close();
+
+    qDebug() << "test" << commandParameters;
+    qDebug() << names.count();
+    for (int i=0 ; i < names.count(); i++){
+                qDebug() << names.at(i).toLatin1();
+        if (USERNAME==names.at(i).toLatin1()){
+
+           USERNAME = names.at(i).toLatin1();
+           PASSWORD = passwords.at(i).toLatin1();
+                   qDebug() << "username found";
+                }
+
+
+    }
+
+
+}
+
+    if (this->password.isEmpty() || ("USER" == command && USERNAME.toLatin1() == commandParameters && PASSWORD.toLatin1() == password)) {
         reply("230 You are logged in.");
         isLoggedIn = true;
     } else {

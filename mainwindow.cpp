@@ -514,7 +514,7 @@ void MainWindow::on_removechannel_clicked()
 {
             //    QListWidgetItem items = ui->listWidget->selectedItems();
             //ui->listWidget->removeItemWidget(item);
-//    QList<QListWidgetItem*> items = ui->channelList->selectedItems();
+//    QList<QListWidgetItem*> items0= ui->channelList->selectedItems();
 //    foreach(QListWidgetItem * item, items)
 //    {
 //        delete ui->channelList->takeItem(ui->channelList->row(item));
