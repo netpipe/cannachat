@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network sql printsupport
+QT       += core gui network sql printsupport multimedia
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 
@@ -64,6 +64,7 @@ DEFINES += BARCODE
 win32 {
 DEFINES += SOUND DBUS DOWNLOAD SMTP STORAGE FTP zlib QUAZIP MEDIAPLAYER
 CONFIG += barcodescan
+QT += multimedia svg dbus network opengl
 }
 
 
