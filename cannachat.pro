@@ -47,6 +47,13 @@ win32:MOC_DIR = ./mocs
 #win32:LIBS += -LC:\Users\TEST\Downloads\irrlicht-1.8.4\irrlicht-1.8.4\lib\Win32-visualstudio
 #else:unix:LIBS += -L/home/Dev/libs/game/irrlicht/Irrlicht-SVN/lib/Linux/  -lQt5Widgets -lQt5Gui -lQt5Core -lX11 -lXxf86vm
 
+linux2 {
+DEFINES += SOUND MEDIAPLAYER
+CONFIG +=
+QT += multimedia svg dbus network
+}
+
+
 linux {
 DEFINES += zlib QUAZIP DOWNLOAD SMTP SOUND DBUS STORAGE FTP MEDIAPLAYER PYTHON FIGLET
 QT += multimedia svg dbus network opengl
@@ -62,9 +69,9 @@ DEFINES += BARCODE
 }
 
 win32 {
-DEFINES += SOUND DBUS DOWNLOAD SMTP STORAGE FTP zlib QUAZIP MEDIAPLAYER
-CONFIG += barcodescan
-QT += multimedia svg dbus network opengl
+DEFINES += SOUND MEDIAPLAYER
+CONFIG +=
+QT += multimedia svg dbus network
 }
 
 

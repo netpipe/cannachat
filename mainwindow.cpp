@@ -183,7 +183,7 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::QRCode(QString text2) {
-
+#ifdef BARCODE
 
     QString maxqrstr;
     for (int i=0 ;i < 2000 ; i++){ //4296 / 8 per ascii  537
@@ -222,7 +222,7 @@ const wchar_t* wstr = text.c_str() ;
     scene->setSceneRect(scaled_img.rect());
     ui->graphicsView->setScene(scene);
     ui->graphicsView->show();
-
+#endif
 }
 
 void MainWindow::EAN13(QString productname,QString country,QString ean,QGraphicsView *graphicsView){ //barcode not used
@@ -695,8 +695,10 @@ void MainWindow::on_ftpserver_clicked()
 
 void MainWindow::on_scan_clicked()
 {
+#ifdef BARCODE
         QString fileName = QFileDialog::getOpenFileName(this, tr("Open rx/tx"), "./", tr("rx/tx files (*.png *.jpg)"));
         ui->decode->setText(decodeqr(fileName));
+#endif
 }
 
 void MainWindow::on_generate_clicked()
@@ -721,6 +723,7 @@ void MainWindow::on_savetofile_clicked()
 
 int figlet_wrapper(char* csv)
 {
+#ifdef FIGLET
 std::vector<char*> parts;
 char* part = strtok(csv, ",");
 while (part) {
@@ -728,6 +731,7 @@ while (part) {
     part = strtok(nullptr, ",");
 }
 return figlet(parts.size(), parts.data());
+#endif
 }
 
 void MainWindow::on_asciigen_clicked()
