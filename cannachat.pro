@@ -285,8 +285,6 @@ HEADERS += \
     src/smtp/mimeattachment.h \
     src/smtp/emailaddress.h \
     src/encryption/simpleCrypt/simplecrypt.h \
-    src/coinfunctions.h \
-    src/validatecoins.h \
     src/coingenerator.h \
     src/QRCode/QrCode.hpp \
     src/Barcode/functii.h \
@@ -295,8 +293,6 @@ HEADERS += \
     src/Barcode/quirc/lib/quirc_internal.h \
     src/Barcode/quirc/tests/dbgutil.h \
     src/Barcode/quirc/tests/inspect.h \
-    src/admin.h \
-    src/wallet.h \
     src/email.h \
     src/ssl.h \
     src/devices.h \
