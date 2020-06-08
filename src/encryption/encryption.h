@@ -265,6 +265,7 @@ QString MainWindow::encdec(QString string2,int encdec)
     qDebug()<<"aes->rsa decrypted message"<<QString(decryptedMsg.c_str());
     return (decryptedMsg.c_str());
 #endif
+    return 0;
 }
 
 QByteArray MainWindow::EncryptMsg(QString plainMsg,QString aeskey1,QString aeskey2)
@@ -276,6 +277,7 @@ QByteArray MainWindow::EncryptMsg(QString plainMsg,QString aeskey1,QString aeske
     QByteArray enc2 = aesenc(enc1, aeskey1.toLatin1(), aeskey2.toLatin1());
     return enc2.toHex();
 #endif
+    return 0;
 }
 #ifdef ENCRYPTION
 QString MainWindow::DecryptMsg(QByteArray encryptedMsg, Rsa *rsa,QString aeskey1,QString aeskey2)
