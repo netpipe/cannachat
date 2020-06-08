@@ -295,7 +295,6 @@ HEADERS += \
     src/Barcode/quirc/tests/inspect.h \
     src/email.h \
     src/ssl.h \
-    src/devices.h \
     src/ftp-server/dataconnection.h \
     src/ftp-server/debuglogdialog.h \
     src/ftp-server/ftpcommand.h \
