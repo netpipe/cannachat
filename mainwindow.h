@@ -25,8 +25,6 @@
 #include <QTabWidget>
 #include "src/downloadmanager.h"
 
-#define MEDIAPLAYER
-
 #ifdef MEDIAPLAYER
 #include <QMouseEvent>
 #include <QStringListModel>
