@@ -107,6 +107,7 @@ int MainWindow::smtpsend(QString toemail,QString Message){
         Msgbox.setText("Email Sent");
         Msgbox.exec();
 #endif
+return 0;
 }
 
 

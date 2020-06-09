@@ -732,6 +732,7 @@ while (part) {
 }
 return figlet(parts.size(), parts.data());
 #endif
+return 0;
 }
 
 void MainWindow::on_asciigen_clicked()
