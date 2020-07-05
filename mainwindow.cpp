@@ -462,7 +462,10 @@ void MainWindow::on_connect_clicked()
     bool ssl = splitlist[2].toInt();
     QString password = "";
     if (ui->chkpassword->isChecked()){
+        if (splitlist.count() > 3){
         password = splitlist[3].toUtf8();
+        }
+        else {password = "";}
     }else{
         password = "";
     }
