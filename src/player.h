@@ -38,8 +38,7 @@ void MainWindow::onClearList() {
     stopScanner();
     tracklist.clear();
     trackModel->deleteAllTracks();
-    //audio->stop();
-    player->stop();
+    audio->stop();
     ui->horizontalSlider_2->setMaximum(0);
 }
 
@@ -71,8 +70,7 @@ void MainWindow::addItem(QString s) {
     QString dirPath = fi.absoluteDir().absolutePath();
     track->artist = dirPath.split("/").last();
     track->title = fi.completeBaseName();
-
-    track->durationStr = player->duration();
+    track->durationStr = audio->getDuration(s);
     tracklist.append(track);
     trackModel->appendTrack(track);
 }
@@ -82,9 +80,11 @@ void MainWindow::on_closeButton_clicked()
     MainWindow::close();
 }
 
-void MainWindow::onStartOfPlayback(double total) {
-    ui->horizontalSlider_2->setMaximum(total);
-    ui->pushButton_play->setIcon(QIcon("./Resource/img/btn_pause.png"));
+/*void MainWindow::onStartOfPlayback(double total)*/
+void MainWindow::onStartOfPlayback()
+{
+   // ui->horizontalSlider_2->setMaximum(total);
+    ui->pushButton_play->setIcon(QIcon(":/Resource/img/btn_pause.png"));
     QModelIndex index = trackModel->index(position, 0);
 
     if ( index.isValid() ) {
@@ -97,8 +97,13 @@ void MainWindow::onStartOfPlayback(double total) {
 }
 
 void MainWindow::onEndOfPlayback() {
-    ui->pushButton_play->setIcon(QIcon("./Resource/img/btn_play.png"));
+    ui->pushButton_play->setIcon(QIcon(":/Resource/img/btn_play.png"));
     nextTrack(true);
+}
+void MainWindow::seek(int seconds)
+{
+     //m_player->setPosition(seconds * 1000);
+    // qDebug() << "Position" << seconds;
 }
 
 void MainWindow::nextTrack(bool next) {
@@ -123,25 +128,42 @@ void MainWindow::nextTrack(bool next) {
         break;
     }
     if (hasNextTrack()) {
-        player->play();
-        //audio->play(tracklist.at(position)->path);
+        audio->play(tracklist.at(position)->path);
     }
     else {
-      //  audio->stop();
-        player->stop();
+        audio->stop();
     }
 }
 
 void MainWindow::onPauseOfPlayback() {
-    ui->pushButton_play->setIcon(QIcon("./Resource/img/btn_play.png"));
+    ui->pushButton_play->setIcon(QIcon(":/Resource/img/btn_play.png"));
 }
 
 void MainWindow::onCurPos(double position, double total) {
-    //qDebug() << "Position" << position << "Total" << total;
-    if (!moving) {
-        ui->horizontalSlider_2->setValue(position);
-//        ui->label_duration->setText(audio->formattedTime(position));
+   //qDebug() << "Position" << position << "Total" << total;
+  if (!moving) {
+        //ui->horizontalSlider_2->setValue(position*1000);
+       // ui->horizontalSlider_2->setRange(0, position / 1000);
+        // ui->label_duration_2->setText(audio->formattedTime(position));
     }
+}
+void MainWindow::onSlidertime(QString sliderduration, qint64 duration, qint64 progress)
+{
+  if (!moving)
+  {
+     //qDebug() << "Slider position" << sliderduration;
+     ui->horizontalSlider_2->setMaximum(duration);
+     ui->horizontalSlider_2->setValue(progress);
+     ui->label_bgr->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
+     ui->horizontalLayout_4->setContentsMargins(0,0,0,0);
+     ui->label_duration_2->setAlignment(Qt::AlignTop | Qt::AlignLeft);
+     ui->label_duration_2->setContentsMargins(0,0,0,0);
+     ui->label_duration_2->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
+     ui->label_duration_2->setWordWrap(true);
+     ui->label_duration_2->setText(sliderduration);
+     m_trackDuration=sliderduration;
+  }
+
 }
 
 void MainWindow::on_horizontalSlider_sliderPressed()
@@ -152,15 +174,13 @@ void MainWindow::on_horizontalSlider_sliderPressed()
 void MainWindow::on_horizontalSlider_sliderReleased()
 {
     moving = false;
-    //audio->changePosition(ui->horizontalSlider_2->value());
-    player->setPosition(ui->horizontalSlider_2->value());
+    audio->changePosition(ui->horizontalSlider_2->value());
 }
 
 void MainWindow::on_pushButton_play_clicked()
 {
     if (hasNextTrack()) {
-        player->play();
- //       audio->playOrPause(tracklist.at(position)->path);
+        audio->playOrPause(tracklist.at(position)->path);
     }
 }
 
@@ -177,13 +197,13 @@ void MainWindow::setRepeatModeIcon() {
     }
     switch (repeatMode) {
     case 1:
-        ui->pushButton_repeat->setIcon(QIcon("./Resource/img/btn_repeat_one.png"));
+        ui->pushButton_repeat->setIcon(QIcon(":/Resource/img/btn_repeat_one.png"));
         break;
     case 2:
-        ui->pushButton_repeat->setIcon(QIcon("./Resource/img/btn_repeat_all_highlighted.png"));
+        ui->pushButton_repeat->setIcon(QIcon(":/Resource/img/btn_repeat_all_highlighted.png"));
         break;
     default:
-        ui->pushButton_repeat->setIcon(QIcon("./Resource/img/btn_repeat_off.png"));
+        ui->pushButton_repeat->setIcon(QIcon(":/Resource/img/btn_repeat_off.png"));
         break;
     }
 }
@@ -198,10 +218,10 @@ void MainWindow::on_pushButton_shuffle_clicked()
 {
     shuffle = !shuffle;
     if (shuffle) {
-        ui->pushButton_shuffle->setIcon(QIcon("./Resource/img/btn_shuffle_highlighted.png"));
+        ui->pushButton_shuffle->setIcon(QIcon(":/Resource/img/btn_shuffle_highlighted.png"));
     }
     else {
-        ui->pushButton_shuffle->setIcon(QIcon("./Resource/img/btn_shuffle_off.png"));
+        ui->pushButton_shuffle->setIcon(QIcon(":/Resource/img/btn_shuffle_off.png"));
     }
 }
 
@@ -223,6 +243,6 @@ void MainWindow::on_listView_clicked(const QModelIndex &index)
 {
     position = index.row();
     if (hasNextTrack()) {
-  //      audio->play(tracklist.at(position)->path);
+        audio->play(tracklist.at(position)->path);
     }
 }

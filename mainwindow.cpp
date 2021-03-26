@@ -135,8 +135,14 @@ themeInit();
 readsettings();
 
 #ifdef MEDIAPLAYER
-
 ui->pushButton_play->setIcon(QIcon("./Resource/img/btn_play.png"));
+//   ui->pushButton_play->setIcon(QIcon(":/Resource/img/btn_play.png"));
+//   ui->label_3->setPixmap(QPixmap(":/Resource/img/freemp.png"));
+//   ui->pushButton_shuffle->setIcon(QIcon(":/Resource/img/btn_shuffle_off.png"));
+//  ui->pushButton_prev->setIcon(QIcon(":/Resource/img/btn_previous.png"));
+//   ui->pushButton_next->setIcon(QIcon(":/Resource/img/btn_next.png"));
+//   ui->pushButton_repeat->setIcon(QIcon(":/Resource/img/btn_repeat.png"));
+//repeatMode = 0;
 repeatMode = 0;
 moving = false;
 setRepeatModeIcon();
@@ -148,17 +154,28 @@ ui->listView->setContextMenuPolicy(Qt::CustomContextMenu);
 connect(ui->listView,SIGNAL(customContextMenuRequested(const QPoint &)),
         SLOT(showContextMenuForWidget(const QPoint &)));
 
-ui->horizontalSlider_2->setMaximum(0);
-
+//ui->horizontalSlider_2->setMaximum(0);
+//ui->horizontalSlider_2->setSliderDown(true);
 trackModel = new TrackModel;
 trackModel->list = tracklist;
 
 ui->listView->setModel(trackModel);
 ui->listView->setItemDelegate(new TrackDelegate);
 setAcceptDrops(true);
-
 scanner = NULL;
- //audiothread
+
+//audiothread
+//Added By Rajiv
+audio = new AudioThread(this);
+//connect(audio, SIGNAL(startOfPlayback(double )), this, SLOT(onStartOfPlayback(double)));
+connect(audio, SIGNAL(startOfPlayback()), this, SLOT(onStartOfPlayback()));
+connect(audio, SIGNAL(endOfPlayback()), this, SLOT(onEndOfPlayback()));
+connect(audio, SIGNAL(pauseOfPlayback()), this, SLOT(onPauseOfPlayback()));
+connect(audio, SIGNAL(curPos(double, double)), this, SLOT(onCurPos(double, double)));
+connect(audio, SIGNAL(sliderTime(QString,qint64,qint64)), this, SLOT(onSlidertime(QString,qint64,qint64)));
+//connect(ui->horizontalSlider_2, &QSlider::sliderMoved, this,SLOT(seek(int)));
+connect(ui->horizontalSlider_2, &QSlider::sliderMoved, this,&MainWindow::seek);
+//connect(ui->horizontalSlider_2, SIGNAL(sliderPressed), this, SLOT(on_horizontalSlider_sliderPressed()));
 
 clearAction = new QAction(tr("Clear"), this);
 connect(clearAction, SIGNAL(triggered()), this, SLOT(onClearList()));
@@ -170,6 +187,7 @@ QMenu *playlistMenu = new QMenu(QString::fromUtf8("Playlist"));
 playlistMenu->addAction(clearAction);
 playlistMenu->addAction(scanAction);
 m_menuBar->addAction(playlistMenu->menuAction());
+
 #endif
 }
 

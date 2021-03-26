@@ -31,7 +31,7 @@
 #include <QDropEvent>
 #include <QMimeData>
 
-//#include "audiothread.h"
+#include "src/mpqt/audiothread.h"
 #include "src/mpqt/scanner.h"
 #include "src/mpqt/track.h"
 #include "src/mpqt/trackmodel.h"
@@ -72,9 +72,10 @@ void getEmailSettings();
     ~MainWindow();
 #ifdef SOUND
     QMediaPlayer*player;
+    void playsound(QString test);
 #endif
     vector<IrcClient*> serverarray;
-void playsound(QString test);
+
 
     void unCompress(QString filename , QString ofilename);
     void Compress(QString filename , QString ofilename);
@@ -124,46 +125,48 @@ void QRCode(QString text2);
 
 
 #ifdef MEDIAPLAYER
-    TrackModel *trackModel;
-  //  AudioThread *audio;
-    Scanner *scanner;
+TrackModel *trackModel;
+AudioThread *audio;
+Scanner *scanner;
 
-    QList<Track *> tracklist;
-    QPoint dragPos;
-    bool moving,shuffle;
-    short repeatMode;
-    long position;
-    QAction *clearAction,*scanAction;
+QList<Track *> tracklist;
+QPoint dragPos;
+bool moving,shuffle;
+short repeatMode;
+long position;
+QAction *clearAction,*scanAction;
 
 protected:
-    void addItem(QString s);
-    void dropEvent(QDropEvent *e);
-    void dragEnterEvent(QDragEnterEvent *e);
-    void setRepeatModeIcon();
-    void nextTrack(bool next);
-    bool hasNextTrack();
+void addItem(QString s);
+void dropEvent(QDropEvent *e);
+void dragEnterEvent(QDragEnterEvent *e);
+void setRepeatModeIcon();
+void nextTrack(bool next);
+bool hasNextTrack();
 
 public slots:
-    void onStartOfPlayback(double total);
-    void onEndOfPlayback();
-    void onPauseOfPlayback();
-    void onCurPos(double position, double total);
-    void onFileAdded(QString file);
-    void onClearList();
-    void onFindMusic();
+//void onStartOfPlayback(double total);
+void onStartOfPlayback();
+void onEndOfPlayback();
+void onPauseOfPlayback();
+void onCurPos(double position, double total);
+void  onSlidertime(QString sliderduration,qint64 duration,qint64 progress);
+void onFileAdded(QString file);
+void onClearList();
+void onFindMusic();
 private slots:
-    void on_closeButton_clicked();
-    void on_horizontalSlider_sliderPressed();
-    void on_horizontalSlider_sliderReleased();
-    void on_pushButton_play_clicked();
-    void on_pushButton_repeat_clicked();
-    void on_pushButton_shuffle_clicked();
-    void on_pushButton_prev_clicked();
-    void on_pushButton_next_clicked();
-
-    void on_listView_clicked(const QModelIndex &index);
-    void showContextMenuForWidget(const QPoint &pos);
-    void stopScanner();
+void on_closeButton_clicked();
+void on_horizontalSlider_sliderPressed();
+void on_horizontalSlider_sliderReleased();
+void seek(int seconds);
+void on_pushButton_play_clicked();
+void on_pushButton_repeat_clicked();
+void on_pushButton_shuffle_clicked();
+void on_pushButton_prev_clicked();
+void on_pushButton_next_clicked();
+void on_listView_clicked(const QModelIndex &index);
+void showContextMenuForWidget(const QPoint &pos);
+void stopScanner();
 #endif
 private slots:
     void on_actionExit_triggered();
@@ -220,6 +223,7 @@ private:
     QSqlDatabase db;
 //IrcClient *ircwidget;
     Ui::MainWindow *ui;
+       QString m_trackDuration;
 };
 
 #endif // MAINWINDOW_H
