@@ -102,8 +102,14 @@ void MainWindow::onEndOfPlayback() {
 }
 void MainWindow::seek(int seconds)
 {
-     //m_player->setPosition(seconds * 1000);
-    // qDebug() << "Position" << seconds;
+   //  audio->setPosition(seconds * 1000);
+  //   audio->playOrPause(tracklist.at(1)->path);
+    // audio->changePosition(seconds * 1000);
+  //  audio->play(tracklist.at(0)->path);
+    audio->setPosition3(seconds  * 1000);
+
+
+     qDebug() << "Position" << seconds;
 }
 
 void MainWindow::nextTrack(bool next) {
@@ -137,6 +143,7 @@ void MainWindow::nextTrack(bool next) {
 
 void MainWindow::onPauseOfPlayback() {
     ui->pushButton_play->setIcon(QIcon(":/Resource/img/btn_play.png"));
+   // audio->setPosition3(curseconds  * 1000);
 }
 
 void MainWindow::onCurPos(double position, double total) {
@@ -179,9 +186,12 @@ void MainWindow::on_horizontalSlider_sliderReleased()
 
 void MainWindow::on_pushButton_play_clicked()
 {
-    if (hasNextTrack()) {
+   // if (hasNextTrack()) {
+        audio->positionChanged(curseconds);
         audio->playOrPause(tracklist.at(position)->path);
-    }
+
+       // audio->setPosition3(curseconds  * 1000);
+   // }
 }
 
 bool MainWindow::hasNextTrack() {

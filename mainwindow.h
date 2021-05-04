@@ -73,6 +73,7 @@ void getEmailSettings();
 #ifdef SOUND
     QMediaPlayer*player;
     void playsound(QString test);
+    qint64 curseconds;
 #endif
     vector<IrcClient*> serverarray;
 

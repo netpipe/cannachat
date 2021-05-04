@@ -46,6 +46,8 @@ signals:
     void startOfPlayback();
     void endOfPlayback();
     void pauseOfPlayback();
+    void setPosition3(int test);
+    qint64 curseconds;
     void curPos(double position, double total);   
     void sliderTime(QString sliderduration, qint64 duration,qint64 progress);
 public slots:

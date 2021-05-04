@@ -137,13 +137,18 @@ void AudioThread::addToPlaylist(const QList<QUrl> &urls)
     }
 }
 
+void AudioThread::setPosition3(int test){
+    m_player->setPosition(test);
+}
 void AudioThread::pause()
 {
    /* BASS_ChannelPause(chan);*/
+  m_player->positionChanged(curseconds);
       m_player->pause();
     t->stop();
     playing = false;  
-    emit pauseOfPlayback();
+    //emit pauseOfPlayback();
+   // emit pause();
 }
 
 void AudioThread::resume()
@@ -156,8 +161,10 @@ void AudioThread::resume()
         emit startOfPlayback(BASS_ChannelBytes2Seconds(chan, BASS_ChannelGetLength(chan, BASS_POS_BYTE)));
         //playing = true;
     }*/
-     t->start(100);
+     //t->start(100);
+
      m_player->play();
+     m_player->setPosition(curseconds * 1000);
      emit startOfPlayback();
      playing=true;
 }
@@ -193,8 +200,9 @@ void AudioThread::playOrPause(QString filename) {
     else if(QMediaPlayer::PausedState && !playing)
     {
         resume();
-        endOfMusic = false;
-        play(filename);
+        //endOfMusic = false;
+      //  play(filename);
+       // m_player->setPosition(curseconds);
     }
 }
 
