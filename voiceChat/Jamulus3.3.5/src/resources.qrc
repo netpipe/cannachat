@@ -1,0 +1,56 @@
+<RCC>
+    <qresource prefix="/png/LEDs" >
+        <file>res/CLEDDisabledSmall.png</file>
+        <file>res/CLEDGreenArrow.png</file>
+        <file>res/CLEDGreenSmall.png</file>
+        <file>res/CLEDGreyArrow.png</file>
+        <file>res/CLEDGreySmall.png</file>
+        <file>res/CLEDRedSmall.png</file>
+        <file>res/CLEDYellowSmall.png</file>
+        <file>res/HLEDGreenSmall.png</file>
+        <file>res/HLEDGreySmall.png</file>
+        <file>res/HLEDRedSmall.png</file>
+        <file>res/HLEDYellowSmall.png</file>
+    </qresource>
+    <qresource prefix="/png/fader" >
+        <file>res/faderbackground.png</file>
+        <file>res/faderhandle.png</file>
+        <file>res/faderhandlesmall.png</file>
+        <file>res/ledbuttonnotpressed.png</file>
+        <file>res/ledbuttonpressed.png</file>
+        <file>res/mixerboardbackground.png</file>
+    </qresource>
+    <qresource prefix="/png/instr" >
+        <file>res/instrnone.png</file>
+        <file>res/instrbassguitar.png</file>
+        <file>res/instrclarinet.png</file>
+        <file>res/instrdrumset.png</file>
+        <file>res/instreguitar.png</file>
+        <file>res/instrsaxophone.png</file>
+        <file>res/instrtrumpet.png</file>
+        <file>res/instrmicrophone.png</file>
+        <file>res/instrkeyboard.png</file>
+        <file>res/instrviolin.png</file>
+        <file>res/instraguitar.png</file>
+        <file>res/instrflute.png</file>
+        <file>res/instraccordeon.png</file>
+        <file>res/instrcello.png</file>
+        <file>res/instrtrombone.png</file>
+        <file>res/instrfrenchhorn.png</file>
+        <file>res/instrtuba.png</file>
+        <file>res/instrdoublebass.png</file>
+        <file>res/instrgrandpiano.png</file>
+        <file>res/instrsynthesizer.png</file>
+        <file>res/instrvocal.png</file>
+        <file>res/instrdjembe.png</file>
+        <file>res/instrharmonica.png</file>
+        <file>res/instrrecorder.png</file>
+        <file>res/instrlistener.png</file>
+        <file>res/instrstreamer.png</file>
+    </qresource>
+    <qresource prefix="/png/main" >
+        <file>res/fronticon.png</file>
+        <file>res/logopicture.png</file>
+        <file>res/mainicon.png</file>
+    </qresource>
+</RCC>

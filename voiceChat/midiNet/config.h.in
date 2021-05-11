@@ -1,0 +1,100 @@
+/* src/config.h.in.  Generated from configure.ac by autoheader.  */
+
+/* Define if ALSA library is available. */
+#undef CONFIG_ALSA_MIDI
+
+/* Default executable binary path. */
+#undef CONFIG_BINDIR
+
+/* Build version string. */
+#undef CONFIG_BUILD_VERSION
+
+/* Default arch-idependent data path. */
+#undef CONFIG_DATADIR
+
+/* Define if debugging is enabled. */
+#undef CONFIG_DEBUG
+
+/* Define if JACK MIDI support is enabled. */
+#undef CONFIG_JACK_MIDI
+
+/* Default object library path. */
+#undef CONFIG_LIBDIR
+
+/* Default man page path. */
+#undef CONFIG_MANDIR
+
+/* Default installation prefix. */
+#undef CONFIG_PREFIX
+
+/* Version string. */
+#undef CONFIG_VERSION
+
+/* Define to 1 if you have the <fcntl.h> header file. */
+#undef HAVE_FCNTL_H
+
+/* Define to 1 if you have the <inttypes.h> header file. */
+#undef HAVE_INTTYPES_H
+
+/* Define to 1 if you have the `m' library (-lm). */
+#undef HAVE_LIBM
+
+/* Define to 1 if you have the `X11' library (-lX11). */
+#undef HAVE_LIBX11
+
+/* Define to 1 if you have the `Xext' library (-lXext). */
+#undef HAVE_LIBXEXT
+
+/* Define to 1 if you have the <memory.h> header file. */
+#undef HAVE_MEMORY_H
+
+/* Define to 1 if you have the <signal.h> header file. */
+#undef HAVE_SIGNAL_H
+
+/* Define to 1 if you have the <stdint.h> header file. */
+#undef HAVE_STDINT_H
+
+/* Define to 1 if you have the <stdlib.h> header file. */
+#undef HAVE_STDLIB_H
+
+/* Define to 1 if you have the <strings.h> header file. */
+#undef HAVE_STRINGS_H
+
+/* Define to 1 if you have the <string.h> header file. */
+#undef HAVE_STRING_H
+
+/* Define to 1 if you have the <sys/ioctl.h> header file. */
+#undef HAVE_SYS_IOCTL_H
+
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#undef HAVE_SYS_STAT_H
+
+/* Define to 1 if you have the <sys/types.h> header file. */
+#undef HAVE_SYS_TYPES_H
+
+/* Define to 1 if you have <sys/wait.h> that is POSIX.1 compatible. */
+#undef HAVE_SYS_WAIT_H
+
+/* Define to 1 if you have the <unistd.h> header file. */
+#undef HAVE_UNISTD_H
+
+/* Define to the address where bug reports for this package should be sent. */
+#undef PACKAGE_BUGREPORT
+
+/* Define to the full name of this package. */
+#undef PACKAGE_NAME
+
+/* Define to the full name and version of this package. */
+#undef PACKAGE_STRING
+
+/* Define to the one symbol short name of this package. */
+#undef PACKAGE_TARNAME
+
+/* Define to the home page for this package. */
+#undef PACKAGE_URL
+
+/* Define to the version of this package. */
+#undef PACKAGE_VERSION
+
+/* Define to 1 if you have the ANSI C header files. */
+#undef STDC_HEADERS

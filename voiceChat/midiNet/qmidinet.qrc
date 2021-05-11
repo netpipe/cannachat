@@ -1,0 +1,11 @@
+<RCC version="1.0">
+	<qresource>
+		<file>images/qmidinet.png</file>
+		<file>images/iconError.png</file>
+		<file>images/iconSend.png</file>
+		<file>images/iconReceive.png</file>
+		<file>images/menuOptions.png</file>
+		<file>images/menuReset.png</file>
+		<file>images/menuQuit.png</file>
+	</qresource>
+</RCC>
