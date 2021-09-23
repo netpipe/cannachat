@@ -137,6 +137,11 @@ short repeatMode;
 long position;
 QAction *clearAction,*scanAction;
 
+
+//python
+void settext();
+void qtPython();
+
 protected:
 void addItem(QString s);
 void dropEvent(QDropEvent *e);
