@@ -34,7 +34,7 @@
         <item row="0" column="0">
          <widget class="QTabWidget" name="tabWidget_2">
           <property name="currentIndex">
-           <number>3</number>
+           <number>7</number>
           </property>
           <widget class="QWidget" name="tab_2">
            <attribute name="title">
@@ -1493,6 +1493,34 @@ QScrollBar::handle {
              </widget>
             </item>
            </layout>
+          </widget>
+          <widget class="QWidget" name="tab_13">
+           <attribute name="title">
+            <string>Scripts</string>
+           </attribute>
+           <widget class="QPushButton" name="pushButton">
+            <property name="geometry">
+             <rect>
+              <x>600</x>
+              <y>140</y>
+              <width>91</width>
+              <height>27</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Run Script</string>
+            </property>
+           </widget>
+           <widget class="QListWidget" name="listWidget_2">
+            <property name="geometry">
+             <rect>
+              <x>90</x>
+              <y>70</y>
+              <width>471</width>
+              <height>301</height>
+             </rect>
+            </property>
+           </widget>
           </widget>
          </widget>
         </item>

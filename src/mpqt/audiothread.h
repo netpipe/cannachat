@@ -39,16 +39,18 @@ private:
     qint64 m_progress;
     QString m_labelmediaduration;
     void updateDurationInfo(qint64 currentInfo);
+    qint64 curseconds;
+
 private slots:
-        //void durationChanged(qint64 duration);    
+        //void durationChanged(qint64 duration);
 signals:
    // void startOfPlayback(double total);
     void startOfPlayback();
     void endOfPlayback();
     void pauseOfPlayback();
     void setPosition3(int test);
-    qint64 curseconds;
-    void curPos(double position, double total);   
+
+    void curPos(double position, double total);
     void sliderTime(QString sliderduration, qint64 duration,qint64 progress);
 public slots:
     void play(QString filepath);

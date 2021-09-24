@@ -39,12 +39,12 @@ AudioThread::AudioThread(QObject *parent) :
 }
 void AudioThread::durationChanged(qint64 duration)
 {
-    m_duration = duration / 1000;   
+    m_duration = duration / 1000;
 }
 void AudioThread::positionChanged(qint64 progress)
 {
     m_progress = progress/1000;
-    updateDurationInfo(progress / 1000);   
+    updateDurationInfo(progress / 1000);
 }
 
 void AudioThread::updateDurationInfo(qint64 currentInfo)
@@ -61,7 +61,7 @@ void AudioThread::updateDurationInfo(qint64 currentInfo)
         tStr = currentTime.toString(format) + " / " + totalTime.toString(format);
     }
 
-    m_labelmediaduration = tStr;  
+    m_labelmediaduration = tStr;
     //qDebug() << "Media duration for label:" << m_labelmediaduration;
     emit sliderTime(m_labelmediaduration,m_duration,m_progress);
 }
@@ -103,7 +103,7 @@ void AudioThread::play(QString filename)
       //  addToPlaylist(fileDialog.selectedUrls());
     QUrl url(filename);
     QList<QUrl> urls;
-    qDebug() << url; 
+    qDebug() << url;
     //if(urls.size()>0)
        // urls.clear();
     urls.append(url);
@@ -137,18 +137,13 @@ void AudioThread::addToPlaylist(const QList<QUrl> &urls)
     }
 }
 
-void AudioThread::setPosition3(int test){
-    m_player->setPosition(test);
-}
 void AudioThread::pause()
 {
    /* BASS_ChannelPause(chan);*/
-  m_player->positionChanged(curseconds);
       m_player->pause();
     t->stop();
-    playing = false;  
-    //emit pauseOfPlayback();
-   // emit pause();
+    playing = false;
+    emit pauseOfPlayback();
 }
 
 void AudioThread::resume()
@@ -161,10 +156,8 @@ void AudioThread::resume()
         emit startOfPlayback(BASS_ChannelBytes2Seconds(chan, BASS_ChannelGetLength(chan, BASS_POS_BYTE)));
         //playing = true;
     }*/
-     //t->start(100);
-
+     t->start(100);
      m_player->play();
-     m_player->setPosition(curseconds * 1000);
      emit startOfPlayback();
      playing=true;
 }
@@ -200,9 +193,8 @@ void AudioThread::playOrPause(QString filename) {
     else if(QMediaPlayer::PausedState && !playing)
     {
         resume();
-        //endOfMusic = false;
-      //  play(filename);
-       // m_player->setPosition(curseconds);
+        endOfMusic = false;
+        play(filename);
     }
 }
 
@@ -210,7 +202,7 @@ void AudioThread::stop()
 {
    // BASS_ChannelStop(chan);
     m_player->pause();
-    t->stop();    
+    t->stop();
     playing = false;
 }
 
@@ -221,7 +213,7 @@ void AudioThread::signalUpdate()
         playing = true;
         //emit curPos(BASS_ChannelBytes2Seconds(chan, BASS_ChannelGetPosition(chan, BASS_POS_BYTE)),
                  //   BASS_ChannelBytes2Seconds(chan, BASS_ChannelGetLength(chan, BASS_POS_BYTE)));
-        emit curPos(m_player->position(), m_player->duration());      
+        emit curPos(m_player->position(), m_player->duration());
     }
     else
     {
@@ -242,15 +234,16 @@ QString AudioThread::getDuration(QString path) {
    if (path.isNull()) { return ""; }
    QUrl url(path);
    QList<QUrl> urls;
-   qDebug() << url;  
+   qDebug() << url;
    QDateTime lm = QFileInfo(QFile(path)).lastModified();
    qint64 epoch = lm.toMSecsSinceEpoch();
    QString str = QString::number(epoch);
   // qDebug() <<"The duration of file" << str;
    return formattedTime(str);
-   // return formattedTime(m_labelmediaduration);     
+   // return formattedTime(m_labelmediaduration);
 
 }
+
 //QString AudioThread::formattedTime(double t1)
 QString AudioThread::formattedTime(QString t1)
 {

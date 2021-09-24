@@ -178,7 +178,12 @@ SOURCES += \
     src/mpqt/trackwidget.cpp \
     src/mpqt/audiothread.cpp \
     src/figlet/zipio.c \
-    src/figlet/inflate2.cpp
+    src/figlet/inflate2.cpp \
+    voiceChat/voice-over-lan/buffer.cpp \
+    voiceChat/voice-over-lan/messenger.cpp \
+    voiceChat/voice-over-lan/voiceio.cpp \
+    voiceChat/voice-over-lan/voicesocket.cpp \
+    voiceChat/voice-over-lan/xmain3.cpp
 
 
 HEADERS += \
@@ -349,7 +354,11 @@ HEADERS += \
     src/mpqt/audiothread.h \
     src/Barcode/scanner.h \
     src/figlet/figlet.h \
-    src/python/python.h
+    src/python/python.h \
+    voiceChat/voice-over-lan/buffer.h \
+    voiceChat/voice-over-lan/messenger.h \
+    voiceChat/voice-over-lan/voiceio.h \
+    voiceChat/voice-over-lan/voicesocket.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -364,4 +373,7 @@ FORMS += \
     settings.ui\
     src/ftp-server/debuglogdialog.ui \
     src/ftp-server/ftpgui.ui
+
+SUBDIRS += \
+    voiceChat/voice-over-lan/QtIntercom.pro
 

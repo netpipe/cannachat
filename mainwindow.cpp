@@ -793,3 +793,9 @@ void MainWindow::on_asciito_editingFinished()
         ui->fonts->addItem(it.next().toLatin1());
     }
 }
+
+void MainWindow::on_pushButton_clicked()
+{
+    qtPython();
+    settext();
+}
