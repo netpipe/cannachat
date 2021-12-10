@@ -103,6 +103,7 @@ MainWindow::MainWindow(QWidget *parent)
 #endif
 
 
+
       //IrcClient *test
          //     ircwidget = new IrcClient( ui->tabWidget->findChild<QWidget *>("chatwidget"));
 
@@ -136,12 +137,12 @@ readsettings();
 
 #ifdef MEDIAPLAYER
 ui->pushButton_play->setIcon(QIcon("./Resource/img/btn_play.png"));
-//   ui->pushButton_play->setIcon(QIcon(":/Resource/img/btn_play.png"));
-//   ui->label_3->setPixmap(QPixmap(":/Resource/img/freemp.png"));
-//   ui->pushButton_shuffle->setIcon(QIcon(":/Resource/img/btn_shuffle_off.png"));
-//  ui->pushButton_prev->setIcon(QIcon(":/Resource/img/btn_previous.png"));
-//   ui->pushButton_next->setIcon(QIcon(":/Resource/img/btn_next.png"));
-//   ui->pushButton_repeat->setIcon(QIcon(":/Resource/img/btn_repeat.png"));
+ui->pushButton_play->setIcon(QIcon("./Resource/img/btn_play.png"));
+ui->label_3->setPixmap(QPixmap("./Resource/img/freemp.png"));
+ui->pushButton_shuffle->setIcon(QIcon("./Resource/img/btn_shuffle_off.png"));
+ui->pushButton_prev->setIcon(QIcon("./Resource/img/btn_previous.png"));
+ui->pushButton_next->setIcon(QIcon("./Resource/img/btn_next.png"));
+ui->pushButton_repeat->setIcon(QIcon("./Resource/img/btn_repeat.png"));
 //repeatMode = 0;
 repeatMode = 0;
 moving = false;
@@ -199,7 +200,16 @@ MainWindow::~MainWindow()
 //    this->irr0->init();
 //    this->irr1 = new IrrCoreRenderer(ui->centralWidget->findChild<QWidget *>("irrRenderWidget1"), 1);
 //    this->irr1->init();
+    delete ui;
+    #ifdef MEDIAPLAYER
+    delete player;
+    delete audio;
+    #endif
 
+#ifdef IRRLICHT
+    delete widget;
+#endif
+//QApplication::exit();
 }
 
 void MainWindow::QRCode(QString text2) {

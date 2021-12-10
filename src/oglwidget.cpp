@@ -14,7 +14,7 @@ OGLWidget::OGLWidget(QWidget *parent)
 
 OGLWidget::~OGLWidget()
 {
-
+delete this;
 }
 
 void OGLWidget::initializeGL()

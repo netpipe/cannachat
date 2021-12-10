@@ -207,13 +207,13 @@ void MainWindow::setRepeatModeIcon() {
     }
     switch (repeatMode) {
     case 1:
-        ui->pushButton_repeat->setIcon(QIcon(":/Resource/img/btn_repeat_one.png"));
+        ui->pushButton_repeat->setIcon(QIcon("./Resource/img/btn_repeat_one.png"));
         break;
     case 2:
-        ui->pushButton_repeat->setIcon(QIcon(":/Resource/img/btn_repeat_all_highlighted.png"));
+        ui->pushButton_repeat->setIcon(QIcon("./Resource/img/btn_repeat_all_highlighted.png"));
         break;
     default:
-        ui->pushButton_repeat->setIcon(QIcon(":/Resource/img/btn_repeat_off.png"));
+        ui->pushButton_repeat->setIcon(QIcon("./Resource/img/btn_repeat_off.png"));
         break;
     }
 }
@@ -228,10 +228,10 @@ void MainWindow::on_pushButton_shuffle_clicked()
 {
     shuffle = !shuffle;
     if (shuffle) {
-        ui->pushButton_shuffle->setIcon(QIcon(":/Resource/img/btn_shuffle_highlighted.png"));
+        ui->pushButton_shuffle->setIcon(QIcon("./Resource/img/btn_shuffle_highlighted.png"));
     }
     else {
-        ui->pushButton_shuffle->setIcon(QIcon(":/Resource/img/btn_shuffle_off.png"));
+        ui->pushButton_shuffle->setIcon(QIcon("./Resource/img/btn_shuffle_off.png"));
     }
 }
 
