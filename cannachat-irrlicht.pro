@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network opengl
+QT       += core gui network opengl svg
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = lib-communi

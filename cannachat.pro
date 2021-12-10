@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network sql printsupport multimedia
+QT       += core gui network sql printsupport multimedia multimediawidgets
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 
@@ -17,8 +17,10 @@ TEMPLATE = app
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
 DEFINES += IRC_STATIC
-#DEFINES += IRRLICHT
+
+DEFINES += IRRLICHT
 #DEFINES += QT_NO_SSL
+
 CONFIG += C++11
 CONFIG += console
 
@@ -41,11 +43,13 @@ INCLUDEPATH += ./release
 unix:MOC_DIR = ./mocs
 win32:MOC_DIR = ./mocs
 
-#win32:INCLUDEPATH+=C:\Users\TEST\Downloads\irrlicht-1.8.4\irrlicht-1.8.4\include
-#else:unix:INCLUDEPATH+= /home/Dev/libs/game/irrlicht/Irrlicht-SVN/include/ /home/Dev/libs/game/irrlicht/Irrlicht-SVN/lib/Linux/
+#ifdef IRRLICHT
+win32:INCLUDEPATH+=C:\Users\TEST\Downloads\irrlicht-1.8.4\irrlicht-1.8.4\include
+else:unix:INCLUDEPATH+= /home/netpipe/gamedev/irrlicht-1.8.4/include /home/Dev/libs/game/irrlicht/Irrlicht-SVN/lib/Linux/
 
-#win32:LIBS += -LC:\Users\TEST\Downloads\irrlicht-1.8.4\irrlicht-1.8.4\lib\Win32-visualstudio
-#else:unix:LIBS += -L/home/Dev/libs/game/irrlicht/Irrlicht-SVN/lib/Linux/  -lQt5Widgets -lQt5Gui -lQt5Core -lX11 -lXxf86vm
+win32:LIBS += -LC:\Users\TEST\Downloads\irrlicht-1.8.4\irrlicht-1.8.4\lib\Win32-visualstudio
+else:unix:LIBS += -L/home/netpipe/gamedev/irrlicht-1.8.4/lib/Linux  -lQt5Widgets -lQt5Gui -lQt5Core -lX11 -lXxf86vm -lIrrlicht
+#endif
 
 linux2 {
 DEFINES += SOUND MEDIAPLAYER
@@ -114,6 +118,7 @@ SOURCES += \
     src/encryption/rsa/Rsa.cpp \
     src/encryption/Qt-AES/qaesencryption.cpp \
     src/encryption/simpleCrypt/simplecrypt.cpp \
+    src/mpqt/playlistManager.cpp \
     src/smtp/smtpclient.cpp \
     src/smtp/quotedprintable.cpp \
     src/smtp/mimetext.cpp \
@@ -282,6 +287,7 @@ HEADERS += \
     src/encryption/rsa/Rsa.h \
     src/encryption/Qt-AES/qaesencryption.h \
     src/encryption/encryption.h \
+    src/mpqt/playlistManager.h \
     src/smtp/SmtpMime \
     src/smtp/smtpexports.h \
     src/smtp/smtpclient.h \

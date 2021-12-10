@@ -34,7 +34,7 @@
         <item row="0" column="0">
          <widget class="QTabWidget" name="tabWidget_2">
           <property name="currentIndex">
-           <number>7</number>
+           <number>3</number>
           </property>
           <widget class="QWidget" name="tab_2">
            <attribute name="title">
@@ -880,10 +880,10 @@ border-radius: 4px;
            <widget class="QListView" name="listView">
             <property name="geometry">
              <rect>
-              <x>500</x>
-              <y>30</y>
-              <width>401</width>
-              <height>451</height>
+              <x>750</x>
+              <y>10</y>
+              <width>301</width>
+              <height>391</height>
              </rect>
             </property>
             <property name="styleSheet">
@@ -928,8 +928,8 @@ QScrollBar::handle {
            <widget class="QWidget" name="verticalLayoutWidget_2">
             <property name="geometry">
              <rect>
-              <x>0</x>
-              <y>190</y>
+              <x>30</x>
+              <y>180</y>
               <width>691</width>
               <height>134</height>
              </rect>
@@ -979,12 +979,37 @@ QScrollBar::handle {
              </item>
             </layout>
            </widget>
+           <widget class="QVideoWidget" name="vidwid" native="true">
+            <property name="geometry">
+             <rect>
+              <x>440</x>
+              <y>40</y>
+              <width>291</width>
+              <height>121</height>
+             </rect>
+            </property>
+           </widget>
+           <widget class="QSlider" name="horizontalSlider">
+            <property name="geometry">
+             <rect>
+              <x>340</x>
+              <y>10</y>
+              <width>160</width>
+              <height>16</height>
+             </rect>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
            <zorder>label_bgr</zorder>
            <zorder>verticalLayoutWidget</zorder>
            <zorder>label_3</zorder>
            <zorder>horizontalLayoutWidget_2</zorder>
            <zorder>listView</zorder>
            <zorder>verticalLayoutWidget_2</zorder>
+           <zorder>vidwid</zorder>
+           <zorder>horizontalSlider</zorder>
           </widget>
           <widget class="QWidget" name="tab_6">
            <attribute name="title">
@@ -1595,6 +1620,14 @@ QScrollBar::handle {
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QVideoWidget</class>
+   <extends>QWidget</extends>
+   <header>QVideoWidget</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

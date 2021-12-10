@@ -188,6 +188,8 @@ playlistMenu->addAction(clearAction);
 playlistMenu->addAction(scanAction);
 m_menuBar->addAction(playlistMenu->menuAction());
 
+  audio->setVideoOutput(ui->vidwid);
+
 #endif
 }
 

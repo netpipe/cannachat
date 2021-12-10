@@ -6,6 +6,8 @@
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
 #include <QAudio>
+#include <QVideoWidget>
+
 
 QT_BEGIN_NAMESPACE
 class QMediaPlayer;
@@ -28,7 +30,7 @@ public:
     void setCustomAudioRole(const QString &role);
     void addToPlaylist(const QList<QUrl> &urls);
 
-
+void setvolume(int test);
 private:
     unsigned long chan;
     QTimer *t;
@@ -39,21 +41,18 @@ private:
     qint64 m_progress;
     QString m_labelmediaduration;
     void updateDurationInfo(qint64 currentInfo);
-    qint64 curseconds;
-
 private slots:
-        //void durationChanged(qint64 duration);
+        //void durationChanged(qint64 duration);    
 signals:
    // void startOfPlayback(double total);
     void startOfPlayback();
     void endOfPlayback();
     void pauseOfPlayback();
-    void setPosition3(int test);
-
-    void curPos(double position, double total);
+    void curPos(double position, double total);   
     void sliderTime(QString sliderduration, qint64 duration,qint64 progress);
 public slots:
-    void play(QString filepath);
+    void play(QString filepath,bool online);
+    void setVideoOutput(QVideoWidget *test);
     void playOrPause(QString filepath);
     void pause();
     void resume();

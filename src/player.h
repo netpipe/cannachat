@@ -106,7 +106,7 @@ void MainWindow::seek(int seconds)
   //   audio->playOrPause(tracklist.at(1)->path);
     // audio->changePosition(seconds * 1000);
   //  audio->play(tracklist.at(0)->path);
-    audio->setPosition3(seconds  * 1000);
+ //   audio->setPosition3(seconds  * 1000);
 
 
      qDebug() << "Position" << seconds;
@@ -134,7 +134,7 @@ void MainWindow::nextTrack(bool next) {
         break;
     }
     if (hasNextTrack()) {
-        audio->play(tracklist.at(position)->path);
+        audio->play(tracklist.at(position)->path,0);
     }
     else {
         audio->stop();
@@ -253,6 +253,6 @@ void MainWindow::on_listView_clicked(const QModelIndex &index)
 {
     position = index.row();
     if (hasNextTrack()) {
-        audio->play(tracklist.at(position)->path);
+        audio->play(tracklist.at(position)->path,0);
     }
 }
