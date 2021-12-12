@@ -160,20 +160,20 @@ void IrrlichtWidget::buildIrrlichtScene(){
         n->setMaterialFlag( video::EMF_LIGHTING, false );
 
 
-//        mDevice->getFileSystem()->addFileArchive("media/map-20kdm2.pk3");
+        mDevice->getFileSystem()->addFileArchive("media/map-20kdm2.pk3");
 
-//        scene::IAnimatedMesh* mesh = smgr->getMesh("20kdm2.bsp");
-//        scene::ISceneNode* node = 0;
+        scene::IAnimatedMesh* mesh = this->mScene->getMesh("20kdm2.bsp");
+        scene::ISceneNode* node = 0;
 
-//        if (mesh)
-//        {
-//            node = smgr->addOctreeSceneNode(mesh->getMesh(0), 0, -1, 1024);
-//        }
+        if (mesh)
+        {
+            node = mScene->addOctreeSceneNode(mesh->getMesh(0), 0, -1, 1024);
+        }
 
-//        if (node)
-//        {
-//            node->setPosition(core::vector3df(-1300, -144, -1299));
-//        }
+        if (node)
+        {
+            node->setPosition(core::vector3df(-1300, -144, -1299));
+        }
      //    manager->addCameraSceneNode(0, core::vector3df(0,30,-40), vector3df(0,5,0));
      //   manager->addCameraSceneNode();
            manager->addCameraSceneNodeFPS();

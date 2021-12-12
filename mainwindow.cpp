@@ -188,7 +188,10 @@ m_menuBar->addAction(playlistMenu->menuAction());
 
 #ifdef IRRLICHT
     this->installEventFilter(this);
+
+      ui->irrRenderWidget0->grabKeyboard();
 #endif
+
 }
 
 
@@ -846,4 +849,10 @@ void MainWindow::on_pushButton_clicked()
 {
     qtPython();
     settext();
+}
+
+void MainWindow::on_tabWidget_currentChanged(int index)
+{
+    //if 3D tab
+    //grab keyboard and mouse
 }
