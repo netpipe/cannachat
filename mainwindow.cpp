@@ -856,12 +856,16 @@ void MainWindow::on_tabWidget_currentChanged(int index)
     //if 3D tab
     //grab keyboard and mouse
      if (ui->tabWidget->currentIndex() == 0){
-         qDebug()<< "curindex0";
+        // qDebug()<< "curindex0";
           ui->irrRenderWidget0->releaseKeyboard();
 
-     }else{
-          ui->irrRenderWidget0->grabKeyboard();
-
+     }else
+         if (ui->tabWidget->currentIndex() == 1){
+            // qDebug()<< "curindex0";
+            ui->irrRenderWidget0->grabKeyboard();
+         }else{
+         // ui->irrRenderWidget0->grabKeyboard();
+            ui->irrRenderWidget0->releaseKeyboard();
            qDebug()<< "releaseKeyboard";
 }
 
