@@ -305,6 +305,7 @@ void IrrlichtWidget::timerEvent(QTimerEvent* event)
         mDevice->getSceneManager()->drawAll();
         mDriver->endScene();
 
+        mDevice->sleep(15);
 
   //      video::SColor color (255, 100, 100, 140);
 
