@@ -174,8 +174,10 @@ void IrrlichtWidget::buildIrrlichtScene(){
 //        {
 //            node->setPosition(core::vector3df(-1300, -144, -1299));
 //        }
-         manager->addCameraSceneNode(0, core::vector3df(0,30,-40), vector3df(0,5,0));
+     //    manager->addCameraSceneNode(0, core::vector3df(0,30,-40), vector3df(0,5,0));
      //   manager->addCameraSceneNode();
+           manager->addCameraSceneNodeFPS();
+
 
         startTimer(0);
     }

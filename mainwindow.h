@@ -39,6 +39,15 @@
 #endif
 
 
+//#define IRRLICHT
+#ifdef IRRLICHT
+#include <QGLWidget>
+#include "irrutil.h"
+#include "irrlichtwidget.h"
+
+//IrrlichtWidget* widget2 ;
+#endif
+
 
 using namespace std;
 
@@ -57,6 +66,8 @@ public:
 
     //      virtual void resizeEvent(QResizeEvent *event);
     MainWindow(QWidget *parent = 0);
+
+    bool eventFilter( QObject *o, QEvent *e );
 bool loaded=false;
     QString fileName;
     void resizeEvent(QResizeEvent* event);
@@ -230,6 +241,9 @@ private slots:
 private:
     QSqlDatabase db;
 //IrcClient *ircwidget;
+#ifdef IRRLICHT
+    IrrlichtWidget* widget ;
+#endif
     Ui::MainWindow *ui;
        QString m_trackDuration;
 };

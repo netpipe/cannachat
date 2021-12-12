@@ -52,14 +52,6 @@
 #include "src/quazip/quazipfile.h"
 #include "src/quazip/JlCompress.h"
 
-//#define IRRLICHT
-#ifdef IRRLICHT
-#include <QGLWidget>
-#include "irrutil.h"
-#include "irrlichtwidget.h"
-IrrlichtWidget* widget ;
-//IrrlichtWidget* widget2 ;
-#endif
 
 #ifdef MEDIAPLAYER
 #include <src/player.h>
@@ -76,6 +68,7 @@ IrrlichtWidget* widget ;
 
 
 #include <src/figlet/figlet.h>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -192,7 +185,50 @@ m_menuBar->addAction(playlistMenu->menuAction());
   audio->setVideoOutput(ui->vidwid);
 
 #endif
+
+#ifdef IRRLICHT
+    this->installEventFilter(this);
+#endif
 }
+
+
+
+bool MainWindow::eventFilter( QObject *o, QEvent *e )
+{
+    #ifdef IRRLICHT
+    if ( e->type() == QEvent::KeyPress ) {
+        // special processing for key press
+        QKeyEvent *k = (QKeyEvent *)e;
+         this->widget->keyPressEvent(k);
+
+
+      //  qDebug( "Ate key press %d", k->key() );
+        return 1; // eat event
+    }else if ( e->type() == QEvent::KeyRelease) {
+         QKeyEvent *k = (QKeyEvent *)e;
+        this->widget->keyReleaseEvent(k);
+
+      return 1;
+    } else if ( e->type() == QEvent::MouseButtonPress) {
+        QMouseEvent* ee =(QMouseEvent*)e;
+        this->widget->mousePressEvent(ee);
+            return 1;
+     } else if ( e->type() == QEvent::MouseButtonRelease) {
+           QMouseEvent* ee =(QMouseEvent*)e;
+           this->widget->mouseReleaseEvent(ee);
+               return 1;
+        }  else if ( e->type() == QEvent::MouseMove) {
+               QMouseEvent* ee =(QMouseEvent*)e;
+               this->widget->mouseMoveEvent(ee);
+                   return 1;
+            }
+    else {
+        // standard event processing
+        return 0;
+    }
+#endif
+}
+
 
 MainWindow::~MainWindow()
 {
