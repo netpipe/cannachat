@@ -1,3 +1,4 @@
+#ifdef MEDIAPLAYER
 #include "audiothread.h"
 #include <QDateTime>
 #include <QFileDialog>
@@ -271,3 +272,4 @@ void AudioThread::run() {
   while (1)
     ;
 }
+#endif

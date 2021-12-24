@@ -1,3 +1,4 @@
+#ifdef MEDIAPLAYER
 #include "trackwidget.h"
 
 TrackWidget::TrackWidget(QWidget *parent) :
@@ -38,3 +39,4 @@ TrackWidget::~TrackWidget()
 {
 
 }
+#endif

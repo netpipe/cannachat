@@ -1,3 +1,4 @@
+#ifdef MEDIAPLAYER
 #include "playlistManager.h"
 
 #include <QSqlError>
@@ -139,3 +140,4 @@ void PlaylistManager::debugError(const QString &title,
            << title << ": " << query.lastError().text()
            << "Native error code: " << query.lastError().nativeErrorCode();
 }
+#endif

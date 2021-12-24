@@ -1,5 +1,6 @@
 #ifndef TRACKMODEL_H
 #define TRACKMODEL_H
+#ifdef MEDIAPLAYER
 #include <QAbstractListModel>
 #include <QList>
 #include "track.h"
@@ -22,3 +23,4 @@ public slots:
 };
 
 #endif // TRACKMODEL_H
+#endif

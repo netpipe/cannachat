@@ -1,10 +1,12 @@
 #ifndef SCANNER
 #define SCANNER
+#ifdef MEDIAPLAYER
 #include <QDebug>
 #include <QDir>
 #include <QDirIterator>
 #include <QString>
 #include <QThread>
+
 
 class Scanner : public QThread {
   Q_OBJECT
@@ -68,3 +70,4 @@ private:
   QStringList fileList;
 };
 #endif // SCANNER
+#endif

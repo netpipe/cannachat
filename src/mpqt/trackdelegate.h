@@ -1,6 +1,6 @@
 #ifndef TRACKDELEGATE_H
 #define TRACKDELEGATE_H
-
+#ifdef MEDIAPLAYER
 #include <QItemDelegate>
 #include <QPainter>
 #include "track.h"
@@ -19,3 +19,4 @@ public:
 };
 
 #endif // TRACKDELEGATE_H
+#endif

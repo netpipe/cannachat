@@ -48,10 +48,11 @@
 #include <QFileDialog>
 #include <fstream>
 #include <QDirIterator>
+#ifdef QUAZIP
 #include "src/quazip/quazip.h"
 #include "src/quazip/quazipfile.h"
 #include "src/quazip/JlCompress.h"
-
+#endif
 
 #ifdef MEDIAPLAYER
 #include <src/player.h>
@@ -331,9 +332,9 @@ void MainWindow::resizeEvent(QResizeEvent* event)
 #endif
    // Your code here.
 }
-
+#ifdef MEDIAPLAYER
 void MainWindow::playsound(QString test){
-#ifdef SOUND
+
     // player->setMedia(QUrl("qrc:/sounds/ec1_mono.ogg"));
     // player->setMedia(QUrl::fromLocalFile("./paddle_hit.wav"));
      //or play from memory
@@ -349,9 +350,8 @@ void MainWindow::playsound(QString test){
  //    media->setMedia("sound.mp3");
      player->setMedia(QMediaContent(), buffer);
      player->play();
-#endif
 }
-
+#endif
 void MainWindow::readsettings(){
     bool settingsexists=false;
 QFile Fout("settings.txt");    if(Fout.exists())    {       settingsexists=true;    }    Fout.close();
@@ -847,8 +847,10 @@ void MainWindow::on_asciito_editingFinished()
 
 void MainWindow::on_pushButton_clicked()
 {
+#ifdef PYTHON
     qtPython();
     settext();
+#endif
 }
 
 void MainWindow::on_tabWidget_currentChanged(int index)

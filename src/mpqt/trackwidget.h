@@ -1,6 +1,6 @@
 #ifndef TRACKWIDGET_H
 #define TRACKWIDGET_H
-
+#ifdef MEDIAPLAYER
 #include <QWidget>
 #include <QLabel>
 #include <QVBoxLayout>
@@ -22,3 +22,4 @@ public slots:
 };
 
 #endif // TRACKWIDGET_H
+#endif

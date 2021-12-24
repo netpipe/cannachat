@@ -1,7 +1,7 @@
 #ifndef TRACK_H
 #define TRACK_H
 #include <QtCore>
-
+#ifdef MEDIAPLAYER
 class Track
 {
 public:
@@ -14,3 +14,4 @@ public:
 };
 Q_DECLARE_METATYPE(Track *)
 #endif // TRACK_H
+#endif

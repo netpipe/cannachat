@@ -1,5 +1,6 @@
 #ifndef AUDIOTHREAD
 #define AUDIOTHREAD
+#ifdef MEDIAPLAYER
 #include <QThread>
 #include <QDebug>
 #include <QTimer>
@@ -68,4 +69,4 @@ public slots:
    // void seek(int seconds);
  };
 #endif // AUDIOTHREAD
-
+#endif

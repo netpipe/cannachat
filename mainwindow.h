@@ -135,6 +135,11 @@ int adminftp=0;
     QString decodeqr(QString image);
 void QRCode(QString text2);
 
+#ifdef PYTHON
+//python
+void settext();
+void qtPython();
+#endif
 
 #ifdef MEDIAPLAYER
 TrackModel *trackModel;
@@ -148,10 +153,6 @@ short repeatMode;
 long position;
 QAction *clearAction,*scanAction;
 
-
-//python
-void settext();
-void qtPython();
 
 protected:
 void addItem(QString s);

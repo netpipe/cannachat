@@ -1,3 +1,4 @@
+#ifdef MEDIAPLAYER
 #include "trackmodel.h"
 
 TrackModel::TrackModel(QObject *parent) :
@@ -53,3 +54,4 @@ Qt::ItemFlags TrackModel::flags(const QModelIndex &index) const
         return Qt::ItemIsEnabled;
     return QAbstractItemModel::flags(index) | Qt::ItemIsEnabled ;
 }
+#endif

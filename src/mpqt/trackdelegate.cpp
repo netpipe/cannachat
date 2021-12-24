@@ -1,3 +1,4 @@
+#ifdef MEDIAPLAYER
 #include "trackdelegate.h"
 
 TrackDelegate::TrackDelegate()
@@ -65,3 +66,4 @@ QSize TrackDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIn
     int height = 60;
     return QSize(width, height);
 }
+#endif
