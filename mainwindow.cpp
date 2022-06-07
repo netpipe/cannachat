@@ -63,7 +63,7 @@
 #endif
 
 #ifdef PYTHON
-#include <src/python/python.h>
+#include <src/python/qtpython.h>
 #endif
 
 

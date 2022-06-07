@@ -54,7 +54,7 @@
     DEFAULTFONTDIR.
 ---------------------------------------------------------------------------*/
 #ifndef DEFAULTFONTDIR
-#define DEFAULTFONTDIR "fonts"
+#define DEFAULTFONTDIR "/Resource/fig-fonts/"
 #endif
 #ifndef DEFAULTFONTFILE
 #define DEFAULTFONTFILE "standard.flf"

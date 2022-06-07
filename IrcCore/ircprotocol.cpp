@@ -252,8 +252,8 @@ void IrcProtocolPrivate::handleNumericMessage(IrcNumericMessage* msg)
     case Irc::ERR_NEEDREGGEDNICK: {
         QString channel = msg->parameters().value(0);
          qDebug() << "not registered" << msg->parameters().value(1);
-      //   connection->printMessage("not registered ircprotocol.cpp" + msg->parameters().value(1).toLatin1());
-         connection->hircclient2->appendText("not registered nickname");
+     //    connection->printMessage("not registered ircprotocol.cpp" + msg->parameters().value(1).toLatin1());
+    //     connection->hircclient2->appendText("not registered nickname");
     }
 
     case Irc::ERR_BADCHANNELKEY: {

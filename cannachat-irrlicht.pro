@@ -44,12 +44,16 @@ unix:MOC_DIR = ./mocs
 win32:MOC_DIR = ./mocs
 
 #ifdef IRRLICHT
-win32:INCLUDEPATH+=C:\Users\TEST\Downloads\irrlicht-1.8.4\irrlicht-1.8.4\include
-else:unix:INCLUDEPATH+= /home/netpipe/gamedev/irrlicht-1.8.4/include /home/Dev/libs/game/irrlicht/Irrlicht-SVN/lib/Linux/
+win32:INCLUDEPATH+=C:\Users\TEST\Downloads\irrlicht-1.8.4\irrlicht-1.8.4\include ../LunaLibs/irrlicht-1.8.4/
+else:unix:INCLUDEPATH+= ./ /home/netpipe/gamedev/irrlicht-1.8.4/include ../LunaLibs/irrlicht-1.8.4/include
 
-win32:LIBS += -LC:\Users\TEST\Downloads\irrlicht-1.8.4\irrlicht-1.8.4\lib\Win32-visualstudio
-else:unix:LIBS += -L/home/netpipe/gamedev/irrlicht-1.8.4/lib/Linux  -lQt5Widgets -lQt5Gui -lQt5Core -lX11 -lXxf86vm -lIrrlicht
-#endif
+win32:LIBS += -LC:\Users\TEST\Downloads\irrlicht-1.8.4\irrlicht-1.8.4\lib\Win32-visualstudio -L../LunaLibs/irrlicht-1.8.4/lib/win32-gcc
+else:unix:LIBS += -L/home/netpipe/gamedev/irrlicht-1.8.4/lib/Linux -L../LunaLibs/irrlicht-1.8.4/lib/Linux -lQt5Widgets -lQt5Gui -lQt5Core -lXxf86vm -lIrrlicht -lGL -lX11
+
+linux{
+LIBS+= -lIrrlicht -lGL -lX11  -lXxf86vm
+}
+
 
 linux2 {
 DEFINES += SOUND MEDIAPLAYER
