@@ -58,7 +58,7 @@ QT += svg dbus network
 
 
 linux {
-DEFINES += zlib QUAZIP DOWNLOAD SMTP SOUND DBUS STORAGE FTP MEDIAPLAYER PYTHON FIGLET IRRLICHT
+DEFINES += zlib QUAZIP DOWNLOAD SMTP SOUND DBUS STORAGE FTP PYTHON FIGLET
 QT += multimedia svg dbus network opengl
 LIBS += -lpython2.7
 CONFIG += barcodescan

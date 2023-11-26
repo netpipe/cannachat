@@ -54,7 +54,7 @@ IrcClient::IrcClient(QWidget* parent,QString nickname, QString channel, QString 
 
     if (channel.toLatin1()==""){//popupbox
     }else{
-        connection->sendCommand(IrcCommand::createJoin(SERVER.toLatin1()));
+        connection->sendCommand(IrcCommand::createJoin(CHANNEL.toLatin1()));
         connection->open();
     }
 
@@ -69,7 +69,7 @@ void IrcClient::JoinChannel(QString channel)
     if (channel.toLatin1()==""){//popupbox
     }else{
         connection->sendCommand(IrcCommand::createJoin(channel.toLatin1()));
-      //  connection->open();
+        connection->open();
     }
 }
 

@@ -526,7 +526,7 @@ void MainWindow::on_connect_clicked()
     QStringList splitlist = ui->serverlist->currentItem()->text().split(":");
     QString servername = splitlist[0].toUtf8();
     qDebug() << splitlist[0].toUtf8();
-    QString channel =  "#cannachat";
+   // QString channel =  "#cannachat";
     int port = splitlist[1].toInt();
     bool ssl = splitlist[2].toInt();
     QString password = "";
@@ -539,9 +539,20 @@ void MainWindow::on_connect_clicked()
         password = "";
     }
 
-    serverarray.push_back(new IrcClient( ui->tabWidget->findChild<QWidget *>("chatwidget"), ui->nickname->text().toUtf8(), channel.toUtf8(), servername.toUtf8(),port,ssl,password.toUtf8()));
-    qDebug() << serverarray.size();
-    ui->tabWidget->addTab(serverarray[serverarray.size()-1], QString::number(serverarray.size()-1)+":"+servername.toLatin1());
+    // Autojoin the channel
+    QString channel = ui->channeledit->text().toLatin1();
+    if(channel.length()>0)
+    {
+        channel = channel;
+        IrcClient *CilentAutoChannelConnect = new IrcClient(ui->tabWidget->findChild<QWidget *>("chatwidget"), ui->nickname->text().toUtf8(), "", servername.toUtf8(),port,ssl,password.toUtf8());
+        serverarray.push_back(CilentAutoChannelConnect);
+       CilentAutoChannelConnect->JoinChannel(channel);
+     //  on_joinchannel_clicked();
+        //serverarray.push_back(new IrcClient( ui->tabWidget->findChild<QWidget *>("chatwidget"), ui->nickname->text().toUtf8(), channel.toUtf8(), servername.toUtf8(),port,ssl,password.toUtf8()));
+        qDebug() << serverarray.size();
+       ui->tabWidget->addTab(serverarray[serverarray.size()-1], QString::number(serverarray.size()-1)+":"+servername.toLatin1());
+    }
+
 }
 
 void MainWindow::on_actionSave_triggered()
