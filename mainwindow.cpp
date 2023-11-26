@@ -555,21 +555,59 @@ void MainWindow::on_connect_clicked()
 //        password = "";
 //    }
 
+
+//bconnecting = 1;
+//QFile Fout(servername.toLatin1()+".txt");    if(Fout.exists())    {     //if(!bsaving) {ui->channelList->clear();}
+//ui->channelList->clear();    }    Fout.close();
     // Autojoin the channel
     QString channel = ui->channeledit->text().toLatin1();
-    if(channel.length()>0)
-    {
-        channel = channel;
-        IrcClient *CilentAutoChannelConnect = new IrcClient(ui->tabWidget->findChild<QWidget *>("chatwidget"), ui->nickname->text().toUtf8(), channel.toUtf8(), servername.toUtf8(),port,ssl,password.toUtf8());
+   // if(channel.length()>0)
+   // {
+     //   channel = channel;
+        IrcClient *CilentAutoChannelConnect = new IrcClient(ui->tabWidget->findChild<QWidget *>("chatwidget"), ui->nickname->text().toUtf8(), "", servername.toUtf8(),port,ssl,password.toUtf8());
         serverarray.push_back(CilentAutoChannelConnect);
-       //CilentAutoChannelConnect->JoinChannel(channel);
+
+        QString searchString(":");
+        QFile MyFile(servername.toLatin1()+".txt");
+        MyFile.open(QIODevice::ReadWrite);
+        QTextStream in (&MyFile);
+
+        QStringList list;        QString line;        QStringList nums;
+
+        do {
+            line = in.readLine();
+            if (line.contains(searchString.toLatin1())) { //, Qt::CaseSensitive
+                QRegExp rx("[:]");// match a comma or a space
+                list = line.split(rx);
+                if (list.at(2).toLatin1() == "1"){ui->autojoinchk->setChecked(1);
+                    //   serverarray[0]->appendText("/PRIVMSG #communi :testing123\r\n");
+                    QString test = "/JOIN ";
+                             test += list.at(1).toLatin1();
+                            // test += " ";
+                           // test += list.at(3).toLatin1();
+                            test +=  "\r\n";
+                            nums << list.at(1).toLatin1();//test.toLatin1()
+                    CilentAutoChannelConnect->appendText(test.toLatin1());
+                    //CilentAutoChannelConnect->JoinChannel(list.at(1).toLatin1());
+//qDebug() << "autojoin " << list.at(1).toLatin1() ;
+                }
+                if (list.at(3).toLatin1() != ""){ui->chanpass->setText(list.at(3).toLatin1());}
+            }
+        } while (!line.isNull());
+        MyFile.close();
+
+      // CilentAutoChannelConnect->JoinChannel(channel);
      //  on_joinchannel_clicked();
         //serverarray.push_back(new IrcClient( ui->tabWidget->findChild<QWidget *>("chatwidget"), ui->nickname->text().toUtf8(), channel.toUtf8(), servername.toUtf8(),port,ssl,password.toUtf8()));
         qDebug() << serverarray.size();
        ui->tabWidget->addTab(serverarray[serverarray.size()-1], QString::number(serverarray.size()-1)+":"+servername.toLatin1());
      //  CilentAutoChannelConnect->appendText("/PRIVMSG #communi :testing123");
-    }
-
+       foreach ( QString test3,nums){
+       CilentAutoChannelConnect->JoinChannel(test3);
+       }
+      // CilentAutoChannelConnect->appendText("/JOIN #communi\r\n");
+ //   }
+//bconnecting=0;
 }
 
 void MainWindow::on_actionSave_triggered()
@@ -682,7 +720,7 @@ void MainWindow::on_serverlist_currentRowChanged(int currentRow)
 //    ui->chkpassword->setChecked(1);
 //            }
 //   }
-
+ui->autojoinchk->setChecked(0);
    // qDebug() << "channels";
     QString searchString(":");
     QFile MyFile(servername.toLatin1()+".txt");
@@ -699,8 +737,14 @@ void MainWindow::on_serverlist_currentRowChanged(int currentRow)
             QRegExp rx("[:]");// match a comma or a space
             list = line.split(rx);
             if (list.at(2).toLatin1() == "1"){ui->autojoinchk->setEnabled(1);}
-            nums.append(list.at(1).toLatin1());
-           // nums.append(line);
+            if (list.at(3).toLatin1() != ""){ui->chanpass->setText(list.at(3).toLatin1());}
+           // nums.append(list.at(1).toLatin1());
+            QString test = list.at(1).toLatin1();
+            test +=":";
+                   test +=list.at(2).toLatin1();
+                     test +=":";
+                     test +=list.at(3).toLatin1();
+            nums.append(test);
         }
     } while (!line.isNull());
     MyFile.close();
