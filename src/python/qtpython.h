@@ -34,7 +34,8 @@ void ExecuteScript(QString scriptname);
 void MainWindow::settext(){
 
     ui->listWidget_2->addItem(test3.toLatin1());
-
+    //   serverarray[0]->appendText("/PRIVMSG #communi :testing123\r\n");
+   // serverarray[0]->appendText("/JOIN #communi\r\n");
 }
 
 static PyObject * qt_TextBox(PyObject * self,PyObject * args)

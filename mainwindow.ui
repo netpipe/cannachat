@@ -34,7 +34,7 @@
         <item row="0" column="0">
          <widget class="QTabWidget" name="tabWidget_2">
           <property name="currentIndex">
-           <number>7</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tab_2">
            <attribute name="title">
@@ -124,14 +124,7 @@
               </layout>
              </item>
              <item row="0" column="1">
-              <widget class="QCheckBox" name="chkpassword">
-               <property name="enabled">
-                <bool>true</bool>
-               </property>
-               <property name="text">
-                <string>password</string>
-               </property>
-              </widget>
+              <widget class="QLineEdit" name="servpass"/>
              </item>
             </layout>
            </widget>
@@ -157,6 +150,20 @@
                 <widget class="QPushButton" name="addchannel">
                  <property name="text">
                   <string>Add</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="autojoinchk">
+                 <property name="text">
+                  <string>autojoin</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="chanpass">
+                 <property name="text">
+                  <string>password</string>
                  </property>
                 </widget>
                </item>
@@ -198,8 +205,8 @@
            <widget class="QPushButton" name="pushButton_2">
             <property name="geometry">
              <rect>
-              <x>560</x>
-              <y>330</y>
+              <x>550</x>
+              <y>320</y>
               <width>95</width>
               <height>27</height>
              </rect>

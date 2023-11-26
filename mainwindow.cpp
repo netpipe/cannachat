@@ -492,7 +492,7 @@ void MainWindow::writesettings(){
                     for (int i=0; i < sized; i++){
 
                         ui->channelList->setCurrentRow(i);
-                         stream << servername.toLatin1()+":" << ui->channelList->currentItem()->text().toLatin1() << endl;
+                         stream << servername.toLatin1()+":" << ui->channelList->currentItem()->text().toLatin1() <<  ":" << ui->autojoinchk->isChecked()<< ":" << ui->chanpass->text() <<endl;
                     }
                     file2.close();
                 }
@@ -546,14 +546,14 @@ void MainWindow::on_connect_clicked()
     int port = splitlist[1].toInt();
     bool ssl = splitlist[2].toInt();
     QString password = "";
-    if (ui->chkpassword->isChecked()){
-        if (splitlist.count() > 3){
-        password = splitlist[3].toUtf8();
-        }
-        else {password = "";}
-    }else{
-        password = "";
-    }
+//    if (ui->chkpassword->isChecked()){
+//        if (splitlist.count() > 3){
+//        password = splitlist[3].toUtf8();
+//        }
+//        else {password = "";}
+//    }else{
+//        password = "";
+//    }
 
     // Autojoin the channel
     QString channel = ui->channeledit->text().toLatin1();
@@ -674,14 +674,14 @@ void MainWindow::on_serverlist_currentRowChanged(int currentRow)
     QFile Fout(servername.toLatin1()+".txt");    if(Fout.exists())    {     //if(!bsaving) {ui->channelList->clear();}
     ui->channelList->clear();    }    Fout.close();
     QString password;
-   if( splitlist.count() > 3 ){
-     password = splitlist[3].toUtf8();
-     if (password == ""){
-             ui->chkpassword->setChecked(0);
-     }else{
-    ui->chkpassword->setChecked(1);
-            }
-   }
+//   if( splitlist.count() > 3 ){
+//     password = splitlist[3].toUtf8();
+//     if (password == ""){
+//             ui->chkpassword->setChecked(0);
+//     }else{
+//    ui->chkpassword->setChecked(1);
+//            }
+//   }
 
    // qDebug() << "channels";
     QString searchString(":");
@@ -698,12 +698,14 @@ void MainWindow::on_serverlist_currentRowChanged(int currentRow)
         if (line.contains(searchString.toLatin1())) { //, Qt::CaseSensitive
             QRegExp rx("[:]");// match a comma or a space
             list = line.split(rx);
+            if (list.at(2).toLatin1() == "1"){ui->autojoinchk->setEnabled(1);}
             nums.append(list.at(1).toLatin1());
+           // nums.append(line);
         }
     } while (!line.isNull());
     MyFile.close();
-    foreach (QString list,nums){
-        ui->channelList->addItem(list.toLatin1());
+    foreach (QString list2,nums){
+        ui->channelList->addItem(list2.toLatin1());
     }
 }
 
