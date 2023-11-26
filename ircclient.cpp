@@ -71,6 +71,10 @@ void IrcClient::JoinChannel(QString channel)
         connection->sendCommand(IrcCommand::createJoin(channel.toLatin1()));
         connection->open();
     }
+   // sleep(2);
+   // IrcMessage::fromData(":" + prefix.toUtf8() + " " + toString().toUtf8(), connection);
+  //  connection->sendCommand(IrcCommand::createMessage(channel, QStringLiteral("Hi, kthxbye!")));
+   // connection->open();
 }
 
 void IrcClient::Connections(){
@@ -154,11 +158,12 @@ void IrcClient::appendText(QString input)
         connection->sendCommand(command);
 
         // echo own messages (servers do not send our own messages back)
-        if (command->type() == IrcCommand::Message || command->type() == IrcCommand::CtcpAction) {
+        //put response in proper channel
+       // if (command->type() == IrcCommand::Message || command->type() == IrcCommand::CtcpAction) {
             IrcMessage* msg = command->toMessage(connection->nickName(), connection);
             receiveMessage(msg);
             delete msg;
-        }
+       // }
 
         lineEdit->clear();
     } else if (input.length() > 1) {
