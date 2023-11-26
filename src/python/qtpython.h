@@ -33,7 +33,7 @@ void ExecuteScript(QString scriptname);
 
 void MainWindow::settext(){
 
- //   ui->label->setText(test3.toLatin1());
+    ui->listWidget_2->addItem(test3.toLatin1());
 
 }
 
@@ -162,9 +162,9 @@ void ExecuteScript(QString scriptname)
 
 void MainWindow::qtPython()
 {
-   #ifdef TAR11 //for emscripten
+   #ifdef TAR1 //for emscripten
     TAR* tar;
-    if (tar_open(&tar, "./media/pydata.tar", NULL, O_RDONLY, 0, 0) != 0) {
+    if (tar_open(&tar, "./Resource/pydata.tar", NULL, O_RDONLY, 0, 0) != 0) {
         fprintf(stderr, "Error: failed to open pydata.tar\n");
         exit(1);
     }
@@ -183,11 +183,11 @@ void MainWindow::qtPython()
 
     init_qt(); //Initialize our module
 
-    #ifdef TAR1
-    ExecuteScript("./qtPython/main.pys"); //Using our handy dandy script execution function
-#else
-    ExecuteScript("./qtPython/windows.pys");
-#endif
+    #ifndef TAR1
+    ExecuteScript("./Resource/scripts/main.pys"); //Using our handy dandy script execution function
+    #else
+    ExecuteScript("./Resource/scripts/windows.pys");
+    #endif
 //emscripten_exit_with_live_runtime();
 
     Py_Finalize(); //Shut down the Python interpreter

@@ -567,7 +567,7 @@ void MainWindow::on_connect_clicked()
         //serverarray.push_back(new IrcClient( ui->tabWidget->findChild<QWidget *>("chatwidget"), ui->nickname->text().toUtf8(), channel.toUtf8(), servername.toUtf8(),port,ssl,password.toUtf8()));
         qDebug() << serverarray.size();
        ui->tabWidget->addTab(serverarray[serverarray.size()-1], QString::number(serverarray.size()-1)+":"+servername.toLatin1());
-     //  CilentAutoChannelConnect->appendText("/PRIVMSG #communi:testing123");
+     //  CilentAutoChannelConnect->appendText("/PRIVMSG #communi :testing123");
     }
 
 }
@@ -914,7 +914,7 @@ void MainWindow::on_tabWidget_currentChanged(int index)
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    serverarray[0]->appendText("/PRIVMSG #communi :testing123\r\n");
-
+ //   serverarray[0]->appendText("/PRIVMSG #communi :testing123\r\n");
+ serverarray[0]->appendText("/JOIN #communi\r\n");
 }
 

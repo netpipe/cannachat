@@ -292,6 +292,7 @@ HEADERS += \
     src/encryption/Qt-AES/qaesencryption.h \
     src/encryption/encryption.h \
     src/mpqt/playlistManager.h \
+    src/python/qtpython.h \
     src/smtp/SmtpMime \
     src/smtp/smtpexports.h \
     src/smtp/smtpclient.h \
