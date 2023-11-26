@@ -113,6 +113,7 @@ void MainWindow::on_themeApply_clicked() //theme
     if (ui->cmbTheme->currentText().toLatin1() != ""){
         QStyleSheetManager::loadStyleSheet( ui->cmbTheme->currentText().toLatin1());
     }
+    writesettings();
 }
 
 

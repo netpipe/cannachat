@@ -547,9 +547,9 @@ void MainWindow::on_connect_clicked()
     if(channel.length()>0)
     {
         channel = channel;
-        IrcClient *CilentAutoChannelConnect = new IrcClient(ui->tabWidget->findChild<QWidget *>("chatwidget"), ui->nickname->text().toUtf8(), "", servername.toUtf8(),port,ssl,password.toUtf8());
+        IrcClient *CilentAutoChannelConnect = new IrcClient(ui->tabWidget->findChild<QWidget *>("chatwidget"), ui->nickname->text().toUtf8(), channel.toUtf8(), servername.toUtf8(),port,ssl,password.toUtf8());
         serverarray.push_back(CilentAutoChannelConnect);
-       CilentAutoChannelConnect->JoinChannel(channel);
+       //CilentAutoChannelConnect->JoinChannel(channel);
      //  on_joinchannel_clicked();
         //serverarray.push_back(new IrcClient( ui->tabWidget->findChild<QWidget *>("chatwidget"), ui->nickname->text().toUtf8(), channel.toUtf8(), servername.toUtf8(),port,ssl,password.toUtf8()));
         qDebug() << serverarray.size();
