@@ -191,11 +191,11 @@ connect(scanAction, SIGNAL(triggered()), this, SLOT(onFindMusic()));
 #endif
 
 #ifdef IRRLICHT
-    this->installEventFilter(this);
+  //  this->installEventFilter(this);
 
-      ui->irrRenderWidget0->grabKeyboard();
+  //    ui->irrRenderWidget0->grabKeyboard();
 #endif
-
+//this->removeEventFilter(this);
 }
 
 
@@ -208,8 +208,12 @@ bool MainWindow::eventFilter( QObject *o, QEvent *e )
         QKeyEvent *k = (QKeyEvent *)e;
          this->widget->keyPressEvent(k);
 
+    if (k->key()==69){this->removeEventFilter(this);}
 
-      //  qDebug( "Ate key press %d", k->key() );
+    if (k->key()==Qt::Key_Escape){this->removeEventFilter(this);}
+
+
+        qDebug( "Ate key press %d", k->key() );
         return 1; // eat event
     }else if ( e->type() == QEvent::KeyRelease) {
          QKeyEvent *k = (QKeyEvent *)e;
@@ -330,7 +334,7 @@ void MainWindow::resizeEvent(QResizeEvent* event)
    QMainWindow::resizeEvent(event);
  //  ircwidget[0].resize(ui->chatwidget->width(),ui->chatwidget->height());
 #ifdef IRRLICHT
-  // widget->resizeIrrWidget(0, 0, this->size().width(), this->size().height()/2);
+   widget->resizeIrrWidget(0, 0, this->size().width(), this->size().height());
   // this->irr1->resizeIrrWidget(this->size().width()/2, 0, this->size().width()/2, this->size().height());
 #endif
    // Your code here.
@@ -880,14 +884,16 @@ void MainWindow::on_tabWidget_currentChanged(int index)
      if (ui->tabWidget->currentIndex() == 0){
         // qDebug()<< "curindex0";
           ui->irrRenderWidget0->releaseKeyboard();
-
+            this->removeEventFilter(this);
      }else
          if (ui->tabWidget->currentIndex() == 1){
             // qDebug()<< "curindex0";
+             this->installEventFilter(this);
             ui->irrRenderWidget0->grabKeyboard();
          }else{
          // ui->irrRenderWidget0->grabKeyboard();
             ui->irrRenderWidget0->releaseKeyboard();
+            this->removeEventFilter(this);
            qDebug()<< "releaseKeyboard";
 }
 
