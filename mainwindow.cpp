@@ -374,7 +374,6 @@ if (settingsexists){
     QStringList nums;
     QString Nick;
 
-
     do {
         line = in.readLine();
         searchString=":";
@@ -421,14 +420,26 @@ qDebug() << "test";
         }
     } while (!line.isNull());
     MyFile2.close();
-
+// ui->serverlist->clearSelection();
 //    ui->serverlist->blockSignals(true);
 //    ui->serverlist->clear();
 //    ui->serverlist->blockSignals(false);
-    for (int i=0; i < ui->serverlist->count(); i++){
-        ui->serverlist->takeItem(0);
-    }
+    for (int i=0; i <= ui->serverlist->count(); i++){
+//        ui->serverlist->takeItem(ui->serverlist->currentRow());
+//    }
 
+   // while(ui->serverlist->count()>0)    {
+  //      ui->serverlist->setCurrentRow( 0 );
+  //      ui->serverlist->itemActivated(0);
+ //       ui->serverlist->activated(0);
+      ui->serverlist->takeItem(ui->serverlist->currentRow());
+          ui->serverlist->setCurrentRow( ui->serverlist->count() - 1 );
+    }
+   // ui->serverlist->currentRow())->setText(nums.at(0).toLatin1()
+   // ui->serverlist->setCurrentRow(ui->serverlist->count() - 1);
+   //     ui->serverlist->takeItem(0);
+ //ui->serverlist->clearSelection();
+   // qDeleteAll(ui->serverlist->selectedItems());
 
                   //      int sized = ui->channelList->count();
     ui->serverlist->item(ui->serverlist->currentRow())->setText(nums.at(0).toLatin1());
@@ -445,6 +456,7 @@ qDebug() << "test";
 
 void MainWindow::writesettings(){
 
+ //   bsaving=1;
     QFile file("settings.txt");
 
           if(file.open(QIODevice::WriteOnly | QIODevice::Text))
@@ -471,17 +483,14 @@ void MainWindow::writesettings(){
           QStringList splitlist = ui->serverlist->currentItem()->text().split(":");
           QString servername = splitlist[0].toUtf8();
 
-
           QFile file2(servername.toLatin1()+".txt");
-            //   QFile file2("servers.txt");
-            //    if(file.open(QIODevice::WriteOnly | QIODevice::Text))
-
                 if(file2.open(QIODevice::WriteOnly | QIODevice::Text))
                 {
                     file2.seek(0);
                     QTextStream stream(&file2);
                     int sized = ui->channelList->count();
                     for (int i=0; i < sized; i++){
+
                         ui->channelList->setCurrentRow(i);
                          stream << servername.toLatin1()+":" << ui->channelList->currentItem()->text().toLatin1() << endl;
                     }
@@ -504,7 +513,7 @@ qDebug() << "writing settings";
                     }
                     file3.close();
                 }
-
+//bsaving=0;
 }
 
 void MainWindow::on_actionExit_triggered()
@@ -662,7 +671,8 @@ void MainWindow::on_serverlist_currentRowChanged(int currentRow)
     //load channels for server maybe use sqlite db
     QStringList splitlist = ui->serverlist->currentItem()->text().split(":");
     QString servername = splitlist[0].toUtf8();
-    QFile Fout(servername.toLatin1()+".txt");    if(Fout.exists())    {     ui->channelList->clear();   }    Fout.close();
+    QFile Fout(servername.toLatin1()+".txt");    if(Fout.exists())    {     //if(!bsaving) {ui->channelList->clear();}
+    ui->channelList->clear();    }    Fout.close();
     QString password;
    if( splitlist.count() > 3 ){
      password = splitlist[3].toUtf8();
@@ -692,8 +702,8 @@ void MainWindow::on_serverlist_currentRowChanged(int currentRow)
         }
     } while (!line.isNull());
     MyFile.close();
-    foreach (QString list2,nums){
-        ui->channelList->addItem(list2.toLatin1());
+    foreach (QString list,nums){
+        ui->channelList->addItem(list.toLatin1());
     }
 }
 
@@ -885,15 +895,18 @@ void MainWindow::on_tabWidget_currentChanged(int index)
         // qDebug()<< "curindex0";
           ui->irrRenderWidget0->releaseKeyboard();
             this->removeEventFilter(this);
+        widget->bActive=0;
      }else
          if (ui->tabWidget->currentIndex() == 1){
             // qDebug()<< "curindex0";
              this->installEventFilter(this);
             ui->irrRenderWidget0->grabKeyboard();
+           widget->bActive=1;
          }else{
          // ui->irrRenderWidget0->grabKeyboard();
             ui->irrRenderWidget0->releaseKeyboard();
             this->removeEventFilter(this);
+            widget->bActive=0;
            qDebug()<< "releaseKeyboard";
 }
 

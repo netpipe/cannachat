@@ -39,7 +39,7 @@ namespace irr {
     Q_OBJECT
 public:
     void resizeIrrWidget(int x, int y, int newWidth, int newHeight);
-
+    bool bActive=0;
     QWidget* parent2;
     explicit IrrlichtWidget(QWidget* parent = 0);
     ~IrrlichtWidget();

@@ -87,7 +87,7 @@ void getEmailSettings();
     qint64 curseconds;
 #endif
     vector<IrcClient*> serverarray;
-
+bool bsaving;
 
     void unCompress(QString filename , QString ofilename);
     void Compress(QString filename , QString ofilename);

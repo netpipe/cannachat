@@ -296,7 +296,7 @@ void IrrlichtWidget::stopMoveAnimation(){
 
 void IrrlichtWidget::timerEvent(QTimerEvent* event)
 {
-    if(mDevice != 0)
+    if(mDevice != 0 && bActive)
     {
 
         mDevice->getTimer()->tick();
@@ -312,6 +312,9 @@ void IrrlichtWidget::timerEvent(QTimerEvent* event)
 //        device->getVideoDriver()->beginScene(true, true, color);
 //        device->getSceneManager()->drawAll();
 //        device->getVideoDriver()->endScene();
+    }
+    else{
+        mDevice->sleep(155);
     }
 }
 
