@@ -561,40 +561,45 @@ void MainWindow::on_connect_clicked()
 //ui->channelList->clear();    }    Fout.close();
     // Autojoin the channel
     QString channel = ui->channeledit->text().toLatin1();
+    QStringList splitlist2 = channel.split(":");
+    QString servername2 = splitlist2[0].toUtf8();
+
+    QString searchString(":");
+    QFile MyFile(servername.toLatin1()+".txt");
+    MyFile.open(QIODevice::ReadWrite);
+    QTextStream in (&MyFile);
+
+    QStringList list;        QString line;        QStringList nums;
+
+    do {
+        line = in.readLine();
+        if (line.contains(searchString.toLatin1())) { //, Qt::CaseSensitive
+            QRegExp rx("[:]");// match a comma or a space
+            list = line.split(rx);
+            if (list.at(2).toLatin1() == "1"){ui->autojoinchk->setChecked(1);
+                //   serverarray[0]->appendText("/PRIVMSG #communi :testing123\r\n");
+               // QString //test = "/JOIN ";
+                    QString     test = list.at(1).toLatin1();
+                         test += " ";
+                        test += list.at(3).toLatin1();
+                        test +=  "\r\n";
+                        //nums << list.at(1).toLatin1();//test.toLatin1()
+                        nums << test.toLatin1();
+               // CilentAutoChannelConnect->appendText(test.toLatin1());
+                //CilentAutoChannelConnect->JoinChannel(list.at(1).toLatin1());
+//qDebug() << "autojoin " << list.at(1).toLatin1() ;
+            }
+            if (list.at(3).toLatin1() != ""){ui->chanpass->setText(list.at(3).toLatin1());}
+        }
+    } while (!line.isNull());
+    MyFile.close();
+
+
    // if(channel.length()>0)
    // {
      //   channel = channel;
-        IrcClient *CilentAutoChannelConnect = new IrcClient(ui->tabWidget->findChild<QWidget *>("chatwidget"), ui->nickname->text().toUtf8(), "", servername.toUtf8(),port,ssl,password.toUtf8());
+        IrcClient *CilentAutoChannelConnect = new IrcClient(ui->tabWidget->findChild<QWidget *>("chatwidget"), ui->nickname->text().toUtf8(), nums, servername.toUtf8(),port,ssl,password.toUtf8());
         serverarray.push_back(CilentAutoChannelConnect);
-
-        QString searchString(":");
-        QFile MyFile(servername.toLatin1()+".txt");
-        MyFile.open(QIODevice::ReadWrite);
-        QTextStream in (&MyFile);
-
-        QStringList list;        QString line;        QStringList nums;
-
-        do {
-            line = in.readLine();
-            if (line.contains(searchString.toLatin1())) { //, Qt::CaseSensitive
-                QRegExp rx("[:]");// match a comma or a space
-                list = line.split(rx);
-                if (list.at(2).toLatin1() == "1"){ui->autojoinchk->setChecked(1);
-                    //   serverarray[0]->appendText("/PRIVMSG #communi :testing123\r\n");
-                    QString test = "/JOIN ";
-                             test += list.at(1).toLatin1();
-                            // test += " ";
-                           // test += list.at(3).toLatin1();
-                            test +=  "\r\n";
-                            nums << list.at(1).toLatin1();//test.toLatin1()
-                    CilentAutoChannelConnect->appendText(test.toLatin1());
-                    //CilentAutoChannelConnect->JoinChannel(list.at(1).toLatin1());
-//qDebug() << "autojoin " << list.at(1).toLatin1() ;
-                }
-                if (list.at(3).toLatin1() != ""){ui->chanpass->setText(list.at(3).toLatin1());}
-            }
-        } while (!line.isNull());
-        MyFile.close();
 
       // CilentAutoChannelConnect->JoinChannel(channel);
      //  on_joinchannel_clicked();
@@ -603,9 +608,10 @@ void MainWindow::on_connect_clicked()
        ui->tabWidget->addTab(serverarray[serverarray.size()-1], QString::number(serverarray.size()-1)+":"+servername.toLatin1());
      //  CilentAutoChannelConnect->appendText("/PRIVMSG #communi :testing123");
        foreach ( QString test3,nums){
-       CilentAutoChannelConnect->JoinChannel(test3);
+       //  CilentAutoChannelConnect->JoinChannel(test3.toLatin1());
        }
-      // CilentAutoChannelConnect->appendText("/JOIN #communi\r\n");
+       //sleep(5);
+       //CilentAutoChannelConnect->appendText("/JOIN #communi\r\n");
  //   }
 //bconnecting=0;
 }

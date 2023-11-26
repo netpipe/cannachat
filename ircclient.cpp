@@ -34,12 +34,12 @@
 
 
 
-IrcClient::IrcClient(QWidget* parent,QString nickname, QString channel, QString server,int port, int secure,QString password) : QSplitter(parent)
+IrcClient::IrcClient(QWidget* parent,QString nickname, QStringList channel, QString server,int port, int secure,QString password) : QSplitter(parent)
 {
     createParser();
 
      NICKNAME = nickname.toUtf8();
-     CHANNEL  = channel.toUtf8();
+     CHANNEL  = channel.at(0).toUtf8();
      SERVER   = server.toUtf8();
           PASSWORD   = password.toUtf8();
      PORT     = port;
@@ -52,9 +52,11 @@ IrcClient::IrcClient(QWidget* parent,QString nickname, QString channel, QString 
     createLayout();
     createBufferList();
 
-    if (channel.toLatin1()==""){//popupbox
+    if (channel.at(0).toLatin1()==""){//popupbox
     }else{
-        connection->sendCommand(IrcCommand::createJoin(CHANNEL.toLatin1()));
+        foreach (QString test3,channel){
+        connection->sendCommand(IrcCommand::createJoin(test3.toLatin1()));
+        }
         connection->open();
     }
 
