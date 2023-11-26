@@ -70,6 +70,9 @@
 
 #include <src/figlet/figlet.h>
 
+//    extern "C" {
+//    int figlet(int argc, char *argv);
+//    }
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -177,11 +180,11 @@ connect(clearAction, SIGNAL(triggered()), this, SLOT(onClearList()));
 scanAction = new QAction(tr("Scan home dir: "+(QDir::home()).absolutePath().toUtf8()), this);
 connect(scanAction, SIGNAL(triggered()), this, SLOT(onFindMusic()));
 
-QMenuBar *m_menuBar = new QMenuBar(this);
-QMenu *playlistMenu = new QMenu(QString::fromUtf8("Playlist"));
-playlistMenu->addAction(clearAction);
-playlistMenu->addAction(scanAction);
-m_menuBar->addAction(playlistMenu->menuAction());
+//QMenuBar *m_menuBar = new QMenuBar(this);
+//QMenu *playlistMenu = new QMenu(QString::fromUtf8("Playlist"));
+//playlistMenu->addAction(clearAction);
+//playlistMenu->addAction(scanAction);
+//m_menuBar->addAction(playlistMenu->menuAction());
 
   audio->setVideoOutput(ui->vidwid);
 
@@ -823,27 +826,32 @@ void MainWindow::on_asciigen_clicked()
 {
     QString fileslist;
 
-     fileslist.append("blank,");
+     fileslist.append("figlet,");
 
      fileslist.append("-f,");
-  //   fileslist.append("./fonts/standard.flf,");
-fileslist.append(ui->fonts->currentText().toLatin1() +",");
+     //fileslist.append("./Resource/fig-fonts/standard.flf,");
+     fileslist.append(ui->fonts->currentText().toLatin1() +",");
      fileslist.append(ui->asciito->text().toLatin1());
+//fileslist.append("NULL");
+     QByteArray array5 = fileslist.toLocal8Bit();
+     char* buffer5 = array5.data();
 
-     QByteArray array = fileslist.toLocal8Bit();
-     char* buffer = array.data();
-
-     if(figlet_wrapper(buffer)) {
+     if(figlet_wrapper(buffer5)) {
          qDebug() << "successful";
      }else{
                         qDebug() << "returned false";
      }
-
-
+//     sleep(10);
+//     if(figlet_wrapper(buffer5)) {
+//         qDebug() << "successful";
+//     }else{
+//                        qDebug() << "returned false";
+//     }
 
      //    QString line;
      QFile file("tmpascii.txt");
      if (file.open(QIODevice::ReadOnly | QIODevice::Text)){ ui->asciifrom->setPlainText(file.readAll()); }
+     file.close();
 
 
 }

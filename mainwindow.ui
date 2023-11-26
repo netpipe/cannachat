@@ -76,12 +76,17 @@
                </item>
                <item>
                 <property name="text">
+                 <string>irc.libera.chat:6697:1:password</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
                  <string>test:993:1:1</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>irc.freenode.net:6697:0:password</string>
+                 <string>irc.freenode.net:6697:1:password</string>
                 </property>
                </item>
               </widget>
