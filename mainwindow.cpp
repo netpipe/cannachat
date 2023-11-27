@@ -192,9 +192,9 @@ connect(scanAction, SIGNAL(triggered()), this, SLOT(onFindMusic()));
 #endif
 
 #ifdef IRRLICHT
-  //  this->installEventFilter(this);
+    //this->installEventFilter(this);
 
-  //    ui->irrRenderWidget0->grabKeyboard();
+   //   ui->irrRenderWidget0->grabKeyboard();
 #endif
 //this->removeEventFilter(this);
 
@@ -219,7 +219,8 @@ bool MainWindow::eventFilter( QObject *o, QEvent *e )
 
     if (k->key()==69){this->removeEventFilter(this);}
 
-    if (k->key()==Qt::Key_Escape){this->removeEventFilter(this); ui->irrRenderWidget0->releaseKeyboard();}
+  //  if (k->key()==Qt::Key_Escape){this->removeEventFilter(this);  ui->irrRenderWidget0->releaseMouse();ui->irrRenderWidget0->releaseKeyboard();}
+    if (k->key()==Qt::Key_Escape){this->removeEventFilter(this);  this->widget->releaseMouse();this->widget->releaseKeyboard();}
 
 
         qDebug( "Ate key press %d", k->key() );
@@ -240,6 +241,7 @@ bool MainWindow::eventFilter( QObject *o, QEvent *e )
         }  else if ( e->type() == QEvent::MouseMove) {
                QMouseEvent* ee =(QMouseEvent*)e;
                this->widget->mouseMoveEvent(ee);
+                  qDebug() << "mousemove" ;
                    return 1;
             }
     else {
@@ -950,28 +952,37 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_tabWidget_currentChanged(int index)
 {
-#ifdef IRRLICHT
+
+    #ifdef IRRLICHT
+      //    qDebug() << "testing tabs";
     //if 3D tab
     //grab keyboard and mouse
      if (ui->tabWidget->currentIndex() == 0){
-        // qDebug()<< "curindex0";
+         qDebug()<< "curindex0";
           ui->irrRenderWidget0->releaseKeyboard();
-            this->removeEventFilter(this);
-        widget->bActive=0;
-     }else
-         if (ui->tabWidget->currentIndex() == 1){
-            // qDebug()<< "curindex0";
-             this->installEventFilter(this);
-            ui->irrRenderWidget0->grabKeyboard();
-           widget->bActive=1;
-         }else{
-         // ui->irrRenderWidget0->grabKeyboard();
-            ui->irrRenderWidget0->releaseKeyboard();
+                 //     ui->irrRenderWidget0->releaseMouse();
+                      this->widget->releaseMouse();
+                      //this->widget->releaseKeyboard();
             this->removeEventFilter(this);
             widget->bActive=0;
+     }else if (ui->tabWidget->currentIndex() == 1){
+             qDebug()<< "curindex1";
+             this->installEventFilter(this);
+            ui->irrRenderWidget0->grabKeyboard();
+          //  ui->irrRenderWidget0->grabMouse();
+            this->widget->grabMouse();
+           // this->widget->grabKeyboard();
+            widget->bActive=1;
+         }else{
+            ui->irrRenderWidget0->releaseKeyboard();
+            this->removeEventFilter(this);
+          //  ui->irrRenderWidget0->releaseMouse();
+         this->widget->releaseMouse();
+        // this->widget->releaseKeyboard();
+            widget->bActive=0;
            qDebug()<< "releaseKeyboard";
-}
-#endif
+        }
+             #endif
 }
 
 void MainWindow::on_pushButton_2_clicked()
@@ -979,4 +990,6 @@ void MainWindow::on_pushButton_2_clicked()
  //   serverarray[0]->appendText("/PRIVMSG #communi :testing123\r\n");
  serverarray[0]->appendText("/JOIN #communi\r\n");
 }
+
+
 
