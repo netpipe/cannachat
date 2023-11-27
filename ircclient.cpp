@@ -41,7 +41,7 @@ IrcClient::IrcClient(QWidget* parent,QString nickname, QStringList channel, QStr
      NICKNAME = nickname.toUtf8();
      CHANNEL  = channel.at(0).toUtf8();
      SERVER   = server.toUtf8();
-          PASSWORD   = password.toUtf8();
+     PASSWORD = password.toUtf8();
      PORT     = port;
      SECURE   = secure;
 
@@ -176,7 +176,7 @@ void IrcClient::appendText(QString input)
       //  else
        //     error = tr("[ERROR] Unknown command: %1").arg(command);
         textEdit->append(IrcMessageFormatter::formatMessage(error));
-        lineEdit->setStyleSheet("background: salmon");
+        lineEdit->setStyleSheet("background: red");//salmon
     }
 
 }
@@ -204,7 +204,7 @@ void IrcClient::onTextEntered()
         else
             error = tr("[ERROR] Unknown command: %1").arg(command);
         textEdit->append(IrcMessageFormatter::formatMessage(error));
-        lineEdit->setStyleSheet("background: salmon");
+        lineEdit->setStyleSheet("background: green"); //salmon
     }
 }
 

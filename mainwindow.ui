@@ -34,7 +34,7 @@
         <item row="0" column="0">
          <widget class="QTabWidget" name="tabWidget_2">
           <property name="currentIndex">
-           <number>3</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tab_2">
            <attribute name="title">
@@ -560,6 +560,9 @@
             <string>MediaPlayer</string>
            </attribute>
            <widget class="QTabWidget" name="uitabwidget_2">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <property name="geometry">
              <rect>
               <x>0</x>
@@ -957,6 +960,9 @@ border-radius: 4px;
               </property>
              </widget>
              <widget class="QPushButton" name="pushButton_4">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
               <property name="geometry">
                <rect>
                 <x>180</x>
@@ -970,6 +976,9 @@ border-radius: 4px;
               </property>
              </widget>
              <widget class="QPushButton" name="pushButton_5">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
               <property name="geometry">
                <rect>
                 <x>0</x>
@@ -983,6 +992,9 @@ border-radius: 4px;
               </property>
              </widget>
              <widget class="QPushButton" name="pushButton_6">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
               <property name="geometry">
                <rect>
                 <x>270</x>
@@ -1073,6 +1085,9 @@ QScrollBar::handle {
                 <layout class="QHBoxLayout" name="horizontalLayout_2">
                  <item>
                   <widget class="QPushButton" name="SkipPrevious">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
                    <property name="text">
                     <string>&lt;</string>
                    </property>
@@ -1087,6 +1102,9 @@ QScrollBar::handle {
                  </item>
                  <item>
                   <widget class="QPushButton" name="SavePlaylist">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
                    <property name="text">
                     <string>Save Playlist</string>
                    </property>
@@ -1094,6 +1112,9 @@ QScrollBar::handle {
                  </item>
                  <item>
                   <widget class="QPushButton" name="LoadPlaylist">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
                    <property name="text">
                     <string>Load Playlist</string>
                    </property>
@@ -1101,6 +1122,9 @@ QScrollBar::handle {
                  </item>
                  <item>
                   <widget class="QPushButton" name="SkipNext">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
                    <property name="text">
                     <string>&gt;</string>
                    </property>
@@ -1119,7 +1143,7 @@ QScrollBar::handle {
               <item row="0" column="0">
                <widget class="QGroupBox" name="groupBox_6">
                 <property name="title">
-                 <string>ShoutCast</string>
+                 <string>ShoutCast - Do not use this page for now</string>
                 </property>
                 <layout class="QGridLayout" name="gridLayout_11">
                  <item row="3" column="1">
@@ -2917,6 +2941,19 @@ QScrollBar::handle {
               </property>
               <property name="sizeAdjustPolicy">
                <enum>QAbstractScrollArea::AdjustToContents</enum>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_32">
+              <property name="geometry">
+               <rect>
+                <x>50</x>
+                <y>20</y>
+                <width>171</width>
+                <height>17</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>stuff for shoutcast</string>
               </property>
              </widget>
             </widget>

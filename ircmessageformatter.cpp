@@ -99,9 +99,11 @@ QString IrcMessageFormatter::formatPrivateMessage(IrcPrivateMessage* message)
 {
     const QString content = IrcTextFormat().toHtml(message->content());
     if (message->isAction())
-        return QObject::tr("* %1 %2").arg(message->nick(), content);
+        return QObject::tr("* <font color='green'>%1</font> %2").arg(message->nick(), content);
     else
-        return QObject::tr("&lt;%1&gt; %2").arg(message->nick(),content);
+      //  return QObject::tr("&lt;<font color='yellow'>%1</font>&gt; <font color='green'>%2</font>").arg(message->nick(),content);
+     //   return QObject::tr("&lt;%1&gt; <font color='green'>%2</font>").arg(message->nick(),content);
+    return QObject::tr("&lt;<font color='green'>%1</font>&gt; %2").arg(message->nick(),content);
 }
 
 QString IrcMessageFormatter::formatQuitMessage(IrcQuitMessage* message)

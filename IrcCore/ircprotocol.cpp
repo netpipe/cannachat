@@ -226,7 +226,7 @@ void IrcProtocolPrivate::handleNumericMessage(IrcNumericMessage* msg)
     case Irc::ERR_NICKNAMEINUSE: {
 
          qDebug() << "nickname in use";
-   connection->hircclient2->appendText( "nickname in use");
+   //connection->hircclient2->appendText( "nickname in use");
 
     }
     case Irc::ERR_NICKCOLLISION: {

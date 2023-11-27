@@ -951,7 +951,7 @@ void MainWindow::on_pyrun_clicked()
 }
 
 void MainWindow::on_tabWidget_currentChanged(int index)
-{
+{//switch the widgets and irrRenderer's around to do mouse picking, use qdebug on the mousemove event to see itwith qtevent mainwindow::eventFilter.
 
     #ifdef IRRLICHT
       //    qDebug() << "testing tabs";

@@ -50,7 +50,9 @@ void IrcUserPrivate::setName(const QString& n)
 {
     Q_Q(IrcUser);
     if (name != n) {
+        //name = "<font color='green'>";
         name = n;
+        //name +='</font>';
         emit q->nameChanged(name);
         emit q->titleChanged(q->title());
     }
