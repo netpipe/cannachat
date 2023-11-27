@@ -20,7 +20,7 @@ class FtpControlConnection : public QObject
 public:
     explicit FtpControlConnection(QObject *parent, QSslSocket *socket, const QString &rootPath, const QString &userName = QString(), const QString &password = QString(), bool readOnly = false,bool users=false);
     ~FtpControlConnection();
-
+    bool isBlocking=false;
 signals:
 
 public slots:
@@ -111,6 +111,7 @@ private:
     // but not upload/modify).
     bool readOnly;
     bool userslist;
+
 };
 
 #endif // FTPCONTROLCONNECTION_H

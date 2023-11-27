@@ -4,7 +4,7 @@
 
 #include <QObject>
 #include <QSet>
-
+#include "ftpcontrolconnection.h"
 class SslServer;
 
 // The ftp server. Listens on a port, and starts a new control connection each
@@ -23,7 +23,8 @@ public:
     // internet connection is available, or the port address might require root
     // priviledges (on Linux).
     bool isListening();
-
+    bool isBlocking(bool test=true);
+FtpControlConnection *testing;
 signals:
     // A connection from a new IP has been established. This signal is emitted
     // when the FTP server is connected by a new IP. The new IP will then be
@@ -63,6 +64,7 @@ private:
     // phone is unlikely to be used from 2 places at once.
     bool onlyOneIpAllowed;
     bool userslist;
+
 };
 
 #endif // FTPSERVER_H

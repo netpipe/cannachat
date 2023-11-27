@@ -52,6 +52,7 @@ FTPGUI::FTPGUI(QWidget *parent)
     loadSettings();
     server = 0;
     //startServer();
+   // server->isBlocking(true);
 
     this->setWindowFlags(Qt::WindowStaysOnTopHint);
 }
@@ -178,12 +179,18 @@ void FTPGUI::startServer()
     delete server;
     server = new FtpServer(this, ui->lineEditRootPath->text(), ui->lineEditPort->text().toInt(), userName,
                            password, ui->checkBoxReadOnly->isChecked(), ui->checkBoxOnlyOneIpAllowed->isChecked(),ui->chkboxuserslist->isChecked());
+//    if(ui->ftpenabledchk->isChecked()){
+    server->isBlocking(false);
+//    }else{server->isBlocking(true);}
     connect(server, SIGNAL(newPeerIp(QString)), SLOT(onPeerIpChanged(QString)));
     if (server->isListening()) {
         ui->statusBar->setText("Listening at " + lanIp());
     } else {
         ui->statusBar->setText("Not listening");
     }
+//    if(ui->ftpenabledchk->isChecked()){
+ //   server->isBlocking(false);
+//    }else{server->isBlocking(true);}
 }
 
 QString FTPGUI::lanIp()
@@ -241,7 +248,10 @@ void FTPGUI::on_pushButtonShowDebugLog_clicked()
 
 void FTPGUI::on_pushButtonExit_clicked()
 {
-
+  // started = false;
+//delete server;
+    //delete server;
+    //server->isBlocking(true);
     close();
 }
 

@@ -34,6 +34,7 @@ FtpControlConnection::FtpControlConnection(QObject *parent, QSslSocket *socket, 
     currentDirectory = "/";
     dataConnection = new DataConnection(this);
     reply("220 Welcome to QFtpServer.");
+    isBlocking=false;
 }
 
 FtpControlConnection::~FtpControlConnection()
@@ -127,8 +128,9 @@ void FtpControlConnection::processCommand(const QString &entireCommand)
 
     QString command;
     QString commandParameters;
-    parseCommand(entireCommand, &command, &commandParameters);
 
+    parseCommand(entireCommand, &command, &commandParameters);
+if (!isBlocking){
     if ("USER" == command) {
         reply("331 User name OK, need password.");
     } else if ("PASS" == command) {
@@ -299,6 +301,7 @@ reply("200 Command okay.");
     }
 
     lastProcessedCommand = entireCommand;
+    }
 }
 
 void FtpControlConnection::startOrScheduleCommand(FtpCommand *ftpCommand)

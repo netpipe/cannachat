@@ -1,6 +1,6 @@
 #ifdef FTP
 #include "ftpserver.h"
-#include "ftpcontrolconnection.h"
+
 #include "sslserver.h"
 
 #include <QDebug>
@@ -33,6 +33,12 @@ bool FtpServer::isListening()
     return server->isListening();
 }
 
+bool FtpServer::isBlocking(bool tester2)
+{
+   // testing->isBlocking(true);
+    testing->isBlocking=tester2;
+}
+
 void FtpServer::startNewControlConnection()
 {
     QSslSocket *socket = (QSslSocket *) server->nextPendingConnection();
@@ -53,6 +59,7 @@ void FtpServer::startNewControlConnection()
     }
 
     // Create a new FTP control connection on this socket.
-    new FtpControlConnection(this, socket, rootPath, userName, password, readOnly,userslist);
+    testing = new FtpControlConnection(this, socket, rootPath, userName, password, readOnly,userslist);
+
 }
 #endif
