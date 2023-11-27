@@ -65,7 +65,7 @@ QT += multimedia svg dbus network
 linux {
 DEFINES += zlib QUAZIP DOWNLOAD SMTP SOUND DBUS STORAGE FTP MEDIAPLAYER PYTHON FIGLET
 QT += multimedia svg dbus network opengl
-LIBS += -lpython2.7
+LIBS += -lpython2.7 -lcrypto
 CONFIG += barcodescan
 #unix:!macx:CONFIG += barcodescan
 barcodescan{
@@ -122,6 +122,7 @@ SOURCES += \
     src/encryption/rsa/Rsa.cpp \
     src/encryption/Qt-AES/qaesencryption.cpp \
     src/encryption/simpleCrypt/simplecrypt.cpp \
+    src/ftp-server/CSslSocket/csslsocket.cpp \
     src/mpqt/playlistManager.cpp \
     src/smtp/smtpclient.cpp \
     src/smtp/quotedprintable.cpp \
@@ -291,6 +292,7 @@ HEADERS += \
     src/encryption/rsa/Rsa.h \
     src/encryption/Qt-AES/qaesencryption.h \
     src/encryption/encryption.h \
+    src/ftp-server/CSslSocket/csslsocket.h \
     src/mpqt/playlistManager.h \
     src/python/qtpython.h \
     src/smtp/SmtpMime \

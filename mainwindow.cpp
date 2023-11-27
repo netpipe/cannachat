@@ -60,6 +60,7 @@
 
 #ifdef FTP
     FTPGUI *ftpgui;
+    #include "src/ftp-server/CSslSocket/csslsocket.h"
 #endif
 
 #ifdef PYTHON
@@ -196,6 +197,14 @@ connect(scanAction, SIGNAL(triggered()), this, SLOT(onFindMusic()));
   //    ui->irrRenderWidget0->grabKeyboard();
 #endif
 //this->removeEventFilter(this);
+
+#ifdef FTP
+  CSslSocket* ssl_socket = new CSslSocket();
+  if(ssl_socket)
+  {
+      delete ssl_socket;
+  }
+#endif
 }
 
 

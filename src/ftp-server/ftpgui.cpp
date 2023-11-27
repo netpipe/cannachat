@@ -42,12 +42,18 @@ FTPGUI::FTPGUI(QWidget *parent)
     // Set window icon.
    // setWindowIcon(QIcon(":/icons/appicon"));
 
+
+    QFile stylesheet("./Resource/themes/qdarkstyle/qdarkstyle.qss");
+    stylesheet.open(QFile::ReadOnly);
+    this->setStyleSheet(stylesheet.readAll());
+    stylesheet.close();
+
+
     loadSettings();
     server = 0;
     //startServer();
 
     this->setWindowFlags(Qt::WindowStaysOnTopHint);
-
 }
 
 FTPGUI::~FTPGUI()
@@ -242,19 +248,18 @@ void FTPGUI::on_pushButtonExit_clicked()
 
 void FTPGUI::on_adduserbtn_clicked()
 {
+    QString name = ui->insertUser->text();
+    QString password = ui->insertPassword->text();
+    QString user_info = name + ":" + password;
 
-
-    ui->usersList->addItem(ui->insertUser->text().toLatin1());
-
+    ui->usersList->addItem(user_info.toLatin1());
     writeusers();
 }
 
 void FTPGUI::on_rmuserbtn_clicked()
 {
-
     qDeleteAll(ui->usersList->selectedItems());
-writeusers();
-
+    writeusers();
 }
 
 void FTPGUI::writeusers(){

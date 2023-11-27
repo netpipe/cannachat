@@ -11,9 +11,9 @@ SslServer::SslServer(QObject *parent) :
 
 void SslServer::setLocalCertificateAndPrivateKey(QSslSocket *socket)
 {
-    socket->setPrivateKey(":/ssl/privkey.pem", QSsl::Rsa, QSsl::Pem, "39129380423984234012312");
+    socket->setPrivateKey("./Server.key", QSsl::Rsa, QSsl::Pem, "39129380423984234012312");
     Q_ASSERT(!socket->privateKey().isNull());
-    socket->setLocalCertificate(":/ssl/cacert.pem");
+    socket->setLocalCertificate("./Server.pem" );
     Q_ASSERT(!socket->localCertificate().isNull());
 }
 

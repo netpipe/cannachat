@@ -36,6 +36,20 @@ if (init) :
  print(choice(responses))
 # QT.settext('test')
  QT.settext(choice(responses))
+ 
+ from ftplib import FTP_TLS
+ import ssl
+ def connect():
+    ftp = FTP_TLS()
+    ftp.ssl_version = ssl.PROTOCOL_TLSv1_2
+    ftp.debugging = 2
+    ftp.connect('localhost', 8258)
+    ftp.login('admin', 'qt')
+    return ftp
+
+
+
+
 
 # myr.time_reseed();
 
@@ -87,9 +101,10 @@ if (init) :
 
 # icount=0
 #################################
-# init = 0 #initialization finish - needs whitespace infront
+ init = 0 #initialization finish - needs whitespace infront
 #################################
-
+ftp = connect()
+ftp.retrlines('LIST')
 #MAIN LOOP gets ran everytime
 
 #################################
