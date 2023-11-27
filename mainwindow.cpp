@@ -178,8 +178,8 @@ connect(ui->horizontalSlider_2, &QSlider::sliderMoved, this,&MainWindow::seek);
 
 clearAction = new QAction(tr("Clear"), this);
 connect(clearAction, SIGNAL(triggered()), this, SLOT(onClearList()));
-scanAction = new QAction(tr("Scan home dir: "+(QDir::home()).absolutePath().toUtf8()), this);
-connect(scanAction, SIGNAL(triggered()), this, SLOT(onFindMusic()));
+//scanAction = new QAction(tr("Scan home dir: "+(QDir::home()).absolutePath().toUtf8()), this);
+//connect(scanAction, SIGNAL(triggered()), this, SLOT(onFindMusic()));
 
 //QMenuBar *m_menuBar = new QMenuBar(this);
 //QMenu *playlistMenu = new QMenu(QString::fromUtf8("Playlist"));

@@ -314,7 +314,7 @@ void IrrlichtWidget::timerEvent(QTimerEvent* event)
 //        device->getVideoDriver()->endScene();
     }
     else{
-        mDevice->sleep(155);
+        mDevice->sleep(50);
     }
 }
 
