@@ -210,7 +210,7 @@ bool MainWindow::eventFilter( QObject *o, QEvent *e )
 
     if (k->key()==69){this->removeEventFilter(this);}
 
-    if (k->key()==Qt::Key_Escape){this->removeEventFilter(this);}
+    if (k->key()==Qt::Key_Escape){this->removeEventFilter(this); ui->irrRenderWidget0->releaseKeyboard();}
 
 
         qDebug( "Ate key press %d", k->key() );

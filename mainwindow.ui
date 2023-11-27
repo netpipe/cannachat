@@ -94,6 +94,13 @@
              <item row="1" column="1">
               <layout class="QVBoxLayout" name="verticalLayout">
                <item>
+                <widget class="QCheckBox" name="srvsslchk">
+                 <property name="text">
+                  <string>SSL</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QPushButton" name="addserver">
                  <property name="text">
                   <string>Add</string>
