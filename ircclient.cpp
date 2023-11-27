@@ -301,6 +301,7 @@ void IrcClient::receiveMessage(IrcMessage* message)
             else
                 appendHtml(document, html);
         }
+                                    qDebug() << html;
     }
 }
 

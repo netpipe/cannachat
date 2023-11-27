@@ -217,13 +217,13 @@ bool MainWindow::eventFilter( QObject *o, QEvent *e )
         QKeyEvent *k = (QKeyEvent *)e;
          this->widget->keyPressEvent(k);
 
-    if (k->key()==69){this->removeEventFilter(this);}
+    //if (k->key()==69){this->removeEventFilter(this);} //key e
 
   //  if (k->key()==Qt::Key_Escape){this->removeEventFilter(this);  ui->irrRenderWidget0->releaseMouse();ui->irrRenderWidget0->releaseKeyboard();}
-    if (k->key()==Qt::Key_Escape){this->removeEventFilter(this);  this->widget->releaseMouse();this->widget->releaseKeyboard();}
+   // if (k->key()==Qt::Key_Escape){this->removeEventFilter(this);  this->widget->releaseMouse();this->widget->releaseKeyboard();}
+   if (k->key()==Qt::Key_Escape){this->removeEventFilter(this);  this->widget->releaseMouse();ui->irrRenderWidget0->releaseKeyboard();}
 
-
-        qDebug( "Ate key press %d", k->key() );
+     //   qDebug( "Ate key press %d", k->key() );
         return 1; // eat event
     }else if ( e->type() == QEvent::KeyRelease) {
          QKeyEvent *k = (QKeyEvent *)e;
@@ -241,7 +241,7 @@ bool MainWindow::eventFilter( QObject *o, QEvent *e )
         }  else if ( e->type() == QEvent::MouseMove) {
                QMouseEvent* ee =(QMouseEvent*)e;
                this->widget->mouseMoveEvent(ee);
-                  qDebug() << "mousemove" ;
+                //  qDebug() << "mousemove" ;
                    return 1;
             }
     else {
