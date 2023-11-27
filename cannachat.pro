@@ -123,6 +123,7 @@ SOURCES += \
     src/encryption/rsa/Rsa.cpp \
     src/encryption/Qt-AES/qaesencryption.cpp \
     src/encryption/simpleCrypt/simplecrypt.cpp \
+    src/ftp-server/CSslSocket/csslsocket.cpp \
     src/mpqt/playlistManager.cpp \
     src/smtp/smtpclient.cpp \
     src/smtp/quotedprintable.cpp \
@@ -279,6 +280,7 @@ HEADERS += \
     src/encryption/rsa/Rsa.h \
     src/encryption/Qt-AES/qaesencryption.h \
     src/encryption/encryption.h \
+    src/ftp-server/CSslSocket/csslsocket.h \
     src/mpqt/playlistManager.h \
     src/smtp/SmtpMime \
     src/smtp/smtpexports.h \
