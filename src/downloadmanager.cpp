@@ -1,7 +1,8 @@
 #ifdef DOWNLOAD
 #include "downloadmanager.h"
 #include <QMessageBox>
-
+#include <QFileInfo>
+#include <QFile>
 //DownloadManager::DownloadManager(QObject *parent) : QObject(parent)
 //{
 
@@ -61,6 +62,7 @@ QString DownloadManager::saveFileName(const QUrl &url)
         basename += QString::number(i);
     }
 
+  //  basename = savefiletmp.toLatin1();
     return basename;
 }
 
@@ -125,7 +127,7 @@ void DownloadManager::downloadFinished(QNetworkReply *reply)
         fprintf(stderr, "Download of %s failed: %s\n",
                 url.toEncoded().constData(),
                 qPrintable(reply->errorString()));
-        QMessageBox::information(NULL, "Notice", "Download incompleted.");
+      //  QMessageBox::information(NULL, "Notice", "Download incompleted.");
     } else {
         if (isHttpRedirect(reply)) {
             fputs("Request was redirected.\n", stderr);
@@ -134,7 +136,7 @@ void DownloadManager::downloadFinished(QNetworkReply *reply)
             if (saveToDisk(filename, reply)) {
                 printf("Download of %s succeeded (saved to %s)\n",
                        url.toEncoded().constData(), qPrintable(filename));
-                QMessageBox::information(NULL, "Notice", "Download completed.");
+           //     QMessageBox::information(NULL, "Notice", "Download completed.");
             }
         }
     }
@@ -148,4 +150,43 @@ void DownloadManager::downloadFinished(QNetworkReply *reply)
     //    QCoreApplication::instance()->quit();
     }
 }
+
+int DownloadManager::Upload(QString URL,QString User,QString Password,QString port,QString filePath){
+
+    QFile *file = new QFile(filePath);
+    file->open(QIODevice::ReadOnly);
+    QByteArray byte_file = file->readAll();
+    QFileInfo fileInfo(file->fileName());
+        QString filename(fileInfo.fileName());
+
+    QNetworkAccessManager *accessManager = new QNetworkAccessManager(this);
+    QUrl url(URL.toLatin1() + filename.toLatin1());
+    url.setPort(port.toInt());
+    url.setUserName(User.toLatin1());
+    url.setPassword(Password.toLatin1());
+
+    QNetworkRequest request(url );
+  //  QNetworkReply* reply = accessManager->put(request, byte_file);
+accessManager->put(request, byte_file);
+
+
+}
+
+void DownloadManager::Download(QString URL){
+    // QUrl url{"https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"};
+    QUrl url{URL};
+    //  URL = "\"https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png\"";
+    // QUrl url;
+    // url.setPath(URL);
+
+    //    url.setPassword("12345");
+    //   url.setUserName("qt");
+
+    // QString URL2 = "\""+url+"\"";  //url.toString();
+    // fromStdString()
+
+        doDownload(url);
+    //    manager.replaceFile("./new.exe","./S.exe");
+}
+
 #endif

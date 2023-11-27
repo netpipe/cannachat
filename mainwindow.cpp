@@ -942,7 +942,7 @@ void MainWindow::on_asciito_editingFinished()
     }
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_pyrun_clicked()
 {
 #ifdef PYTHON
     qtPython();
@@ -993,3 +993,315 @@ void MainWindow::on_pushButton_2_clicked()
 
 
 
+void MainWindow::on_pushButton_clicked()
+{
+//    audio->play("https://usa19.fastcast4u.com:2000/");
+#ifdef MEDIAPLAYER
+audio->play("http://185.33.21.112:80/rockclassics_64",1);
+//audio->play("http://136.32.49.56:8000",1);
+#endif
+
+
+}
+#ifdef MEDIAPLAYER
+void MainWindow::on_pushButton_play_clicked()
+{
+
+    if (hasNextTrack()) {
+      audio->playOrPause(tracklist.at(position)->path);
+      // audio->playOrPause(tracklist.at(20.0f)->path);
+    }
+
+}
+#endif
+//void MainWindow::on_pushButton_4_clicked()
+//{
+//  ///  onFindMusic("./");
+//    //          QDir::homePath() + "/" +
+//    //                     QStandardPaths::displayName(QStandardPaths::MusicLocation);
+//}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+#ifdef MEDIAPLAYER
+    //http://api.shoutcast.com/legacy/genresearch?k=F5NaL5p4avjtIaoy&genre=classic&limit=X,Y
+
+QString url2 = "http://api.shoutcast.com/legacy/stationsearch?k=F5NaL5p4avjtIaoy&search=";  //ambient+beats
+        url2+= ui->stationSearch->text().toLatin1();
+        url2+= "&limit=1,10";
+
+        QString fileName = "./stationsearch";
+        QFile file2(fileName);
+            file2.remove();
+            file2.close();
+
+   // dlmanager->Download("http://api.shoutcast.com/legacy/Top500?k=F5NaL5p4avjtIaoy");
+    dlmanager->Download(url2.toLatin1());
+
+//    QThread::sleep(3);
+//qDebug() << "testing\n";
+    QTime dieTime = QTime::currentTime().addMSecs( 1000 );
+    while( QTime::currentTime() < dieTime )
+    {
+        QCoreApplication::processEvents( QEventLoop::AllEvents, 100 );
+    }
+
+parseSearch();
+#endif
+}
+
+void MainWindow::parseSearch(){
+#ifdef MEDIAPLAYER
+    ui->txtIds->clear();
+    ui->txtNames->clear();
+    ui->stationurls->clear();
+
+QString fileName = "./stationsearch";
+QFile file(fileName);
+  //  file.remove();
+    file.open(QIODevice::ReadOnly);
+    QString s;
+
+    QTextStream s1(&file);
+    s.append(s1.readAll());
+
+
+    QString inputstring = s; //ui->txtInput->toPlainText();
+
+    QRegExp regex;
+    regex.setPattern("name=\\\"([^\\\"]+)\\\"");
+
+    QStringList namelist, idlist;
+    int pos = 0;
+    while (pos >= 0)
+    {
+        pos = regex.indexIn(inputstring, pos);
+
+        if (pos >= 0)
+        {
+            QString strName = regex.cap(0);
+            strName = strName.mid(5);
+            namelist.push_back(strName);
+            pos += strName.length();
+        }
+    }
+
+    regex.setPattern("id=\\\"([0-9]+)\\\"");
+    pos = 0;
+    while (pos >= 0)
+    {
+        pos = regex.indexIn(inputstring, pos);
+        if (pos >= 0)
+        {
+            QString strId = regex.cap(0);
+            strId = strId.mid(3);
+            idlist.push_back(strId);
+            pos += strId.length();
+        }
+    }
+ui->txtNames->clear();
+    QString buf = "";
+    int count = namelist.count();
+    for (int i = 0; i < count; i ++)
+    {
+        buf = namelist.at(i);
+          buf.remove('"');
+        ui->txtNames->addItem(buf);
+
+   //     buf += "\r\n";
+    }
+   // ui->txtNames->setPlainText(buf);
+  //  ui->txtNames->addItem(buf);
+  //  ui->txtNames->(buf);
+
+ui->txtIds->clear();
+    buf = "";
+    count = idlist.count();
+    for (int i = 0; i < count; i ++)
+    {
+        buf = idlist.at(i);
+      //  buf += "\r\n";
+        buf.remove('"');
+           ui->txtIds->addItem(buf);
+
+    }
+  //  ui->txtIds->setPlainText(buf);
+
+#endif
+}
+
+void MainWindow::on_chooseStationbtn_clicked()
+{
+    #ifdef MEDIAPLAYER
+  //     QFile::remove("tunein-station.pls");
+ui->stationurls->clear();
+   // ui->txtIds->addItem(buf);
+ //   QString url2 = "http://yp.shoutcast.com/sbin/tunein-station.pls?id=";
+ //           url2 +=    ui->txtIds->currentItem()->text().toLatin1();
+
+ //   dlmanager->Download(url2);
+
+  //  QThread::sleep(1);
+
+    QString filename="tunein-station.pls";
+    QFile file(filename);
+    QString line;
+    ui->textEdit->clear();
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)){
+        QTextStream stream(&file);
+        while (!stream.atEnd()){
+            line = stream.readLine();
+            ui->textEdit->setText(ui->textEdit->toPlainText()+line+"\n");
+          //  qDebug() << "linea: "<<line;
+        }
+    }
+    file.close();
+
+
+    QString inputstring = ui->textEdit->toPlainText();
+
+    QRegExp regex;
+    //regex.setPattern("name=\\\"([^\\\"]+)\\\"");
+
+     regex.setPattern("(http:|http)//[a-zA-Z0-9./?=_%:-]*"); //https
+    QStringList namelist, idlist;
+    int pos = 0;
+    while (pos >= 0)
+    {
+        pos = regex.indexIn(inputstring, pos);
+
+        if (pos >= 0)
+        {
+            QString strName = regex.cap(0);
+            strName = strName.mid(5);
+            namelist.push_back(strName);
+                ui->stationurls->addItem(strName);
+            pos += strName.length();
+        }
+    }
+
+
+    //QString fileName = "tunein-station.pls";
+    //QFile file2(fileName);
+    //    file2.remove();
+     //   file2.close();
+
+    //    QFile::remove("tunein-station.pls");
+
+//audio->play("http://185.33.21.112:80/rockclassics_64",1);
+  //  audio->play("http://185.33.21.112:80/rockclassics_64",1);
+#endif
+}
+
+
+
+void MainWindow::on_comboBox_currentIndexChanged(const QString &arg1)
+{
+
+    //http://api.shoutcast.com/legacy/genresearch?k=F5NaL5p4avjtIaoy&genre=classic&limit=X,Y
+
+
+    QString url2 = "http://api.shoutcast.com/legacy/stationsearch?k=F5NaL5p4avjtIaoy&search=";  //ambient+beats
+            url2+= ui->stationSearch->text().toLatin1();
+            url2+= "&limit=1,10";
+
+       // dlmanager->Download("http://api.shoutcast.com/legacy/Top500?k=F5NaL5p4avjtIaoy");
+      //  dlmanager->Download(url2.toLatin1());
+}
+
+void MainWindow::on_refreshbtn_clicked()
+{
+    #ifdef MEDIAPLAYER
+    parseSearch();
+#endif
+}
+
+void MainWindow::on_txtNames_currentRowChanged(int currentRow)
+{
+        ui->txtIds->setCurrentRow(currentRow);
+}
+
+void MainWindow::on_playstationbtn_clicked()
+{
+    #ifdef MEDIAPLAYER
+      audio->play("http:" + ui->stationurls->currentItem()->text().toLatin1(),1);
+//ui->treeWidget->currentItem()->text(0);
+#endif
+}
+
+void MainWindow::on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column)
+{
+#ifdef MEDIAPLAYER
+   ui->stationSearch->setText(ui->treeWidget->currentItem()->text(0) )  ;
+
+   on_pushButton_3_clicked();
+
+  // parseSearch();
+#endif
+}
+
+void MainWindow::on_stationurls_itemDoubleClicked(QListWidgetItem *item)
+{
+#ifdef MEDIAPLAYER
+    audio->play("http:" + ui->stationurls->currentItem()->text().toLatin1(),1);
+#endif
+}
+
+void MainWindow::on_txtNames_itemDoubleClicked(QListWidgetItem *item)
+{
+    #ifdef MEDIAPLAYER
+    QFile::remove("tunein-station.pls");
+    QString url2 = "http://yp.shoutcast.com/sbin/tunein-station.pls?id=";
+            url2 +=    ui->txtIds->currentItem()->text().toLatin1();
+
+    dlmanager->Download(url2);
+
+    QTime dieTime = QTime::currentTime().addMSecs( 1000 );
+    while( QTime::currentTime() < dieTime )
+    {
+        QCoreApplication::processEvents( QEventLoop::AllEvents, 100 );
+    }
+
+    on_chooseStationbtn_clicked();
+#endif
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+
+#ifdef MEDIAPLAYER
+    QString dir = QFileDialog::getExistingDirectory(this, tr("Open Directory"),
+                                                "/home",
+                                                QFileDialog::ShowDirsOnly
+                                                | QFileDialog::DontResolveSymlinks);
+
+       onFindMusic(dir.toLatin1());
+#endif
+}
+
+void MainWindow::on_pushButton_5_clicked()
+{
+#ifdef MEDIAPLAYER
+    QString fileName = QFileDialog::getOpenFileName(this, ("Open File"),
+                                                    "/home",
+                                                    ("Images (*.mp3 *.ogg *.wav)"));
+
+    audio->play(fileName,0);
+#endif
+}
+#ifdef MEDIAPLAYER
+void MainWindow::onFindMusic(QString directory) {
+
+  stopScanner();
+  QString dirMusic = directory;
+
+//          QDir::homePath() + "/" +
+//                     QStandardPaths::displayName(QStandardPaths::MusicLocation);
+
+  scanner = new Scanner(dirMusic, this);
+  connect(scanner, SIGNAL(fileAdded(QString)), this,
+          SLOT(onFileAdded(QString)));
+  scanner->start();
+
+}
+#endif

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1105</width>
-    <height>575</height>
+    <width>970</width>
+    <height>519</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -34,7 +34,7 @@
         <item row="0" column="0">
          <widget class="QTabWidget" name="tabWidget_2">
           <property name="currentIndex">
-           <number>0</number>
+           <number>3</number>
           </property>
           <widget class="QWidget" name="tab_2">
            <attribute name="title">
@@ -559,56 +559,89 @@
            <attribute name="title">
             <string>MediaPlayer</string>
            </attribute>
-           <widget class="QWidget" name="verticalLayoutWidget">
+           <widget class="QTabWidget" name="uitabwidget_2">
             <property name="geometry">
              <rect>
-              <x>110</x>
-              <y>40</y>
-              <width>321</width>
-              <height>95</height>
+              <x>0</x>
+              <y>0</y>
+              <width>721</width>
+              <height>579</height>
              </rect>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout_3">
-             <property name="spacing">
-              <number>0</number>
-             </property>
-             <property name="topMargin">
-              <number>0</number>
-             </property>
-             <item>
-              <widget class="QLabel" name="label_artist">
-               <property name="font">
-                <font>
-                 <pointsize>12</pointsize>
-                </font>
+            <property name="styleSheet">
+             <string notr="true">QTabWidget::pane { background: transparent; border:0; }
+
+QVideoWidget { background: transparent;}</string>
+            </property>
+            <property name="currentIndex">
+             <number>1</number>
+            </property>
+            <widget class="QWidget" name="tab_14">
+             <attribute name="title">
+              <string>MediaPlayer</string>
+             </attribute>
+             <widget class="QWidget" name="verticalLayoutWidget">
+              <property name="geometry">
+               <rect>
+                <x>110</x>
+                <y>0</y>
+                <width>351</width>
+                <height>79</height>
+               </rect>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_3">
+               <property name="spacing">
+                <number>0</number>
                </property>
-               <property name="styleSheet">
-                <string notr="true">color:rgb(255,195,50)</string>
+               <property name="topMargin">
+                <number>0</number>
                </property>
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_title">
-               <property name="styleSheet">
-                <string notr="true">color:rgb(255, 255, 255)</string>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_4">
                <item>
-                <widget class="QSlider" name="horizontalSlider_2">
-                 <property name="enabled">
-                  <bool>true</bool>
+                <widget class="QLabel" name="label_artist">
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                  </font>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">QSlider::groove:horizontal {
+                  <string notr="true">color:rgb(255,195,50)</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_title">
+                 <property name="styleSheet">
+                  <string notr="true">color:rgb(255, 255, 255)</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="5,5">
+                 <property name="spacing">
+                  <number>15</number>
+                 </property>
+                 <property name="sizeConstraint">
+                  <enum>QLayout::SetDefaultConstraint</enum>
+                 </property>
+                 <item>
+                  <widget class="QSlider" name="horizontalSlider_2">
+                   <property name="enabled">
+                    <bool>true</bool>
+                   </property>
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QSlider::groove:horizontal {
 border: 0px solid #bbb;
 background: white;
 height: 10px;
@@ -665,244 +698,326 @@ border: 1px solid #aaa;
 border-radius: 4px;
 }
 </string>
+                   </property>
+                   <property name="value">
+                    <number>67</number>
+                   </property>
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label_duration_2">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>75</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>50</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="sizeIncrement">
+                    <size>
+                     <width>400</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="baseSize">
+                    <size>
+                     <width>20</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                   <property name="layoutDirection">
+                    <enum>Qt::LeftToRight</enum>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">color:rgb(255, 255, 255)</string>
+                   </property>
+                   <property name="text">
+                    <string>00:00/ 00:00</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>false</bool>
+                   </property>
+                   <property name="margin">
+                    <number>5</number>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QLabel" name="label_3">
+              <property name="geometry">
+               <rect>
+                <x>30</x>
+                <y>0</y>
+                <width>81</width>
+                <height>81</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="pixmap">
+               <pixmap>../Development/qPlay/Resource/img/freemp.png</pixmap>
+              </property>
+              <property name="scaledContents">
+               <bool>true</bool>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="margin">
+               <number>5</number>
+              </property>
+             </widget>
+             <widget class="QWidget" name="horizontalLayoutWidget_2">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>80</y>
+                <width>226</width>
+                <height>42</height>
+               </rect>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_5">
+               <item>
+                <widget class="QPushButton" name="pushButton_shuffle">
+                 <property name="maximumSize">
+                  <size>
+                   <width>40</width>
+                   <height>40</height>
+                  </size>
                  </property>
-                 <property name="value">
-                  <number>67</number>
+                 <property name="text">
+                  <string/>
                  </property>
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+                 <property name="icon">
+                  <iconset>
+                   <normaloff>../Development/qPlay/Resource/img/btn_shuffle_off.png</normaloff>../Development/qPlay/Resource/img/btn_shuffle_off.png</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>40</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="label_duration_2">
-                 <property name="minimumSize">
-                  <size>
-                   <width>50</width>
-                   <height>0</height>
-                  </size>
-                 </property>
+                <widget class="QPushButton" name="pushButton_prev">
                  <property name="maximumSize">
                   <size>
-                   <width>50</width>
-                   <height>16777215</height>
+                   <width>40</width>
+                   <height>40</height>
                   </size>
                  </property>
-                 <property name="layoutDirection">
-                  <enum>Qt::LeftToRight</enum>
+                 <property name="text">
+                  <string/>
                  </property>
-                 <property name="styleSheet">
-                  <string notr="true">color:rgb(255, 255, 255)</string>
+                 <property name="icon">
+                  <iconset>
+                   <normaloff>../Development/qPlay/Resource/img/btn_previous.png</normaloff>../Development/qPlay/Resource/img/btn_previous.png</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>40</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_play">
+                 <property name="maximumSize">
+                  <size>
+                   <width>40</width>
+                   <height>40</height>
+                  </size>
                  </property>
                  <property name="text">
-                  <string>00:00</string>
+                  <string/>
                  </property>
-                 <property name="alignment">
-                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 <property name="icon">
+                  <iconset>
+                   <normaloff>../Development/qPlay/Resource/img/btn_play.png</normaloff>../Development/qPlay/Resource/img/btn_play.png</iconset>
                  </property>
-                 <property name="margin">
-                  <number>5</number>
+                 <property name="iconSize">
+                  <size>
+                   <width>40</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_next">
+                 <property name="maximumSize">
+                  <size>
+                   <width>40</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset>
+                   <normaloff>../Development/qPlay/Resource/img/btn_next.png</normaloff>../Development/qPlay/Resource/img/btn_next.png</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>40</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_repeat">
+                 <property name="maximumSize">
+                  <size>
+                   <width>40</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset>
+                   <normaloff>../Development/qPlay/Resource/img/btn_repeat_off.png</normaloff>../Development/qPlay/Resource/img/btn_repeat_off.png</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>40</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
                  </property>
                 </widget>
                </item>
               </layout>
-             </item>
-            </layout>
-           </widget>
-           <widget class="QLabel" name="label_3">
-            <property name="geometry">
-             <rect>
-              <x>30</x>
-              <y>40</y>
-              <width>81</width>
-              <height>81</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="pixmap">
-             <pixmap>Resource/img/freemp.png</pixmap>
-            </property>
-            <property name="scaledContents">
-             <bool>true</bool>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="margin">
-             <number>5</number>
-            </property>
-           </widget>
-           <widget class="QLabel" name="label_bgr">
-            <property name="geometry">
-             <rect>
-              <x>30</x>
-              <y>40</y>
-              <width>401</width>
-              <height>131</height>
-             </rect>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background-color : qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(56, 64, 68, 255), stop:1 rgba(29, 33, 37, 255))</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-           <widget class="QWidget" name="horizontalLayoutWidget_2">
-            <property name="geometry">
-             <rect>
-              <x>30</x>
-              <y>120</y>
-              <width>401</width>
-              <height>52</height>
-             </rect>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_5">
-             <item>
-              <widget class="QPushButton" name="pushButton_shuffle">
-               <property name="maximumSize">
-                <size>
-                 <width>40</width>
-                 <height>40</height>
-                </size>
+             </widget>
+             <widget class="QSlider" name="horizontalSlider">
+              <property name="geometry">
+               <rect>
+                <x>400</x>
+                <y>90</y>
+                <width>61</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="pushButton">
+              <property name="geometry">
+               <rect>
+                <x>90</x>
+                <y>140</y>
+                <width>91</width>
+                <height>27</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>RadioStation</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="pushButton_4">
+              <property name="geometry">
+               <rect>
+                <x>180</x>
+                <y>140</y>
+                <width>91</width>
+                <height>27</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>FindMusic</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="pushButton_5">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>140</y>
+                <width>91</width>
+                <height>27</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>OpenFolder</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="pushButton_6">
+              <property name="geometry">
+               <rect>
+                <x>270</x>
+                <y>140</y>
+                <width>91</width>
+                <height>27</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>OpenFile</string>
+              </property>
+             </widget>
+             <widget class="QVideoWidget" name="vidwid_2" native="true">
+              <property name="geometry">
+               <rect>
+                <x>460</x>
+                <y>0</y>
+                <width>231</width>
+                <height>331</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background: transparent;</string>
+              </property>
+              <widget class="QListView" name="listView">
+               <property name="geometry">
+                <rect>
+                 <x>20</x>
+                 <y>0</y>
+                 <width>301</width>
+                 <height>391</height>
+                </rect>
                </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset>
-                 <normaloff>Resource/img/btn_shuffle_off.png</normaloff>Resource/img/btn_shuffle_off.png</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>40</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <property name="flat">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_prev">
-               <property name="maximumSize">
-                <size>
-                 <width>40</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset>
-                 <normaloff>Resource/img/btn_previous.png</normaloff>Resource/img/btn_previous.png</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>40</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <property name="flat">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_play">
-               <property name="maximumSize">
-                <size>
-                 <width>40</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset>
-                 <normaloff>Resource/img/btn_play.png</normaloff>Resource/img/btn_play.png</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>40</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <property name="flat">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_next">
-               <property name="maximumSize">
-                <size>
-                 <width>40</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset>
-                 <normaloff>Resource/img/btn_next.png</normaloff>Resource/img/btn_next.png</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>40</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <property name="flat">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_repeat">
-               <property name="maximumSize">
-                <size>
-                 <width>40</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset>
-                 <normaloff>Resource/img/btn_repeat_off.png</normaloff>Resource/img/btn_repeat_off.png</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>40</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <property name="flat">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-           <widget class="QListView" name="listView">
-            <property name="geometry">
-             <rect>
-              <x>750</x>
-              <y>10</y>
-              <width>301</width>
-              <height>391</height>
-             </rect>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QListView {
+               <property name="styleSheet">
+                <string notr="true">QListView {
 background-color:
 qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(56, 64, 68, 255), stop:1 rgba(29, 33, 37, 255))
 }
@@ -929,102 +1044,2572 @@ QScrollBar::handle {
      background: none;
 }
 </string>
-            </property>
-            <property name="dragDropOverwriteMode">
-             <bool>false</bool>
-            </property>
-            <property name="dragDropMode">
-             <enum>QAbstractItemView::NoDragDrop</enum>
-            </property>
-            <property name="defaultDropAction">
-             <enum>Qt::IgnoreAction</enum>
-            </property>
-           </widget>
-           <widget class="QWidget" name="verticalLayoutWidget_2">
-            <property name="geometry">
-             <rect>
-              <x>30</x>
-              <y>180</y>
-              <width>691</width>
-              <height>134</height>
-             </rect>
-            </property>
-            <layout class="QVBoxLayout" name="verticalLayout_4">
-             <item>
-              <widget class="QListWidget" name="listWidget"/>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_2">
+               </property>
+               <property name="dragDropOverwriteMode">
+                <bool>false</bool>
+               </property>
+               <property name="dragDropMode">
+                <enum>QAbstractItemView::NoDragDrop</enum>
+               </property>
+               <property name="defaultDropAction">
+                <enum>Qt::IgnoreAction</enum>
+               </property>
+              </widget>
+             </widget>
+             <widget class="QWidget" name="verticalLayoutWidget_2">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>170</y>
+                <width>497</width>
+                <height>150</height>
+               </rect>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_4">
                <item>
-                <widget class="QPushButton" name="SkipPrevious">
+                <widget class="QListWidget" name="playlists"/>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_2">
+                 <item>
+                  <widget class="QPushButton" name="SkipPrevious">
+                   <property name="text">
+                    <string>&lt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="Play">
+                   <property name="text">
+                    <string>Play/Pause</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="SavePlaylist">
+                   <property name="text">
+                    <string>Save Playlist</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="LoadPlaylist">
+                   <property name="text">
+                    <string>Load Playlist</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="SkipNext">
+                   <property name="text">
+                    <string>&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+            <widget class="QWidget" name="tab_15">
+             <attribute name="title">
+              <string>ShoutCast</string>
+             </attribute>
+             <layout class="QGridLayout" name="gridLayout_10">
+              <item row="0" column="0">
+               <widget class="QGroupBox" name="groupBox_6">
+                <property name="title">
+                 <string>ShoutCast</string>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_11">
+                 <item row="3" column="1">
+                  <widget class="QLineEdit" name="stationSearch"/>
+                 </item>
+                 <item row="4" column="2">
+                  <widget class="QPushButton" name="refreshbtn">
+                   <property name="text">
+                    <string>refresh</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="1">
+                  <widget class="QPushButton" name="pushButton_7">
+                   <property name="text">
+                    <string>Search</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="2">
+                  <widget class="QPushButton" name="playstationbtn">
+                   <property name="text">
+                    <string>playstation</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="3" rowspan="5">
+                  <widget class="QTreeWidget" name="treeWidget">
+                   <column>
+                    <property name="text">
+                     <string>1</string>
+                    </property>
+                   </column>
+                   <item>
+                    <property name="text">
+                     <string>Alternative</string>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>Adult Alternative</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Britpop</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Classic</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Alternative</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>college</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Dancepunk</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Dream Pop</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Emo</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Goth</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Grunge</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Hardcore</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Indie Pop</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Indie Rock</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Industrial</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>LoFi</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Modern Rock</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>New Wave</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Noise Pop</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Post Punk</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Power Pop</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Punk</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Ska</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Xtreme</string>
+                     </property>
+                    </item>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Blues</string>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>Acoustic Blues</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Chicago Blues</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Contemporary Blues</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Country Blues</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Delta Blues</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Electric Blues</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Cajun and Zydeco</string>
+                     </property>
+                    </item>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Classical</string>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>Baroque</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Chamber</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Choral</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Classical Period</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Early Classical</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Impressionist</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Modern</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Opera</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Piano</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Romantic</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Symphony</string>
+                     </property>
+                    </item>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Country</string>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>Alt Country</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Americana</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Bluegrass</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Classic Country</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Contemporary Bluegrass</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Contemporary Country</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Honky Tonk</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Hits</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Western</string>
+                     </property>
+                    </item>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Easy Listening</string>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>Exotica</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Light Rock</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Lounge</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Orchestral Pop</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Polka</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Spac Age Pop</string>
+                     </property>
+                    </item>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Electronic</string>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>Acid House</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Ambient</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Big Beat</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Breakbeat</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Dance</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Demo</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Disco</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Downtempo</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Drum and Bass</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Electro</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Garage</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Hard House</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>House</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>IDM</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Jungle</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Progressive</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Techno</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Trance</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Tribal</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Trip Hop</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Dubstep</string>
+                     </property>
+                    </item>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Folk</string>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>Alternative Folk</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Contemporary Folk</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Folk Rock</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>New Acoustic</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Traditional Folk</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>World Folk</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Old Time</string>
+                     </property>
+                    </item>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Themes</string>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>Adult</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Best of chill</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Eclectic</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Experimental</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Female</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Heartache</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Instrumental</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>LGBT</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Love and Romance</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Party Mix</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Patriotic</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Rainy Day Mix</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Reality</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Sexy</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Shuffle</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Travel Mix</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Tribute</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Work Mix</string>
+                     </property>
+                    </item>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Rap</string>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>Alternative Rap</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Dirty South</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>East Coast Rap</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Freestyle</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Hip Hop</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Gangsta Rap</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Mixtapes</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Old School</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Turntablism</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Underground Hip Hop</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>West Coast Rap</string>
+                     </property>
+                    </item>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Inspirational</string>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>Christian</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Christian Metal</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Christian Rap</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Christian Rock</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Classic Christian</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Contemporary Gospel</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Gospel</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Praise and Worship</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Sermons and Services</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Southern Gospel</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Traditional Gospel</string>
+                     </property>
+                    </item>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>International</string>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>African</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Arabic</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Asian</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Bollywood</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Brazilian</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Caribbean</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Celtic</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Chinese</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>European</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Filipino</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>French</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Greek</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Hawaiian and Pacific</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Hindi</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Indian</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Japanese</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Hebrew</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Klezmer</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Korean</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Mediterranean</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Middle Eastern</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>North American</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Russian</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Soca</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>South American</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Tamil</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Worldbeat</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Zouk</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>German</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Turkish</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Islamic</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Afrikaans</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Creole</string>
+                     </property>
+                    </item>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Jazz</string>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>Acid Jazz</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Avant Garde</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Big Band</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Bop</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Classic Jazz</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Cool Jazz</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Fusion</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Hard Bop</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Latin Jazz</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Smooth Jazz</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Swing</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Vocal Jazz</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>World Fusion</string>
+                     </property>
+                    </item>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Latin</string>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>Bachata</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Banda</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Bossa Nova</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Cumbia</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Latin Dance</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Latin Pop</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>LatinRap and Hip Hop</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Latin Rock</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Mariachi</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Merengue</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Ranchera</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Reggaeton</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Regional</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Mexican</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Salsa</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Tango</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Tejano</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Tropicalia</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Flamenco</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Samba</string>
+                     </property>
+                    </item>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Metal</string>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>Black Metal</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Classic Metal</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Extreme Metal</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Grindcore</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Hair Metal</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Heavy Metal</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Metalcore</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Power Metal</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Progressive Metal</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Rap Metal</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Death Metal</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Trash Metal</string>
+                     </property>
+                    </item>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>New Age</string>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>Environmental</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Ethnic Fusion</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Healing</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Meditation</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Spiritual</string>
+                     </property>
+                    </item>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Decades</string>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>30s</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>40s</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>50s</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>60s</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>70s</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>80s</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>90s</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>00s</string>
+                     </property>
+                    </item>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Pop</string>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>Adult Contemporary</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Barbershop</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Bubblegum Pop</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Dance Pop</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Idols</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Oldies</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>JPOP</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Soft Rock</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Teen Pop</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Top 40</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>World Pop</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>KPOP</string>
+                     </property>
+                    </item>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>R&amp;B and Urban</string>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>Classic R&amp;B</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Contemporary R&amp;B</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Doo Wop</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Funk</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Motown</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Neo Soul</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Quiet Storm</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Soul</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Urban</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Contemporary</string>
+                     </property>
+                    </item>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Reggae</string>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>Contemporary Reggae</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Dancehall</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Dub</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Pop Reggae</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Ragga</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Rock Steady</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Reggae Roots</string>
+                     </property>
+                    </item>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Rock</string>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>Adult Album</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Alternative</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>British Invasion</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Classic Rock</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Garage Rock</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Glam</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Hard Rock</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Jam Bands</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Piano Rock</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Psychedelic</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Rock &amp; Roll</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Rockabilly</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Singer and Songwriter</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Surf</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>JROCK</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Celtic Rock</string>
+                     </property>
+                    </item>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Seasonial and Holiday</string>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>Anniversary</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Birthday</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Christmas</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Halloweed</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Hanukkah</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Honeymoon</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Kwanazaa</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Valentine</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Wedding</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Winter</string>
+                     </property>
+                    </item>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>SoundTracks</string>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>Anime</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Kids</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Original Score</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Showtunes</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Video Game Music</string>
+                     </property>
+                    </item>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Talk</string>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>Comedy</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Community</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Educational</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Government</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>News</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Old Time Radio</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Other Talk</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Political</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Scanner</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Spoken Word</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Sports</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Technology</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>BlogTalk</string>
+                     </property>
+                    </item>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Misc</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Public Radio</string>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>News</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Talk</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>College</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Sports</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Weather</string>
+                     </property>
+                    </item>
+                   </item>
+                  </widget>
+                 </item>
+                 <item row="2" column="1" colspan="2">
+                  <widget class="QComboBox" name="comboBox">
+                   <item>
+                    <property name="text">
+                     <string>Alternative</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Blues</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Classical</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Country</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Easy Listening</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Electronic</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Folk</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Themes</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Rap</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Inspirational</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>International</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Jazz</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Latin</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Metal</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>New Age</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Decades</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Pop</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>R&amp;B and Urban</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Reggae</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Rock</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Seasonal and Holiday</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Soundtracks</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Talk</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Misc</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Public Radio</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                 <item row="1" column="1" colspan="2">
+                  <widget class="QListWidget" name="stationurls"/>
+                 </item>
+                 <item row="1" column="0" rowspan="5">
+                  <widget class="QListWidget" name="txtNames"/>
+                 </item>
+                 <item row="5" column="1">
+                  <widget class="QPushButton" name="chooseStationbtn">
+                   <property name="text">
+                    <string>ChooseStation</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="tab_16">
+             <attribute name="title">
+              <string>Page</string>
+             </attribute>
+             <widget class="QTextEdit" name="textEdit">
+              <property name="geometry">
+               <rect>
+                <x>80</x>
+                <y>50</y>
+                <width>221</width>
+                <height>151</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QListWidget" name="txtIds">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>50</y>
+                <width>70</width>
+                <height>498</height>
+               </rect>
+              </property>
+              <property name="sizeAdjustPolicy">
+               <enum>QAbstractScrollArea::AdjustToContents</enum>
+              </property>
+             </widget>
+            </widget>
+            <widget class="QWidget" name="tab_17">
+             <attribute name="title">
+              <string>Page</string>
+             </attribute>
+             <widget class="QGroupBox" name="groupBox_7">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>130</y>
+                <width>571</width>
+                <height>241</height>
+               </rect>
+              </property>
+              <property name="title">
+               <string>Equalizers</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_13">
+               <item row="2" column="3">
+                <widget class="QLabel" name="l220hz">
                  <property name="text">
-                  <string>&lt;</string>
+                  <string>4 db</string>
                  </property>
                 </widget>
                </item>
-               <item>
-                <widget class="QPushButton" name="Play">
-                 <property name="text">
-                  <string>Play/Pause</string>
+               <item row="1" column="4">
+                <widget class="QSlider" name="s311hz">
+                 <property name="minimum">
+                  <number>-300</number>
+                 </property>
+                 <property name="maximum">
+                  <number>300</number>
+                 </property>
+                 <property name="value">
+                  <number>4</number>
+                 </property>
+                 <property name="sliderPosition">
+                  <number>4</number>
+                 </property>
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
                  </property>
                 </widget>
                </item>
-               <item>
-                <widget class="QPushButton" name="SavePlaylist">
+               <item row="0" column="6">
+                <widget class="QLabel" name="label_30">
                  <property name="text">
-                  <string>Save Playlist</string>
+                  <string>622Hz</string>
                  </property>
                 </widget>
                </item>
-               <item>
-                <widget class="QPushButton" name="LoadPlaylist">
+               <item row="2" column="12">
+                <widget class="QLabel" name="l5khz">
                  <property name="text">
-                  <string>Load Playlist</string>
+                  <string>4 db</string>
                  </property>
                 </widget>
                </item>
-               <item>
-                <widget class="QPushButton" name="SkipNext">
+               <item row="0" column="11">
+                <widget class="QLabel" name="label_25">
                  <property name="text">
-                  <string>&gt;</string>
+                  <string>3.5KHz</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLabel" name="l100hz">
+                 <property name="text">
+                  <string>4 db</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="11">
+                <widget class="QSlider" name="s35khz">
+                 <property name="minimum">
+                  <number>-300</number>
+                 </property>
+                 <property name="maximum">
+                  <number>300</number>
+                 </property>
+                 <property name="value">
+                  <number>4</number>
+                 </property>
+                 <property name="sliderPosition">
+                  <number>4</number>
+                 </property>
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QSlider" name="s50hz">
+                 <property name="minimum">
+                  <number>-300</number>
+                 </property>
+                 <property name="maximum">
+                  <number>300</number>
+                 </property>
+                 <property name="value">
+                  <number>4</number>
+                 </property>
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="9">
+                <widget class="QLabel" name="label_18">
+                 <property name="text">
+                  <string>1.75 Khz</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="7">
+                <widget class="QLabel" name="label_15">
+                 <property name="text">
+                  <string>880Hz</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="15">
+                <widget class="QLabel" name="label_24">
+                 <property name="text">
+                  <string>preamp</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLabel" name="label_16">
+                 <property name="text">
+                  <string>100Hz</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="8">
+                <widget class="QLabel" name="label_17">
+                 <property name="text">
+                  <string>1.25KHz</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="l50hz">
+                 <property name="text">
+                  <string>4 db</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="2">
+                <widget class="QLabel" name="l156hz">
+                 <property name="text">
+                  <string>4 db</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="10">
+                <widget class="QSlider" name="s25khz">
+                 <property name="minimum">
+                  <number>-300</number>
+                 </property>
+                 <property name="maximum">
+                  <number>300</number>
+                 </property>
+                 <property name="value">
+                  <number>4</number>
+                 </property>
+                 <property name="sliderPosition">
+                  <number>4</number>
+                 </property>
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="2">
+                <widget class="QSlider" name="s156hz">
+                 <property name="minimum">
+                  <number>-300</number>
+                 </property>
+                 <property name="maximum">
+                  <number>300</number>
+                 </property>
+                 <property name="value">
+                  <number>4</number>
+                 </property>
+                 <property name="sliderPosition">
+                  <number>4</number>
+                 </property>
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="8">
+                <widget class="QLabel" name="l125khz">
+                 <property name="text">
+                  <string>4 db</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="15">
+                <widget class="QSlider" name="preamp_slider">
+                 <property name="minimum">
+                  <number>0</number>
+                 </property>
+                 <property name="maximum">
+                  <number>20</number>
+                 </property>
+                 <property name="value">
+                  <number>20</number>
+                 </property>
+                 <property name="sliderPosition">
+                  <number>20</number>
+                 </property>
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="4">
+                <widget class="QLabel" name="label_19">
+                 <property name="text">
+                  <string>311Hz</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="10">
+                <widget class="QLabel" name="l25khz">
+                 <property name="text">
+                  <string>4 db</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="7">
+                <widget class="QSlider" name="s880hz">
+                 <property name="minimum">
+                  <number>-300</number>
+                 </property>
+                 <property name="maximum">
+                  <number>300</number>
+                 </property>
+                 <property name="value">
+                  <number>4</number>
+                 </property>
+                 <property name="sliderPosition">
+                  <number>4</number>
+                 </property>
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="4">
+                <widget class="QLabel" name="l311hz">
+                 <property name="text">
+                  <string>4 db</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="12">
+                <widget class="QLabel" name="label_23">
+                 <property name="text">
+                  <string>5KHz</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="11">
+                <widget class="QLabel" name="l35khz">
+                 <property name="text">
+                  <string>4 db</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_20">
+                 <property name="text">
+                  <string>50hz</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="8">
+                <widget class="QSlider" name="s125khz">
+                 <property name="minimum">
+                  <number>-300</number>
+                 </property>
+                 <property name="maximum">
+                  <number>300</number>
+                 </property>
+                 <property name="value">
+                  <number>4</number>
+                 </property>
+                 <property name="sliderPosition">
+                  <number>4</number>
+                 </property>
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="14">
+                <widget class="QSlider" name="s20khz">
+                 <property name="minimum">
+                  <number>-300</number>
+                 </property>
+                 <property name="maximum">
+                  <number>300</number>
+                 </property>
+                 <property name="value">
+                  <number>4</number>
+                 </property>
+                 <property name="sliderPosition">
+                  <number>4</number>
+                 </property>
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="3">
+                <widget class="QSlider" name="s220hz">
+                 <property name="minimum">
+                  <number>-300</number>
+                 </property>
+                 <property name="maximum">
+                  <number>300</number>
+                 </property>
+                 <property name="value">
+                  <number>4</number>
+                 </property>
+                 <property name="sliderPosition">
+                  <number>4</number>
+                 </property>
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="5">
+                <widget class="QSlider" name="s440hz">
+                 <property name="minimum">
+                  <number>-300</number>
+                 </property>
+                 <property name="maximum">
+                  <number>300</number>
+                 </property>
+                 <property name="value">
+                  <number>4</number>
+                 </property>
+                 <property name="sliderPosition">
+                  <number>4</number>
+                 </property>
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="15">
+                <widget class="QLabel" name="lpreamp">
+                 <property name="text">
+                  <string>2 X</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QSlider" name="s100hz">
+                 <property name="minimum">
+                  <number>-300</number>
+                 </property>
+                 <property name="maximum">
+                  <number>300</number>
+                 </property>
+                 <property name="value">
+                  <number>4</number>
+                 </property>
+                 <property name="sliderPosition">
+                  <number>4</number>
+                 </property>
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="12">
+                <widget class="QSlider" name="s5khz">
+                 <property name="minimum">
+                  <number>-300</number>
+                 </property>
+                 <property name="maximum">
+                  <number>300</number>
+                 </property>
+                 <property name="value">
+                  <number>4</number>
+                 </property>
+                 <property name="sliderPosition">
+                  <number>4</number>
+                 </property>
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="7">
+                <widget class="QLabel" name="l880hz">
+                 <property name="text">
+                  <string>4 db</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="10">
+                <widget class="QLabel" name="label_21">
+                 <property name="text">
+                  <string>2.5KHz</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="13">
+                <widget class="QLabel" name="label_28">
+                 <property name="text">
+                  <string>10KHz</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="3">
+                <widget class="QLabel" name="label_22">
+                 <property name="text">
+                  <string>220Hz</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="14">
+                <widget class="QLabel" name="label_26">
+                 <property name="text">
+                  <string>20Khz</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="13">
+                <widget class="QSlider" name="s10khz">
+                 <property name="minimum">
+                  <number>-300</number>
+                 </property>
+                 <property name="maximum">
+                  <number>300</number>
+                 </property>
+                 <property name="value">
+                  <number>4</number>
+                 </property>
+                 <property name="sliderPosition">
+                  <number>4</number>
+                 </property>
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="2">
+                <widget class="QLabel" name="label_27">
+                 <property name="text">
+                  <string>156Hz</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="13">
+                <widget class="QLabel" name="l10khz">
+                 <property name="text">
+                  <string>4 db</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="6">
+                <widget class="QSlider" name="s622hz">
+                 <property name="minimum">
+                  <number>-300</number>
+                 </property>
+                 <property name="maximum">
+                  <number>300</number>
+                 </property>
+                 <property name="value">
+                  <number>4</number>
+                 </property>
+                 <property name="sliderPosition">
+                  <number>4</number>
+                 </property>
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="14">
+                <widget class="QLabel" name="l20khz">
+                 <property name="text">
+                  <string>4 db</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="5">
+                <widget class="QLabel" name="label_29">
+                 <property name="text">
+                  <string>440Hz</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="9">
+                <widget class="QLabel" name="l175khz">
+                 <property name="text">
+                  <string>4 db</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="6">
+                <widget class="QLabel" name="l622hz">
+                 <property name="text">
+                  <string>4 db</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="9">
+                <widget class="QSlider" name="s175khz">
+                 <property name="minimum">
+                  <number>-300</number>
+                 </property>
+                 <property name="maximum">
+                  <number>300</number>
+                 </property>
+                 <property name="value">
+                  <number>4</number>
+                 </property>
+                 <property name="sliderPosition">
+                  <number>4</number>
+                 </property>
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="5">
+                <widget class="QLabel" name="l440hz">
+                 <property name="text">
+                  <string>4 db</string>
                  </property>
                 </widget>
                </item>
               </layout>
-             </item>
-            </layout>
+             </widget>
+             <widget class="QComboBox" name="cmbTheme_2">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>10</y>
+                <width>271</width>
+                <height>27</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="applybtn">
+              <property name="geometry">
+               <rect>
+                <x>494</x>
+                <y>511</y>
+                <width>159</width>
+                <height>27</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>apply</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_31">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>80</y>
+                <width>159</width>
+                <height>27</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Preset</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="toggleBTN">
+              <property name="geometry">
+               <rect>
+                <x>330</x>
+                <y>511</y>
+                <width>158</width>
+                <height>27</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>toggle</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="pushButton_8">
+              <property name="geometry">
+               <rect>
+                <x>470</x>
+                <y>380</y>
+                <width>159</width>
+                <height>27</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Write</string>
+              </property>
+             </widget>
+             <widget class="QPlainTextEdit" name="PresetName">
+              <property name="geometry">
+               <rect>
+                <x>310</x>
+                <y>380</y>
+                <width>150</width>
+                <height>22</height>
+               </rect>
+              </property>
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>150</width>
+                <height>22</height>
+               </size>
+              </property>
+              <property name="verticalScrollBarPolicy">
+               <enum>Qt::ScrollBarAlwaysOff</enum>
+              </property>
+              <property name="horizontalScrollBarPolicy">
+               <enum>Qt::ScrollBarAlwaysOff</enum>
+              </property>
+              <property name="plainText">
+               <string>default</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="enableBTN">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>511</y>
+                <width>159</width>
+                <height>27</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>enable</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="disableBTN">
+              <property name="geometry">
+               <rect>
+                <x>165</x>
+                <y>511</y>
+                <width>159</width>
+                <height>27</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>disable</string>
+              </property>
+             </widget>
+             <widget class="QComboBox" name="preset">
+              <property name="geometry">
+               <rect>
+                <x>330</x>
+                <y>80</y>
+                <width>158</width>
+                <height>27</height>
+               </rect>
+              </property>
+              <item>
+               <property name="text">
+                <string>default</string>
+               </property>
+              </item>
+             </widget>
+            </widget>
            </widget>
            <widget class="QVideoWidget" name="vidwid" native="true">
             <property name="geometry">
              <rect>
-              <x>440</x>
-              <y>40</y>
-              <width>291</width>
+              <x>730</x>
+              <y>20</y>
+              <width>181</width>
               <height>121</height>
              </rect>
             </property>
            </widget>
-           <widget class="QSlider" name="horizontalSlider">
-            <property name="geometry">
-             <rect>
-              <x>340</x>
-              <y>10</y>
-              <width>160</width>
-              <height>16</height>
-             </rect>
-            </property>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-           <zorder>label_bgr</zorder>
-           <zorder>verticalLayoutWidget</zorder>
-           <zorder>label_3</zorder>
-           <zorder>horizontalLayoutWidget_2</zorder>
-           <zorder>listView</zorder>
-           <zorder>verticalLayoutWidget_2</zorder>
-           <zorder>vidwid</zorder>
-           <zorder>horizontalSlider</zorder>
           </widget>
           <widget class="QWidget" name="tab_6">
            <attribute name="title">
@@ -1538,7 +4123,7 @@ QScrollBar::handle {
            <attribute name="title">
             <string>Scripts</string>
            </attribute>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="pyrun">
             <property name="geometry">
              <rect>
               <x>600</x>
@@ -1585,7 +4170,7 @@ QScrollBar::handle {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1105</width>
+     <width>970</width>
      <height>25</height>
     </rect>
    </property>

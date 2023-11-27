@@ -19,6 +19,7 @@ class DownloadManager: public QObject
     QNetworkAccessManager manager;
     QVector<QNetworkReply *> currentDownloads;
 
+    QString savefiletmp;
 public:
     DownloadManager();
     void doDownload(const QUrl &url);
@@ -26,6 +27,8 @@ public:
     bool saveToDisk(const QString &filename, QIODevice *data);
     static bool isHttpRedirect(QNetworkReply *reply);
     void replaceFile(QString Src, QString Dest);
+        int Upload(QString URL,QString User,QString Password,QString port,QString filePath);
+        void Download(QString URL);
 
 public slots:
     void execute();
@@ -33,6 +36,5 @@ public slots:
     void sslErrors(const QList<QSslError> &errors);
 };
 
-
-#endif // DOWNLOADMANAGER_H
 #endif
+#endif // DOWNLOADMANAGER_H

@@ -54,13 +54,13 @@ void MainWindow::stopScanner() {
     }
 }
 
-void MainWindow::onFindMusic() {
-    stopScanner();
-    QDir dir =QDir::home();
-    scanner = new Scanner(dir,this);
-    connect(scanner,SIGNAL(fileAdded(QString)),this,SLOT(onFileAdded(QString)));
-    scanner->start();
-}
+//void MainWindow::onFindMusic() {
+//    stopScanner();
+//    QDir dir =QDir::home();
+//    scanner = new Scanner(dir,this);
+//    connect(scanner,SIGNAL(fileAdded(QString)),this,SLOT(onFileAdded(QString)));
+//    scanner->start();
+//}
 
 void MainWindow::addItem(QString s) {
 
@@ -161,7 +161,7 @@ void MainWindow::onSlidertime(QString sliderduration, qint64 duration, qint64 pr
      //qDebug() << "Slider position" << sliderduration;
      ui->horizontalSlider_2->setMaximum(duration);
      ui->horizontalSlider_2->setValue(progress);
-     ui->label_bgr->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
+     //ui->label_bgr->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
      ui->horizontalLayout_4->setContentsMargins(0,0,0,0);
      ui->label_duration_2->setAlignment(Qt::AlignTop | Qt::AlignLeft);
      ui->label_duration_2->setContentsMargins(0,0,0,0);
@@ -184,15 +184,15 @@ void MainWindow::on_horizontalSlider_sliderReleased()
     audio->changePosition(ui->horizontalSlider_2->value());
 }
 
-void MainWindow::on_pushButton_play_clicked()
-{
-   // if (hasNextTrack()) {
-        audio->positionChanged(curseconds);
-        audio->playOrPause(tracklist.at(position)->path);
+//void MainWindow::on_pushButton_play_clicked()
+//{
+//   // if (hasNextTrack()) {
+//        audio->positionChanged(curseconds);
+//        audio->playOrPause(tracklist.at(position)->path);
 
-       // audio->setPosition3(curseconds  * 1000);
-   // }
-}
+//       // audio->setPosition3(curseconds  * 1000);
+//   // }
+//}
 
 bool MainWindow::hasNextTrack() {
     if (tracklist.size()<=0) return false;

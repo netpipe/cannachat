@@ -9,6 +9,7 @@
 #include <QVector>
 #include <vector>
 #include <QListWidgetItem>
+#include <QTreeWidgetItem>
 
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
@@ -36,6 +37,9 @@
 #include "src/mpqt/track.h"
 #include "src/mpqt/trackmodel.h"
 #include "src/mpqt/trackdelegate.h"
+#include "src/mpqt/playlistManager.h"
+#include <src/downloadmanager.h>
+
 #endif
 
 
@@ -141,10 +145,20 @@ void settext();
 void qtPython();
 #endif
 
+void parseSearch();
 #ifdef MEDIAPLAYER
+QVideoWidget *vidplayer;
+//void playsound(QString);
+
+
+///////
+/// \brief trackModel
+///
+
 TrackModel *trackModel;
 AudioThread *audio;
 Scanner *scanner;
+  PlaylistManager *m_playlistDB = nullptr;
 
 QList<Track *> tracklist;
 QPoint dragPos;
@@ -163,6 +177,7 @@ void nextTrack(bool next);
 bool hasNextTrack();
 
 public slots:
+ void onFindMusic(QString);
 //void onStartOfPlayback(double total);
 void onStartOfPlayback();
 void onEndOfPlayback();
@@ -171,7 +186,7 @@ void onCurPos(double position, double total);
 void  onSlidertime(QString sliderduration,qint64 duration,qint64 progress);
 void onFileAdded(QString file);
 void onClearList();
-void onFindMusic();
+//void onFindMusic();
 private slots:
 void on_closeButton_clicked();
 void on_horizontalSlider_sliderPressed();
@@ -243,6 +258,32 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void on_pushButton_3_clicked();
+
+    void on_chooseStationbtn_clicked();
+
+   // void on_txtIds_currentRowChanged(int currentRow);
+
+    void on_comboBox_currentIndexChanged(const QString &arg1);
+
+    void on_refreshbtn_clicked();
+
+    void on_txtNames_currentRowChanged(int currentRow);
+
+  void on_playstationbtn_clicked();
+
+  void on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column);
+
+  void on_stationurls_itemDoubleClicked(QListWidgetItem *item);
+
+  void on_txtNames_itemDoubleClicked(QListWidgetItem *item);
+
+  void on_pushButton_4_clicked();
+
+  void on_pushButton_5_clicked();
+
+  void on_pyrun_clicked();
+
 private:
     QSqlDatabase db;
 //IrcClient *ircwidget;
@@ -251,6 +292,9 @@ private:
 #endif
     Ui::MainWindow *ui;
        QString m_trackDuration;
+
+        DownloadManager *dlmanager;
+
 };
 
 #endif // MAINWINDOW_H
