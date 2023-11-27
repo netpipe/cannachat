@@ -9,9 +9,9 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    a.setApplicationName("voice-over-lan");
+    //a.setApplicationName("Cannachat");
     a.setApplicationVersion("0.1");
-    a.setQuitOnLastWindowClosed(false);
+   // a.setQuitOnLastWindowClosed(false);
     QPixmap m( "./Resource/420-cannabis.jpg");
 
 //    QCommandLineParser parser;

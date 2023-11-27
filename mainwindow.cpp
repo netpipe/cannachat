@@ -950,6 +950,7 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_tabWidget_currentChanged(int index)
 {
+#ifdef IRRLICHT
     //if 3D tab
     //grab keyboard and mouse
      if (ui->tabWidget->currentIndex() == 0){
@@ -970,7 +971,7 @@ void MainWindow::on_tabWidget_currentChanged(int index)
             widget->bActive=0;
            qDebug()<< "releaseKeyboard";
 }
-
+#endif
 }
 
 void MainWindow::on_pushButton_2_clicked()

@@ -64,7 +64,7 @@ LIBS += -lpython2.7
 CONFIG += barcodescan
 #unix:!macx:CONFIG += barcodescan
 barcodescan{
-LIBS+= -lpng -ljpeg
+LIBS+= -lpng -ljpeg -lcrypto
 DEFINES += BARCODE
 }
 }
