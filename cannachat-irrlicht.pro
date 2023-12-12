@@ -390,3 +390,6 @@ FORMS += \
 SUBDIRS += \
     voiceChat/voice-over-lan/QtIntercom.pro
 
+DISTFILES += \
+    Resource/fig-fonts/standard.flf
+

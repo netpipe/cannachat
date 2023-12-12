@@ -57,7 +57,7 @@
 #define DEFAULTFONTDIR "/Resource/fig-fonts/"
 #endif
 #ifndef DEFAULTFONTFILE
-#define DEFAULTFONTFILE "standard.flf"
+#define DEFAULTFONTFILE "standard"
 #endif
 
 #include <stdio.h>
@@ -136,8 +136,8 @@ inchr gn[4]; /* Gn character sets: ASCII, Latin-1, none, none */
 int gl; /* 0-3 specifies left-half Gn character set */
 int gr; /* 0-3 specifies right-half Gn character set */
 
-int Myargc;  /* to avoid passing around argc and argv */
-char **Myargv;
+int Myargc=0;  /* to avoid passing around argc and argv */
+char **Myargv=0;
 
 /****************************************************************************
 
@@ -2002,6 +2002,7 @@ int figlet(int argc,char *argv[])
   Myargc = argc;
   Myargv = argv;
   getparams();
+  //  fontname = (char *) "standard";
   readcontrolfiles();
   readfont();
   linealloc();

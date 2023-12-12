@@ -473,7 +473,7 @@ bool IrcConnectionPrivate::receiveMessage(IrcMessage* msg)
 
     if (!filtered) {
         emit q->messageReceived(msg);
-
+    qDebug() << msg ;
         switch (msg->type()) {
         case IrcMessage::Account:
             emit q->accountMessageReceived(static_cast<IrcAccountMessage*>(msg));

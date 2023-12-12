@@ -188,7 +188,7 @@ connect(clearAction, SIGNAL(triggered()), this, SLOT(onClearList()));
 //m_menuBar->addAction(playlistMenu->menuAction());
 
   audio->setVideoOutput(ui->vidwid);
-
+dlmanager = new DownloadManager;
 #endif
 
 #ifdef IRRLICHT
@@ -903,35 +903,34 @@ void MainWindow::on_asciigen_clicked()
 {
     QString fileslist;
 
-     fileslist.append("figlet,");
+     fileslist.append("blank,");
 
-     fileslist.append("-f,");
-     //fileslist.append("./Resource/fig-fonts/standard.flf,");
-     fileslist.append(ui->fonts->currentText().toLatin1() +",");
+  //   fileslist.append("-f,");
+   //  fileslist.append("./Resource/fig-fonts/standard.flf,");
+
+    // QString path = QDir::temp().absoluteFilePath("standard.flf ,");//a path in the temporary folder
+     //if (!(QFile::copy(":/Resource/fig-fonts/standard.flf", path)))
+     //    fileslist.append(":/Resource/fig-fonts/standard.flf ,");
+   //  fileslist.append(":/Resource/fig-fonts/standard.flf ,");
+
+     //fileslist.append(ui->fonts->currentText().toLatin1() +",");
+    // fileslist.append(path);
      fileslist.append(ui->asciito->text().toLatin1());
-//fileslist.append("NULL");
-     QByteArray array5 = fileslist.toLocal8Bit();
-     char* buffer5 = array5.data();
 
-     if(figlet_wrapper(buffer5)) {
+
+     QByteArray array = fileslist.toLocal8Bit();
+     char* buffer = array.data();
+
+     if(figlet_wrapper(buffer)) {
          qDebug() << "successful";
      }else{
-                        qDebug() << "returned false";
+           qDebug() << "returned false";
      }
-//     sleep(10);
-//     if(figlet_wrapper(buffer5)) {
-//         qDebug() << "successful";
-//     }else{
-//                        qDebug() << "returned false";
-//     }
-
      //    QString line;
      QFile file("tmpascii.txt");
      if (file.open(QIODevice::ReadOnly | QIODevice::Text)){ ui->asciifrom->setPlainText(file.readAll()); }
-     file.close();
-
-
 }
+
 
 void MainWindow::on_asciito_editingFinished()
 {
@@ -1305,3 +1304,4 @@ void MainWindow::onFindMusic(QString directory) {
 
 }
 #endif
+

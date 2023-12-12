@@ -173,15 +173,20 @@ void MainWindow::onSlidertime(QString sliderduration, qint64 duration, qint64 pr
 
 }
 
-void MainWindow::on_horizontalSlider_sliderPressed()
-{
-    moving = true;
+void MainWindow::on_horizontalSlider_2_sliderPressed() { moving = true; }
+
+void MainWindow::on_horizontalSlider_2_sliderReleased() {
+  moving = false;
+  audio->changePosition(ui->horizontalSlider_2->value() * 1000);
 }
 
-void MainWindow::on_horizontalSlider_sliderReleased()
+void MainWindow::on_horizontalSlider_2_sliderMoved(int position) {
+  audio->changePosition(position * 1000);
+}
+
+void MainWindow::on_horizontalSlider_sliderMoved(int position)
 {
-    moving = false;
-    audio->changePosition(ui->horizontalSlider_2->value());
+audio->setvolume(position);
 }
 
 //void MainWindow::on_pushButton_play_clicked()

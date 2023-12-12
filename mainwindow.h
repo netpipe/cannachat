@@ -189,8 +189,8 @@ void onClearList();
 //void onFindMusic();
 private slots:
 void on_closeButton_clicked();
-void on_horizontalSlider_sliderPressed();
-void on_horizontalSlider_sliderReleased();
+//void on_horizontalSlider_sliderPressed();
+//void on_horizontalSlider_sliderReleased();
 void seek(int seconds);
 void on_pushButton_play_clicked();
 void on_pushButton_repeat_clicked();
@@ -283,6 +283,16 @@ private slots:
   void on_pushButton_5_clicked();
 
   void on_pyrun_clicked();
+
+
+  void on_horizontalSlider_2_sliderMoved(int position);
+
+  void on_horizontalSlider_sliderMoved(int position);
+
+  void on_horizontalSlider_2_sliderPressed();
+
+  void on_horizontalSlider_2_sliderReleased();
+
 
 private:
     QSqlDatabase db;

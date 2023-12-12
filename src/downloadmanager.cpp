@@ -188,5 +188,4 @@ void DownloadManager::Download(QString URL){
         doDownload(url);
     //    manager.replaceFile("./new.exe","./S.exe");
 }
-
 #endif
